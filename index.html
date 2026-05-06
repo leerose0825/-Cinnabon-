@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Cinnabon VIP · 共享股東</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{
+  --navy:#121E48;--navy2:#0D1535;--teal:#67CBC9;--teal2:#4DB8B6;
+  --white:#FFFFFF;--cinna:#C8622A;--caramel:#E8A04A;
+  --card:#162040;--card2:#1C2A58;--border:#1E2E5A;--muted:#7A95B8;
+  --red:#E05050;--green:#38D98A;--gold:#F5C842;--orange:#FB923C;
+}
+body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-serif;min-height:100vh;overflow-x:hidden;}
+
+/* SCREENS */
+.screen{display:none;min-height:100vh;flex-direction:column;animation:fadeIn .3s ease;}
+.screen.active{display:flex;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* BOTTOM NAV */
+.navbar{position:fixed;bottom:0;left:0;right:0;background:var(--navy);border-top:1px solid var(--border);display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom);}
+.nav-btn{flex:1;padding:11px 0 9px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;}
+.nav-btn .icon{font-size:18px;}
+.nav-btn .lbl{font-size:8px;color:var(--muted);font-family:"DM Mono",monospace;text-align:center;line-height:1.2;}
+.nav-btn.active .lbl{color:var(--teal);}
+.nav-btn.active .icon{filter:drop-shadow(0 0 6px var(--teal));}
+.content{flex:1;overflow-y:auto;padding-bottom:80px;}
+
+/* HERO BANNER */
+.roll-banner{position:relative;width:100%;height:210px;overflow:hidden;}
+.roll-img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:brightness(.72);}
+.roll-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,21,53,.05) 0%,rgba(13,21,53,.7) 100%);}
+.roll-top-bar{position:absolute;top:0;left:0;right:0;padding:44px 18px 0;display:flex;align-items:center;justify-content:space-between;}
+.roll-brand{display:flex;align-items:center;gap:8px;}
+.roll-brand-icon{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal2));display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 10px rgba(103,203,201,.4);}
+.roll-brand-name{font-family:"Playfair Display",serif;font-size:19px;font-weight:900;color:#fff;}
+.roll-brand-name span{color:var(--teal);}
+.roll-vip{background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);padding:4px 10px;border-radius:16px;font-size:10px;font-weight:900;}
+.roll-bottom{position:absolute;bottom:0;left:0;right:0;padding:0 18px 14px;}
+.roll-user-name{font-size:15px;font-weight:700;color:#fff;}
+.roll-user-sub{font-size:9px;color:rgba(255,255,255,.6);font-family:"DM Mono",monospace;}
+.roll-tagline{font-family:"Playfair Display",serif;font-size:12px;font-style:italic;color:var(--teal);margin-top:4px;}
+
+/* POINTS CARD */
+.points-card{margin:14px;background:linear-gradient(135deg,rgba(103,203,201,.14),rgba(18,30,72,.8));border:1px solid rgba(103,203,201,.28);border-radius:18px;padding:16px;position:relative;overflow:hidden;}
+.points-card::before{content:"🍥";position:absolute;right:10px;bottom:4px;font-size:56px;opacity:.07;}
+.pts-lbl{font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:"DM Mono",monospace;margin-bottom:3px;}
+.pts-val{font-family:"Playfair Display",serif;font-size:42px;font-weight:900;line-height:1;}
+.pts-equiv{font-size:10px;color:var(--teal);margin-top:4px;font-family:"DM Mono",monospace;}
+.pts-stats{display:flex;padding-top:10px;border-top:1px solid rgba(103,203,201,.15);margin-top:10px;}
+.pstat{flex:1;text-align:center;}
+.pstat:not(:last-child){border-right:1px solid rgba(103,203,201,.12);}
+.pstat .pv{font-family:"DM Mono",monospace;font-size:13px;font-weight:700;}
+.pstat .pe{font-size:8px;color:var(--teal);text-transform:uppercase;letter-spacing:.5px;}
+.pstat .pc{font-size:8px;color:var(--muted);}
+
+/* STORED VALUE CARD */
+.stored-card{margin:0 14px 14px;background:linear-gradient(135deg,rgba(248,146,60,.14),rgba(18,30,72,.8));border:1px solid rgba(248,146,60,.28);border-radius:18px;padding:16px;position:relative;overflow:hidden;}
+.stored-card::before{content:"💳";position:absolute;right:10px;bottom:4px;font-size:52px;opacity:.07;}
+.stored-lbl{font-size:9px;color:var(--orange);text-transform:uppercase;letter-spacing:3px;font-family:"DM Mono",monospace;margin-bottom:3px;}
+.stored-val{font-family:"Playfair Display",serif;font-size:38px;font-weight:900;line-height:1;color:var(--orange);}
+.stored-sub{font-size:10px;color:rgba(251,146,60,.7);margin-top:4px;font-family:"DM Mono",monospace;}
+.stored-row{display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(248,146,60,.15);margin-top:10px;}
+.sstat{flex:1;text-align:center;}
+.sstat:not(:last-child){border-right:1px solid rgba(248,146,60,.12);}
+.sstat .sv2{font-family:"DM Mono",monospace;font-size:13px;font-weight:700;color:var(--orange);}
+.sstat .se{font-size:8px;color:var(--orange);opacity:.7;text-transform:uppercase;letter-spacing:.5px;}
+.sstat .sc{font-size:8px;color:var(--muted);}
+
+/* QUICK GRID */
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;padding:0 14px 14px;}
+.qbtn{background:var(--card);border-radius:13px;padding:12px 5px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;border:1px solid var(--border);transition:.15s;}
+.qbtn:active{transform:scale(.94);}
+.qbtn .qi{font-size:20px;}
+.qbtn .qe{font-size:8px;color:var(--teal);font-family:"DM Mono",monospace;text-align:center;}
+.qbtn .qc{font-size:8px;color:var(--muted);text-align:center;}
+.qbtn.hl{background:linear-gradient(135deg,rgba(103,203,201,.14),rgba(18,30,72,.8));border-color:rgba(103,203,201,.3);}
+
+/* SECTION HEAD */
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;padding:0 14px;margin-bottom:9px;}
+.sec-en{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--teal);font-family:"DM Mono",monospace;}
+.sec-cn{font-size:11px;font-weight:700;}
+.sec-more{font-size:10px;color:var(--teal);cursor:pointer;font-family:"DM Mono",monospace;}
+
+/* PLANS */
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 14px;margin-bottom:14px;}
+.plan-card{background:var(--card);border-radius:16px;padding:14px 10px;border:1px solid var(--border);text-align:center;cursor:pointer;transition:.15s;}
+.plan-card:active{transform:scale(.96);}
+.plan-card.vip{background:linear-gradient(135deg,rgba(248,146,60,.18),rgba(18,30,72,.9));border-color:rgba(248,146,60,.4);}
+.plan-card.gold{background:linear-gradient(135deg,rgba(245,200,66,.15),rgba(18,30,72,.9));border-color:rgba(245,200,66,.3);}
+.plan-name{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;font-family:"DM Mono",monospace;margin-bottom:4px;}
+.plan-price{font-family:"Playfair Display",serif;font-size:22px;font-weight:900;color:var(--white);}
+.plan-get{font-size:10px;color:var(--teal);margin:3px 0;}
+.plan-get.gold-text{color:var(--gold);}
+.plan-get.orange-text{color:var(--orange);}
+.plan-btn{background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);border:none;padding:6px 10px;border-radius:14px;font-size:10px;font-weight:900;cursor:pointer;width:100%;margin-top:8px;font-family:"Noto Sans SC",sans-serif;}
+
+/* PROGRESS */
+.prog-wrap{padding:0 14px;margin-bottom:13px;}
+.prog-card{background:var(--card);border-radius:16px;padding:15px;border:1px solid var(--border);}
+.prog-title{font-size:13px;font-weight:700;margin-bottom:2px;}
+.prog-sub{font-size:10px;color:var(--muted);}
+.prog-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin:10px 0 5px;}
+.prog-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--teal2),var(--teal));animation:grow 1.5s ease both;}
+@keyframes grow{from{width:0}}
+.prog-labels{display:flex;justify-content:space-between;font-size:9px;color:var(--muted);font-family:"DM Mono",monospace;}
+
+/* REPORT CARD */
+.report-card{margin:0 14px 13px;background:var(--card);border-radius:16px;padding:15px;border:1px solid var(--border);position:relative;overflow:hidden;}
+.report-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal2),var(--teal));}
+.report-date{font-family:"DM Mono",monospace;font-size:9px;color:var(--muted);margin-bottom:6px;}
+.report-total{font-family:"Playfair Display",serif;font-size:26px;font-weight:900;margin-bottom:10px;}
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.rrow:last-child{border-bottom:none;}
+.rrow-lbl .rk-en{font-size:8px;color:var(--teal);font-family:"DM Mono",monospace;text-transform:uppercase;}
+.rrow-lbl .rk-cn{font-size:10px;color:var(--muted);}
+.rrow .rv{font-family:"DM Mono",monospace;font-size:11px;}
+.rv.pts{color:var(--teal);}
+
+/* DEPOSIT PAGE */
+.dep-hero{background:linear-gradient(175deg,var(--navy),var(--navy2));padding:44px 14px 20px;position:relative;overflow:hidden;}
+.dep-hero::before{content:"";position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(248,146,60,.15),transparent 70%);}
+.form-card{margin:0 14px 12px;background:var(--card);border-radius:16px;padding:16px;border:1px solid var(--border);}
+.form-lbl{font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:2px;font-family:"DM Mono",monospace;margin-bottom:4px;display:block;}
+.form-lbl span{color:var(--muted);font-family:"Noto Sans SC",sans-serif;text-transform:none;letter-spacing:0;font-size:10px;}
+.form-input{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--white);font-size:14px;font-family:"Noto Sans SC",sans-serif;outline:none;margin-bottom:10px;}
+.form-input:focus{border-color:var(--teal);}
+.form-select{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--white);font-size:13px;outline:none;margin-bottom:10px;}
+.submit-btn{width:100%;padding:13px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);font-size:14px;font-weight:900;cursor:pointer;font-family:"Noto Sans SC",sans-serif;}
+.submit-btn.orange{background:linear-gradient(135deg,#f97316,var(--orange));}
+.notice-box{margin:0 14px 12px;background:rgba(103,203,201,.08);border:1px solid rgba(103,203,201,.2);border-radius:13px;padding:13px;font-size:11px;color:var(--muted);line-height:1.6;}
+
+/* REDEEM PAGE */
+.redeem-hero{background:linear-gradient(175deg,var(--navy),var(--navy2));padding:44px 14px 20px;}
+.redeem-list{padding:0 14px;}
+.redeem-item{background:var(--card);border-radius:13px;padding:12px;margin-bottom:9px;display:flex;align-items:center;gap:11px;border:1px solid var(--border);}
+.redeem-img{width:48px;height:48px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.redeem-info{flex:1;}
+.redeem-name-en{font-size:9px;color:var(--teal);font-family:"DM Mono",monospace;text-transform:uppercase;}
+.redeem-name-cn{font-size:12px;font-weight:600;margin:1px 0;}
+.redeem-desc{font-size:9px;color:var(--muted);}
+.redeem-cost{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
+.rpts{font-family:"DM Mono",monospace;font-size:13px;font-weight:700;color:var(--teal);}
+.rpts-lbl{font-size:8px;color:var(--muted);text-transform:uppercase;}
+.rbtn{background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);border:none;padding:6px 11px;border-radius:16px;font-size:10px;font-weight:900;cursor:pointer;margin-top:2px;font-family:"Noto Sans SC",sans-serif;}
+
+/* INVITE */
+.invite-hero{background:linear-gradient(175deg,var(--navy),var(--navy2));padding:44px 14px 20px;text-align:center;position:relative;overflow:hidden;}
+.invite-hero::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:260px;height:260px;background:radial-gradient(circle,rgba(103,203,201,.1),transparent 70%);}
+.invite-badge{display:inline-block;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);padding:4px 15px;border-radius:18px;font-size:10px;font-weight:900;letter-spacing:1px;margin-bottom:13px;}
+.invite-hero h1{font-family:"Playfair Display",serif;font-size:26px;font-weight:900;line-height:1.25;margin-bottom:4px;}
+.invite-hero h1 em{font-style:italic;color:var(--teal);}
+.invite-code-card{margin:14px;background:var(--card);border-radius:16px;padding:18px;border:1px solid rgba(103,203,201,.25);text-align:center;}
+.invite-code{font-family:"DM Mono",monospace;font-size:28px;font-weight:700;color:var(--teal);letter-spacing:7px;margin:10px 0 13px;}
+.copy-btn{background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);border:none;padding:12px;border-radius:26px;font-size:13px;font-weight:900;cursor:pointer;width:100%;font-family:"Noto Sans SC",sans-serif;}
+.step-card{background:var(--card);border-radius:13px;padding:12px;margin-bottom:7px;display:flex;gap:11px;border:1px solid var(--border);}
+.step-num{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;flex-shrink:0;}
+.ref-item{background:var(--card);border-radius:11px;padding:11px 13px;margin-bottom:7px;display:flex;align-items:center;gap:10px;border:1px solid var(--border);}
+.ref-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--teal2),var(--navy));display:flex;align-items:center;justify-content:center;font-size:14px;}
+
+/* TX / HISTORY */
+.tx-list{padding:0 14px;}
+.tx-item{background:var(--card);border-radius:11px;padding:11px 13px;margin-bottom:7px;display:flex;align-items:center;gap:10px;border:1px solid var(--border);}
+.tx-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.tx-en{font-size:9px;color:var(--teal);font-family:"DM Mono",monospace;text-transform:uppercase;}
+.tx-cn{font-size:12px;font-weight:500;margin:1px 0;}
+.tx-d{font-size:9px;color:var(--muted);font-family:"DM Mono",monospace;}
+.tx-amt{font-family:"DM Mono",monospace;font-size:13px;font-weight:700;}
+
+/* ADMIN PAGE */
+.admin-hero{background:linear-gradient(175deg,var(--navy),var(--navy2));padding:44px 14px 20px;}
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px;margin-bottom:12px;}
+.admin-stat{background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--border);text-align:center;}
+.admin-stat .av{font-family:"DM Mono",monospace;font-size:18px;font-weight:700;color:var(--teal);}
+.admin-stat .ae{font-size:8px;color:var(--teal);text-transform:uppercase;font-family:"DM Mono",monospace;}
+.admin-stat .ac{font-size:9px;color:var(--muted);}
+.admin-card{margin:0 14px 12px;background:var(--card);border-radius:16px;padding:15px;border:1px solid var(--border);}
+.admin-card h3{font-size:13px;font-weight:700;margin-bottom:12px;color:var(--teal);}
+.admin-card .sub{font-size:9px;color:var(--muted);margin-bottom:10px;font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:1px;}
+.pending-item{background:var(--card2);border-radius:11px;padding:12px;margin-bottom:8px;border:1px solid var(--border);}
+.pending-name{font-size:13px;font-weight:700;}
+.pending-detail{font-size:10px;color:var(--muted);margin:2px 0;font-family:"DM Mono",monospace;}
+.pending-actions{display:flex;gap:8px;margin-top:8px;}
+.approve-btn{flex:1;padding:8px;border-radius:10px;border:none;background:var(--green);color:var(--navy2);font-size:11px;font-weight:900;cursor:pointer;font-family:"Noto Sans SC",sans-serif;}
+.reject-btn{flex:1;padding:8px;border-radius:10px;border:none;background:var(--red);color:#fff;font-size:11px;font-weight:900;cursor:pointer;font-family:"Noto Sans SC",sans-serif;}
+.member-row{background:var(--card2);border-radius:11px;padding:11px 13px;margin-bottom:7px;display:flex;align-items:center;gap:10px;border:1px solid var(--border);}
+.member-rank{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--teal2),var(--navy));display:flex;align-items:center;justify-content:center;font-family:"DM Mono",monospace;font-size:10px;font-weight:700;color:var(--teal);flex-shrink:0;}
+.revenue-item{background:var(--card2);border-radius:11px;padding:11px 13px;margin-bottom:7px;display:flex;align-items:center;gap:10px;border:1px solid var(--border);}
+.tier-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:9px;font-weight:900;font-family:"DM Mono",monospace;}
+.tier-silver{background:rgba(148,163,184,.2);color:#94A3B8;}
+.tier-gold{background:rgba(245,200,66,.2);color:var(--gold);}
+.tier-vip{background:rgba(248,146,60,.2);color:var(--orange);}
+
+/* PROFILE */
+.profile-hero{background:linear-gradient(175deg,var(--navy),var(--navy2));padding:50px 14px 20px;display:flex;flex-direction:column;align-items:center;}
+.profile-avatar{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--navy));display:flex;align-items:center;justify-content:center;font-size:28px;border:3px solid rgba(103,203,201,.4);margin-bottom:10px;}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:0 14px;margin-top:14px;}
+.stat-card{background:var(--card);border-radius:13px;padding:13px;text-align:center;border:1px solid var(--border);}
+.stat-card .sv{font-family:"DM Mono",monospace;font-size:16px;font-weight:700;color:var(--teal);}
+.stat-card .se{font-size:8px;color:var(--teal);text-transform:uppercase;font-family:"DM Mono",monospace;margin-top:2px;}
+.stat-card .sc{font-size:9px;color:var(--muted);margin-top:1px;}
+.menu-list{padding:0 14px;margin-top:12px;}
+.menu-item{background:var(--card);border-radius:11px;padding:13px;margin-bottom:6px;display:flex;align-items:center;gap:11px;cursor:pointer;border:1px solid var(--border);transition:.15s;}
+.menu-item:active{transform:scale(.98);}
+.menu-item .mi{font-size:17px;}
+.menu-item-text{flex:1;}
+.menu-item-text .me{font-size:9px;color:var(--teal);text-transform:uppercase;font-family:"DM Mono",monospace;letter-spacing:.5px;}
+.menu-item-text .mc{font-size:12px;font-weight:500;margin-top:1px;}
+.menu-item .ma{color:var(--muted);font-size:13px;margin-left:auto;}
+.vip-prog{width:100%;background:var(--card);border-radius:16px;padding:15px;margin-top:15px;border:1px solid rgba(103,203,201,.2);}
+.vip-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
+.vip-track{height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
+.vip-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--teal2),var(--teal));}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:200;display:none;align-items:flex-end;}
+.modal-overlay.show{display:flex;animation:fadeIn .2s ease;}
+.modal{background:var(--card);border-radius:22px 22px 0 0;padding:22px 18px 42px;width:100%;border-top:1px solid var(--border);max-height:88vh;overflow-y:auto;}
+.modal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 15px;}
+.modal .m-en{font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:2px;font-family:"DM Mono",monospace;margin-bottom:2px;}
+.modal h3{font-family:"Playfair Display",serif;font-size:20px;font-weight:900;margin-bottom:4px;}
+.modal p{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;white-space:pre-line;}
+.modal-btn{width:100%;padding:13px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);font-size:14px;font-weight:900;cursor:pointer;margin-bottom:7px;font-family:"Noto Sans SC",sans-serif;}
+.modal-btn.orange{background:linear-gradient(135deg,#f97316,var(--orange));}
+.modal-btn-sec{width:100%;padding:12px;border-radius:13px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:13px;cursor:pointer;font-family:"Noto Sans SC",sans-serif;}
+.checkin-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:15px;}
+.cday{border-radius:8px;padding:7px 2px;text-align:center;}
+
+/* LOGIN */
+#loginScreen,#registerScreen{background:var(--navy2);justify-content:center;align-items:center;padding:40px 18px;}
+.login-logo{text-align:center;margin-bottom:24px;}
+.login-logo h1{font-family:"Playfair Display",serif;font-size:30px;font-weight:900;}
+.login-logo h1 span{color:var(--teal);}
+.login-logo .logo-en{font-size:9px;color:var(--teal);letter-spacing:3px;text-transform:uppercase;font-family:"DM Mono",monospace;margin-top:2px;}
+.login-logo .logo-cn{font-size:11px;color:var(--muted);}
+.login-card{background:var(--card);border-radius:20px;padding:20px;width:100%;border:1px solid var(--border);}
+.login-card .c-en{font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:2px;font-family:"DM Mono",monospace;margin-bottom:2px;}
+.login-card h2{font-size:17px;font-weight:700;margin-bottom:2px;}
+.login-card .c-sub{font-size:11px;color:var(--muted);margin-bottom:16px;}
+.inp-grp{margin-bottom:10px;}
+.inp-grp label{font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:2px;display:flex;gap:6px;margin-bottom:4px;font-family:"DM Mono",monospace;}
+.inp-grp label span{color:var(--muted);font-family:"Noto Sans SC",sans-serif;font-size:10px;text-transform:none;letter-spacing:0;}
+.inp-grp input{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--white);font-size:14px;font-family:"Noto Sans SC",sans-serif;outline:none;}
+.inp-grp input:focus{border-color:var(--teal);}
+.login-btn{width:100%;padding:13px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);font-size:14px;font-weight:900;cursor:pointer;margin-top:5px;font-family:"Noto Sans SC",sans-serif;}
+.login-hint{text-align:center;margin-top:10px;font-size:11px;color:var(--muted);}
+.login-hint span{color:var(--teal);cursor:pointer;}
+.notif-dot{width:7px;height:7px;background:var(--red);border-radius:50%;position:absolute;top:4px;right:calc(50% - 13px);}
+
+/* TOAST */
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--navy);border:1px solid var(--teal);color:var(--teal);padding:9px 18px;border-radius:24px;font-size:12px;font-weight:700;z-index:300;display:none;white-space:nowrap;box-shadow:0 4px 18px rgba(103,203,201,.22);}
+.toast.show{display:block;animation:toastIn .3s ease;}
+@keyframes toastIn{from{opacity:0;top:0}to{opacity:1;top:20px}}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════ LOGIN ═══════════════ -->
+<div class="screen active" id="loginScreen">
+  <div class="login-logo">
+    <div style="font-size:48px;margin-bottom:8px;">🍥</div>
+    <h1>Cinna<span>bon</span></h1>
+    <div class="logo-en">VIP Membership · Fun Mall</div>
+    <div class="logo-cn">共享股東會員系統 · 金邊</div>
+  </div>
+  <div class="login-card">
+    <div class="c-en">Member Login · 會員登入</div>
+    <h2>Welcome Back</h2>
+    <div class="c-sub">歡迎回來，請登入你的帳戶</div>
+    <div class="inp-grp"><label>Phone <span>手機號碼</span></label><input type="tel" id="loginPhone" placeholder="012 345 6789" value="012100001"></div>
+    <div class="inp-grp"><label>Password <span>密碼</span></label><input type="password" id="loginPass" placeholder="••••••" value="111111"></div>
+    <button class="login-btn" onclick="doLogin()">Login · 登 入</button>
+    <div class="login-hint">No account? · 沒有帳戶？ <span onclick="showRegister()">Register · 註冊</span></div>
+    <div style="margin-top:10px;text-align:center;font-size:10px;color:var(--muted);">Admin: 099999999 / admin888</div>
+  </div>
+</div>
+
+<!-- ═══════════════ REGISTER ═══════════════ -->
+<div class="screen" id="registerScreen">
+  <div class="login-logo">
+    <div style="font-size:48px;margin-bottom:8px;">⭐</div>
+    <h1>Join <span>Us</span></h1>
+    <div class="logo-en">Become a VIP Shareholder</div>
+    <div class="logo-cn">加入共享股東，儲值享分紅</div>
+  </div>
+  <div class="login-card">
+    <div class="c-en">New Registration · 新用戶註冊</div>
+    <h2>Create Account</h2>
+    <div class="c-sub">註冊即送 100 積分！</div>
+    <div class="inp-grp"><label>Full Name <span>姓名</span></label><input type="text" id="regName" placeholder="Your name · 你的姓名"></div>
+    <div class="inp-grp"><label>Phone <span>手機號碼</span></label><input type="tel" id="regPhone" placeholder="012 345 6789"></div>
+    <div class="inp-grp"><label>Password <span>密碼</span></label><input type="password" id="regPass" placeholder="Set password · 設置密碼"></div>
+    <div class="inp-grp"><label>Invite Code <span>邀請碼（選填）</span></label><input type="text" id="regInvite" placeholder="Friend invite code · 朋友的邀請碼"></div>
+    <button class="login-btn" onclick="doRegister()">Register · 立即註冊</button>
+    <div class="login-hint">Have account? · 已有帳戶？ <span onclick="showLogin()">Login · 登入</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════ MAIN APP ═══════════════ -->
+<div class="screen" id="appScreen">
+
+  <!-- ══ HOME TAB ══ -->
+  <div class="content" id="homeTab">
+    <!-- HERO BANNER -->
+    <div class="roll-banner">
+      <img class="roll-img" src="data:image/jpeg;base64,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" onerror="this.style.display='none'" alt="Cinnabon">
+      <div class="roll-overlay"></div>
+      <div class="roll-top-bar">
+        <div class="roll-brand">
+          <div class="roll-brand-icon">🍥</div>
+          <div>
+            <div class="roll-brand-name">Cinna<span>bon</span></div>
+            <div style="font-size:8px;color:rgba(255,255,255,.5);font-family:'DM Mono',monospace;letter-spacing:1px;">FUN MALL · PHNOM PENH</div>
+          </div>
+        </div>
+        <div class="roll-vip" id="homeLevelBadge">VIP</div>
+      </div>
+      <div class="roll-bottom">
+        <div class="roll-user-name" id="welcomeName">Shareholder</div>
+        <div class="roll-user-sub" id="welcomeId">ID: M001</div>
+        <div class="roll-tagline">"The World's Greatest Cinnamon Roll"</div>
+      </div>
+    </div>
+
+    <!-- STORED VALUE CARD -->
+    <div class="stored-card">
+      <div class="stored-lbl">Stored Value · 儲值餘額</div>
+      <div class="stored-val" id="homeStored">$0.00</div>
+      <div class="stored-sub" id="homeStoredSub">Available for in-store use · 可用於店內消費</div>
+      <div class="stored-row">
+        <div class="sstat"><div class="sv2" id="homeRewardPts">$0.00</div><div class="se">Reward Pts</div><div class="sc">回饋點數</div></div>
+        <div class="sstat"><div class="sv2" id="homeAvailable">$0.00</div><div class="se">Total Available</div><div class="sc">可用總額</div></div>
+        <div class="sstat"><div class="sv2" id="homeTier">-</div><div class="se">Tier</div><div class="sc">會員等級</div></div>
+      </div>
+    </div>
+
+    <!-- POINTS CARD -->
+    <div class="points-card">
+      <div class="pts-lbl">Loyalty Points · 積分</div>
+      <div style="display:flex;align-items:baseline;gap:5px;">
+        <div class="pts-val" id="homePoints">0</div>
+        <span style="font-size:12px;color:var(--teal);font-family:'DM Mono',monospace;">pts</span>
+      </div>
+      <div class="pts-equiv" id="homeEquiv">≈ $0.00 redemption value</div>
+      <div class="pts-stats">
+        <div class="pstat"><div class="pv" id="homeMonthPts">0</div><div class="pe">This Month</div><div class="pc">本月赚取</div></div>
+        <div class="pstat"><div class="pv" id="homeReferrals">0</div><div class="pe">Referrals</div><div class="pc">邀請人數</div></div>
+        <div class="pstat"><div class="pv" id="homeStreak">0d</div><div class="pe">Streak</div><div class="pc">簽到連續</div></div>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="quick-grid">
+      <div class="qbtn hl" onclick="switchTab('depositTab')"><div class="qi">💰</div><div class="qe">Top Up</div><div class="qc">儲值</div></div>
+      <div class="qbtn" onclick="switchTab('redeemTab')"><div class="qi">🎁</div><div class="qe">Redeem</div><div class="qc">兌換</div></div>
+      <div class="qbtn" onclick="switchTab('inviteTab')"><div class="qi">👥</div><div class="qe">Invite</div><div class="qc">邀請</div></div>
+      <div class="qbtn" onclick="showCheckin()"><div class="qi">📅</div><div class="qe">Check-in</div><div class="qc">每日簽到</div></div>
+    </div>
+
+    <!-- VIP PLANS -->
+    <div class="sec-head"><div><div class="sec-en">Membership Plans</div><div class="sec-cn">會員儲值方案</div></div></div>
+    <div class="plans-grid">
+      <div class="plan-card" onclick="gotoDeposit(100)">
+        <div class="plan-name">Silver</div>
+        <div class="plan-price">$100</div>
+        <div class="plan-get">Get $110</div>
+        <div style="font-size:9px;color:var(--muted);">+$10 bonus</div>
+        <button class="plan-btn">Select</button>
+      </div>
+      <div class="plan-card gold" onclick="gotoDeposit(500)">
+        <div class="plan-name" style="color:var(--gold);">Gold</div>
+        <div class="plan-price" style="color:var(--gold);">$500</div>
+        <div class="plan-get gold-text">Get $575</div>
+        <div style="font-size:9px;color:var(--muted);">+$75 bonus</div>
+        <button class="plan-btn" style="background:linear-gradient(135deg,#ca8a04,var(--gold));color:var(--navy2);">Select</button>
+      </div>
+      <div class="plan-card vip" onclick="gotoDeposit(1000)">
+        <div class="plan-name" style="color:var(--orange);">VIP</div>
+        <div class="plan-price" style="color:var(--orange);">$1,000</div>
+        <div class="plan-get orange-text">Get $1,180</div>
+        <div style="font-size:9px;color:var(--muted);">+$180 bonus</div>
+        <button class="plan-btn" style="background:linear-gradient(135deg,#f97316,var(--orange));color:#fff;">Select</button>
+      </div>
+    </div>
+
+    <!-- VIP PROGRESS -->
+    <div class="prog-wrap">
+      <div class="prog-card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div>
+            <div class="prog-title" id="progTitle">Silver Member</div>
+            <div class="prog-sub" id="progSub">Deposit $500 to upgrade to Gold</div>
+          </div>
+          <div style="font-size:22px;">🏅</div>
+        </div>
+        <div class="prog-track"><div class="prog-fill" id="progFill" style="width:20%;"></div></div>
+        <div class="prog-labels"><span>$0</span><span id="progLabel" style="color:var(--teal);">$100 / $500</span><span>$500</span></div>
+      </div>
+    </div>
+
+    <!-- TODAY REPORT -->
+    <div class="sec-head"><div><div class="sec-en">Latest Revenue Share</div><div class="sec-cn">最新分紅記錄</div></div><div class="sec-more" id="latestRevDate">-</div></div>
+    <div class="report-card">
+      <div class="report-date" id="reportDate">No revenue data yet</div>
+      <div class="report-total" id="reportTotal">$0.00</div>
+      <div class="rrow"><div class="rrow-lbl"><div class="rk-en">Daily Revenue</div><div class="rk-cn">當日營業額</div></div><div class="rv" id="reportRevenue">-</div></div>
+      <div class="rrow"><div class="rrow-lbl"><div class="rk-en">Reward Pool (5%)</div><div class="rk-cn">分紅池</div></div><div class="rv" id="reportPool">-</div></div>
+      <div class="rrow"><div class="rrow-lbl"><div class="rk-en">Your Share</div><div class="rk-cn">你的分紅</div></div><div class="rv pts" id="reportShare">-</div></div>
+      <div class="rrow"><div class="rrow-lbl"><div class="rk-en">Cumulative Reward</div><div class="rk-cn">累計獲得</div></div><div class="rv pts" id="reportCumulative">-</div></div>
+    </div>
+
+    <div class="notice-box">⚠️ This is a prepaid membership program. Rewards are for in-store use only. Not an investment product.<br>本計劃為預付儲值會員制。所有回饋僅限店內消費使用，非投資產品。</div>
+    <div style="height:8px;"></div>
+  </div>
+
+  <!-- ══ DEPOSIT TAB ══ -->
+  <div class="content" id="depositTab" style="display:none;">
+    <div class="dep-hero">
+      <div style="font-size:9px;color:var(--orange);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;margin-bottom:5px;">Top Up · 儲值申請</div>
+      <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;">Deposit & Earn</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px;">儲值後享受分紅，餘額永久有效</div>
+    </div>
+    <div class="form-card">
+      <div class="admin-card" style="margin:0 0 12px;padding:12px;background:rgba(103,203,201,.06);border-color:rgba(103,203,201,.2);">
+        <div style="font-size:10px;color:var(--teal);font-family:'DM Mono',monospace;margin-bottom:6px;">PLAN COMPARISON · 方案比較</div>
+        <div style="display:flex;gap:8px;">
+          <div style="flex:1;text-align:center;background:var(--card2);border-radius:10px;padding:8px;cursor:pointer;" onclick="setPlan(100)">
+            <div style="font-size:10px;color:var(--muted);">Silver</div>
+            <div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:700;">$100</div>
+            <div style="font-size:9px;color:var(--teal);">→ $110</div>
+          </div>
+          <div style="flex:1;text-align:center;background:rgba(245,200,66,.1);border-radius:10px;padding:8px;cursor:pointer;border:1px solid rgba(245,200,66,.3);" onclick="setPlan(500)">
+            <div style="font-size:10px;color:var(--gold);">Gold</div>
+            <div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--gold);">$500</div>
+            <div style="font-size:9px;color:var(--gold);">→ $575</div>
+          </div>
+          <div style="flex:1;text-align:center;background:rgba(248,146,60,.1);border-radius:10px;padding:8px;cursor:pointer;border:1px solid rgba(248,146,60,.3);" onclick="setPlan(1000)">
+            <div style="font-size:10px;color:var(--orange);">VIP</div>
+            <div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--orange);">$1,000</div>
+            <div style="font-size:9px;color:var(--orange);">→ $1,180</div>
+          </div>
+        </div>
+      </div>
+      <label class="form-lbl">Amount <span>儲值金額 (USD)</span></label>
+      <select class="form-select" id="depAmount">
+        <option value="100">$100 → Get $110 value (Silver)</option>
+        <option value="500">$500 → Get $575 value (Gold)</option>
+        <option value="1000">$1,000 → Get $1,180 value (VIP)</option>
+      </select>
+      <label class="form-lbl">Payment Method <span>付款方式</span></label>
+      <select class="form-select" id="depMethod">
+        <option>ABA Transfer</option>
+        <option>Cash</option>
+        <option>KHQR</option>
+      </select>
+      <label class="form-lbl">Reference / Note <span>付款憑證 / 備註</span></label>
+      <input class="form-input" id="depRef" placeholder="ABA transaction ID or cashier note">
+      <button class="submit-btn orange" onclick="submitDeposit()">📤 Submit Deposit · 提交儲值申請</button>
+    </div>
+    <div class="notice-box">⏳ Deposit requires admin approval (usually within 1 hour).<br>儲值需要後台審核，通常1小時內處理。</div>
+    <div style="height:8px;"></div>
+  </div>
+
+  <!-- ══ REDEEM TAB ══ -->
+  <div class="content" id="redeemTab" style="display:none;">
+    <div class="redeem-hero">
+      <div style="font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;margin-bottom:5px;">Rewards · 兌換中心</div>
+      <div style="font-family:'Playfair Display',serif;font-size:34px;font-weight:900;" id="redeemAvail">$0.00</div>
+      <div style="font-size:10px;color:var(--teal);margin-top:4px;font-family:'DM Mono',monospace;">Total available · 可用總額（儲值 + 點數）</div>
+    </div>
+    <div style="padding:13px 14px 8px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px;">
+        <div style="background:var(--card2);border-radius:11px;padding:12px;text-align:center;border:1px solid var(--border);">
+          <div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--orange);" id="r_stored">$0.00</div>
+          <div style="font-size:8px;color:var(--orange);text-transform:uppercase;font-family:'DM Mono',monospace;">Stored Value</div>
+          <div style="font-size:9px;color:var(--muted);">儲值餘額</div>
+        </div>
+        <div style="background:var(--card2);border-radius:11px;padding:12px;text-align:center;border:1px solid var(--border);">
+          <div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--teal);" id="r_points">$0.00</div>
+          <div style="font-size:8px;color:var(--teal);text-transform:uppercase;font-family:'DM Mono',monospace;">Reward Points</div>
+          <div style="font-size:9px;color:var(--muted);">回饋點數</div>
+        </div>
+      </div>
+    </div>
+    <div class="sec-head"><div><div class="sec-en">Redeem in Store</div><div class="sec-cn">店內折抵消費</div></div></div>
+    <div class="redeem-list">
+      <div class="redeem-item">
+        <div class="redeem-img" style="background:rgba(103,203,201,.12);">🍥</div>
+        <div class="redeem-info">
+          <div class="redeem-name-en">Classic Cinnamon Roll</div>
+          <div class="redeem-name-cn">經典肉桂卷 1個</div>
+          <div class="redeem-desc">≈ $4.50 · Use stored value or points</div>
+        </div>
+        <div class="redeem-cost"><div class="rpts">$4.50</div><div class="rpts-lbl">deduct</div><button class="rbtn" onclick="doInStoreRedeem(4.50,'Classic Roll · 肉桂卷')">Redeem</button></div>
+      </div>
+      <div class="redeem-item">
+        <div class="redeem-img" style="background:rgba(103,203,201,.12);">☕</div>
+        <div class="redeem-info">
+          <div class="redeem-name-en">Coffee / Beverage</div>
+          <div class="redeem-name-cn">咖啡飲料</div>
+          <div class="redeem-desc">≈ $3.00 · Any drink</div>
+        </div>
+        <div class="redeem-cost"><div class="rpts">$3.00</div><div class="rpts-lbl">deduct</div><button class="rbtn" onclick="doInStoreRedeem(3.00,'Beverage · 飲料')">Redeem</button></div>
+      </div>
+      <div class="redeem-item">
+        <div class="redeem-img" style="background:rgba(245,200,66,.12);">🎫</div>
+        <div class="redeem-info">
+          <div class="redeem-name-en">Custom Amount</div>
+          <div class="redeem-name-cn">自訂折抵金額</div>
+          <div class="redeem-desc">Enter any amount to deduct · 輸入任意金額</div>
+        </div>
+        <div class="redeem-cost"><div class="rpts">Custom</div><div class="rpts-lbl">amount</div><button class="rbtn" onclick="showCustomRedeem()">Enter</button></div>
+      </div>
+    </div>
+    <div class="notice-box">🏪 All redemptions are for in-store use only. Not redeemable for cash.<br>所有折抵僅限本店消費使用，不可兌換現金。</div>
+    <div style="height:8px;"></div>
+  </div>
+
+  <!-- ══ INVITE TAB ══ -->
+  <div class="content" id="inviteTab" style="display:none;">
+    <div class="invite-hero">
+      <div class="invite-badge">Refer & Earn · 邀請賺積分</div>
+      <h1>Invite Friends<br><em>Earn Together</em></h1>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">邀請好友 · 各得 500 積分</div>
+      <p style="font-size:11px;color:var(--muted);line-height:1.7;">Both you & friend earn <strong style="color:var(--teal);">500 pts each</strong><br>你和朋友各得 <strong style="color:var(--teal);">500 積分</strong></p>
+    </div>
+    <div class="invite-code-card">
+      <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;margin-bottom:2px;">Exclusive Code · 專屬邀請碼</div>
+      <div class="invite-code" id="myInviteCode">CNB-0000</div>
+      <button class="copy-btn" onclick="copyCode()">📋 Copy Code · 複製邀請碼</button>
+    </div>
+    <div style="padding:0 14px;margin-bottom:13px;">
+      <div class="sec-en" style="padding:0;margin-bottom:9px;">How It Works · 邀請步驟</div>
+      <div class="step-card"><div class="step-num">1</div><div><div style="font-size:12px;font-weight:700;">Share your code · 分享邀請碼</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">Send via WhatsApp / Telegram</div></div></div>
+      <div class="step-card"><div class="step-num">2</div><div><div style="font-size:12px;font-weight:700;">Friend registers · 朋友註冊</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">Uses your code when signing up</div></div></div>
+      <div class="step-card"><div class="step-num">3</div><div><div style="font-size:12px;font-weight:700;">Both earn 500 pts ⭐ · 各得500積分</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">Points auto-credited · 積分自動存入</div></div></div>
+    </div>
+    <div class="sec-head"><div><div class="sec-en">Referral History</div><div class="sec-cn">邀請記錄</div></div><div class="sec-more" id="refEarned">0 pts earned</div></div>
+    <div style="padding:0 14px;" id="refList"><div style="text-align:center;padding:20px;color:var(--muted);font-size:12px;">No referrals yet · 暫無邀請記錄</div></div>
+    <div style="height:8px;"></div>
+  </div>
+
+  <!-- ══ HISTORY TAB ══ -->
+  <div class="content" id="historyTab" style="display:none;">
+    <div style="background:linear-gradient(175deg,var(--navy),var(--navy2));padding:44px 14px 20px;">
+      <div style="font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;margin-bottom:5px;">Transaction History · 交易記錄</div>
+      <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:900;" id="histTotal">$0.00</div>
+      <div style="font-size:10px;color:var(--teal);margin-top:4px;font-family:'DM Mono',monospace;">Total available · 可用總額</div>
+    </div>
+    <div class="sec-head" style="margin-top:15px;"><div><div class="sec-en">All Transactions</div><div class="sec-cn">所有記錄</div></div></div>
+    <div class="tx-list" id="txList"><div style="text-align:center;padding:20px;color:var(--muted);font-size:12px;">No transactions yet · 暫無記錄</div></div>
+    <div style="height:8px;"></div>
+  </div>
+
+  <!-- ══ PROFILE TAB ══ -->
+  <div class="content" id="profileTab" style="display:none;">
+    <div class="profile-hero">
+      <div class="profile-avatar">🧑</div>
+      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;" id="profileName">Member</div>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);" id="profileId">ID: M001</div>
+      <div class="vip-prog" style="width:100%;">
+        <div class="vip-row"><div style="font-size:13px;font-weight:700;color:var(--teal);" id="profileTier">Silver</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);" id="profileDepositProg">$0 / $500</div></div>
+        <div class="vip-track"><div class="vip-fill" id="profileProgFill" style="width:0%;"></div></div>
+        <div style="font-size:10px;color:var(--muted);margin-top:6px;text-align:center;" id="profileProgHint">Deposit $500 to reach Gold</div>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="sv" id="pStored">$0</div><div class="se">Stored</div><div class="sc">儲值</div></div>
+      <div class="stat-card"><div class="sv" id="pPoints">0</div><div class="se">Points</div><div class="sc">積分</div></div>
+      <div class="stat-card"><div class="sv" id="pReferrals">0</div><div class="se">Referrals</div><div class="sc">邀請</div></div>
+    </div>
+    <div class="menu-list">
+      <div style="font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;padding:0;margin-bottom:9px;">Account · 帳戶設置</div>
+      <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">👤</div><div class="menu-item-text"><div class="me">Profile</div><div class="mc">個人信息</div></div><div class="ma">›</div></div>
+      <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">🎂</div><div class="menu-item-text"><div class="me">Birthday (+200 pts)</div><div class="mc">設置生日 賠200積分</div></div><div class="ma">›</div></div>
+      <div class="menu-item" onclick="showCheckin()"><div class="mi">📅</div><div class="menu-item-text"><div class="me">Daily Check-in</div><div class="mc">每日簽到</div></div><div class="ma">›</div></div>
+      <div id="adminMenuBtn" style="display:none;" class="menu-item" onclick="switchTab('adminTab')"><div class="mi">🔧</div><div class="menu-item-text"><div class="me">Admin Dashboard</div><div class="mc">後台管理</div></div><div class="ma">›</div></div>
+      <div style="font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;padding:0;margin:12px 0 9px;">About · 關於</div>
+      <div class="menu-item" onclick="showToast('Cinnabon Fun Mall VIP v3.0')"><div class="mi">ℹ️</div><div class="menu-item-text"><div class="me">About</div><div class="mc">關於我們</div></div><div class="mc">v3.0</div><div class="ma">›</div></div>
+      <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">📋</div><div class="menu-item-text"><div class="me">Terms</div><div class="mc">會員條款</div></div><div class="ma">›</div></div>
+      <div class="menu-item" onclick="doLogout()" style="margin-top:5px;"><div class="mi">🚪</div><div class="menu-item-text"><div class="me">Logout</div><div class="mc" style="color:var(--red);">退出登入</div></div><div class="ma">›</div></div>
+    </div>
+    <div style="height:8px;"></div>
+  </div>
+
+  <!-- ══ ADMIN TAB ══ -->
+  <div class="content" id="adminTab" style="display:none;">
+    <div class="admin-hero">
+      <div style="font-size:9px;color:var(--red);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;margin-bottom:5px;">Admin Dashboard · 後台管理</div>
+      <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;">Cinnabon VIP</div>
+      <div style="font-size:10px;color:var(--muted);margin-top:3px;">Management Console · 管理系統</div>
+    </div>
+    <div class="admin-grid">
+      <div class="admin-stat"><div class="av" id="aMembers">0</div><div class="ae">Members</div><div class="ac">總會員數</div></div>
+      <div class="admin-stat"><div class="av" id="aDeposit">$0</div><div class="ae">Total Deposit</div><div class="ac">總儲值額</div></div>
+      <div class="admin-stat"><div class="av" id="aRevenue">$0</div><div class="ae">Total Revenue</div><div class="ac">總營收</div></div>
+      <div class="admin-stat"><div class="av" id="aPending">0</div><div class="ae">Pending</div><div class="ac">待審核</div></div>
+    </div>
+
+    <!-- ADD REVENUE -->
+    <div class="admin-card">
+      <h3>📊 Add Daily Revenue · 輸入每日營收</h3>
+      <label class="form-lbl">Date <span>日期</span></label>
+      <input class="form-input" type="date" id="revDate">
+      <label class="form-lbl">Revenue Amount <span>營收金額 USD</span></label>
+      <input class="form-input" type="number" id="revAmount" placeholder="e.g. 1000">
+      <label class="form-lbl">Reward Rate % <span>回饋比例</span></label>
+      <input class="form-input" type="number" id="rewardRate" value="5" placeholder="5">
+      <button class="submit-btn" onclick="addRevenue()" style="margin-top:4px;">✅ Add Revenue & Distribute Points · 新增並發放</button>
+    </div>
+
+    <!-- PENDING DEPOSITS -->
+    <div class="admin-card">
+      <h3>⏳ Pending Deposits · 待審核儲值</h3>
+      <div id="pendingList"><div style="color:var(--muted);font-size:12px;">No pending deposits · 沒有待審核</div></div>
+    </div>
+
+    <!-- SEED / RESET -->
+    <div class="admin-card">
+      <h3>🧪 Test Data · 測試資料</h3>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:12px;">Generate 30 members + 30 days revenue for testing · 生成30位會員+30天營收</div>
+      <div style="display:flex;gap:10px;">
+        <button class="submit-btn" onclick="seedDemo()" style="flex:1;">🌱 Generate Demo Data</button>
+        <button class="submit-btn" onclick="resetAll()" style="flex:1;background:var(--red);">🗑️ Reset All</button>
+      </div>
+    </div>
+
+    <!-- MEMBERS LIST -->
+    <div class="admin-card">
+      <h3>👥 Members · 會員列表</h3>
+      <div id="adminMemberList"></div>
+    </div>
+
+    <!-- REVENUE LIST -->
+    <div class="admin-card">
+      <h3>📈 Revenue History · 營收記錄</h3>
+      <div id="adminRevenueList"></div>
+    </div>
+    <div style="height:8px;"></div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="navbar">
+    <div class="nav-btn active" onclick="switchTab('homeTab',this)"><span class="icon">🏠</span><span class="lbl">Home<br>首頁</span></div>
+    <div class="nav-btn" onclick="switchTab('depositTab',this)"><span class="icon">💰</span><span class="lbl">Top Up<br>儲值</span></div>
+    <div class="nav-btn" onclick="switchTab('redeemTab',this)"><span class="icon">🎁</span><span class="lbl">Redeem<br>兌換</span></div>
+    <div class="nav-btn" onclick="switchTab('inviteTab',this)" style="position:relative;"><span class="icon">👥</span><span class="lbl">Invite<br>邀請</span><div class="notif-dot"></div></div>
+    <div class="nav-btn" onclick="switchTab('historyTab',this)"><span class="icon">📋</span><span class="lbl">History<br>記錄</span></div>
+    <div class="nav-btn" onclick="switchTab('profileTab',this)"><span class="icon">👤</span><span class="lbl">Me<br>我的</span></div>
+  </nav>
+</div>
+
+<!-- CHECKIN MODAL -->
+<div class="modal-overlay" id="checkinModal" onclick="closeModal('checkinModal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div class="m-en">Daily Check-in · 每日簽到</div>
+    <h3>Check In Today</h3>
+    <p>Streak bonus doubles your points! · 連續簽到翻倍！</p>
+    <div class="checkin-grid" id="checkinGrid"></div>
+    <button class="modal-btn" onclick="doCheckin()">✅ Check In · 簽到</button>
+    <button class="modal-btn-sec" onclick="closeModal('checkinModal')">Close · 關閉</button>
+  </div>
+</div>
+
+<!-- CUSTOM REDEEM MODAL -->
+<div class="modal-overlay" id="customRedeemModal" onclick="closeModal('customRedeemModal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div class="m-en">Custom Redeem · 自訂折抵</div>
+    <h3>Enter Amount</h3>
+    <p>Available · 可用餘額: <span id="customRedeemAvail" style="color:var(--teal);font-family:'DM Mono',monospace;">$0.00</span></p>
+    <input class="form-input" type="number" id="customRedeemAmt" placeholder="Amount to deduct · 折抵金額" style="margin-bottom:12px;">
+    <button class="modal-btn orange" onclick="confirmCustomRedeem()">✅ Confirm Redeem · 確認折抵</button>
+    <button class="modal-btn-sec" onclick="closeModal('customRedeemModal')">Cancel · 取消</button>
+  </div>
+</div>
+
+<!-- REDEEM CONFIRM MODAL -->
+<div class="modal-overlay" id="redeemConfModal" onclick="closeModal('redeemConfModal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div class="m-en">Confirm · 確認</div>
+    <h3>Confirm Redeem</h3>
+    <p id="redeemConfText">Confirm?</p>
+    <button class="modal-btn" onclick="confirmRedeem()">✅ Confirm · 確認</button>
+    <button class="modal-btn-sec" onclick="closeModal('redeemConfModal')">Cancel · 取消</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+// DATA LAYER
+// ═══════════════════════════════════════
+const DB_KEY = "cinnabon_vip_v3";
+function dbLoad(){
+  const r = localStorage.getItem(DB_KEY);
+  if(r) return JSON.parse(r);
+  return {members:[],deposits:[],revenues:[],rewards:[],redeems:[]};
+}
+function dbSave(db){ localStorage.setItem(DB_KEY, JSON.stringify(db)); }
+
+// helpers
+function fmt(n){ return "$"+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function tierOf(deposit){ if(deposit>=1000)return"VIP"; if(deposit>=500)return"Gold"; return"Silver"; }
+function bonusOf(amount){ if(amount>=1000)return 180; if(amount>=500)return 75; return 10; }
+function boostOf(t){ return t==="VIP"?1.35:t==="Gold"?1.15:1; }
+function todayStr(){ return new Date().toISOString().slice(0,10); }
+
+// ═══════════════════════════════════════
+// AUTH
+// ═══════════════════════════════════════
+let currentUser = null;
+let checkedInToday = false;
+let pendingRedeemAmt = 0, pendingRedeemName = "";
+
+function doLogin(){
+  const ph = document.getElementById("loginPhone").value.trim();
+  const ps = document.getElementById("loginPass").value;
+  // Admin login
+  if(ph === "099999999" && ps === "admin888"){
+    currentUser = {id:"ADMIN",name:"Admin",phone:ph,pass:ps,deposit:0,stored:0,points:0,tier:"Admin",inviteCode:"ADMIN",streak:0,referrals:0,isAdmin:true};
+    loadUI(); switchScreen("appScreen"); switchTab("adminTab");
+    showToast("Admin logged in · 管理員登入"); return;
+  }
+  const db = dbLoad();
+  const u = db.members.find(x=>x.phone===ph && x.pass===ps);
+  if(!u){ showToast("Wrong phone/password · 手機號或密碼錯誤"); return; }
+  currentUser = u; loadUI(); switchScreen("appScreen");
+  showToast("Welcome back " + u.name + " · 歡迎回來！");
+}
+
+function doRegister(){
+  const name = document.getElementById("regName").value.trim();
+  const phone = document.getElementById("regPhone").value.trim();
+  const pass = document.getElementById("regPass").value;
+  const invite = document.getElementById("regInvite").value.trim().toUpperCase();
+  if(!name||!phone||!pass){ showToast("Fill all fields · 請填寫所有欄位"); return; }
+  const db = dbLoad();
+  if(db.members.find(x=>x.phone===phone)){ showToast("Phone already registered · 手機號已註冊"); return; }
+  const id = "M"+String(db.members.length+1).padStart(3,"0");
+  const code = "CNB-"+String(db.members.length+4729);
+  let pts = 100;
+  if(invite){
+    const ref = db.members.find(x=>x.inviteCode===invite);
+    if(ref){ ref.points+=500; ref.referrals=(ref.referrals||0)+1; pts+=500; showToast("Invite code valid! +500 pts each · 邀請碼有效！"); }
+  }
+  const newM = {id,name,phone,pass,deposit:0,stored:0,points:pts,tier:"Silver",inviteCode:code,streak:0,referrals:0,monthPts:pts,created:todayStr()};
+  db.members.push(newM); dbSave(db);
+  currentUser = newM; loadUI(); switchScreen("appScreen");
+  showToast("Welcome "+name+"! "+pts+" pts gifted · 歡迎！");
+}
+
+function doLogout(){ currentUser=null; switchScreen("loginScreen"); showToast("Logged out · 已退出"); }
+function showRegister(){ switchScreen("registerScreen"); }
+function showLogin(){ switchScreen("loginScreen"); }
+
+// ═══════════════════════════════════════
+// UI LOAD
+// ═══════════════════════════════════════
+function loadUI(){
+  if(!currentUser) return;
+  const u = currentUser;
+  const avail = (u.stored||0)+(u.points||0);
+
+  // Sync from DB
+  if(!u.isAdmin){
+    const db = dbLoad();
+    const fresh = db.members.find(x=>x.id===u.id);
+    if(fresh) currentUser = fresh;
+    const uf = currentUser;
+    const av = (uf.stored||0)+(uf.points||0);
+
+    // Hero
+    setText("welcomeName", uf.name);
+    setText("welcomeId", "ID: "+uf.id+" · "+uf.tier);
+    setText("homeLevelBadge", uf.tier);
+
+    // Stored card
+    setText("homeStored", fmt(uf.stored));
+    setText("homeRewardPts", fmt(uf.points));
+    setText("homeAvailable", fmt(av));
+    setText("homeTier", uf.tier);
+
+    // Points card
+    setText("homePoints", (uf.points||0).toLocaleString());
+    setText("homeEquiv", "≈ "+fmt(uf.points)+" redemption value · 兌換價值");
+    setText("homeMonthPts", "+"+(uf.monthPts||0));
+    setText("homeReferrals", uf.referrals||0);
+    setText("homeStreak", (uf.streak||0)+"d");
+
+    // Redeem
+    setText("redeemAvail", fmt(av));
+    setText("r_stored", fmt(uf.stored));
+    setText("r_points", fmt(uf.points));
+    setText("histTotal", fmt(av));
+
+    // Profile
+    setText("profileName", uf.name);
+    setText("profileId", "ID: "+uf.id+" · Since "+uf.created);
+    setText("profileTier", uf.tier+" Member");
+    setText("pStored", fmt(uf.stored));
+    setText("pPoints", (uf.points||0).toLocaleString());
+    setText("pReferrals", uf.referrals||0);
+
+    // Progress
+    const dep = uf.deposit||0;
+    const nextTier = dep>=500?"VIP":"Gold";
+    const nextAmt = dep>=500?1000:500;
+    const pct = Math.min(100, dep>=500?((dep-500)/500*100):(dep/500*100));
+    setText("progTitle", uf.tier+" Member · "+uf.name);
+    setText("progSub", dep>=1000?"Max Tier Reached! · 已達最高等級":"Deposit "+fmt(nextAmt-dep)+" more to reach "+nextTier);
+    setText("progLabel", fmt(dep)+" / "+fmt(nextAmt));
+    const pf = document.getElementById("progFill"); if(pf) pf.style.width=pct+"%";
+    setText("profileDepositProg", fmt(dep)+" / "+fmt(nextAmt));
+    setText("profileProgHint", dep>=1000?"VIP! Max tier achieved 🏆":"Deposit "+fmt(nextAmt-dep)+" to reach "+nextTier);
+    const ppf = document.getElementById("profileProgFill"); if(ppf) ppf.style.width=pct+"%";
+
+    // Invite
+    setText("myInviteCode", uf.inviteCode);
+
+    // Latest revenue
+    const revs = db.revenues;
+    if(revs.length>0){
+      const latest = revs[revs.length-1];
+      const totalW = db.members.reduce((s,m)=>s+((m.stored||0)+(m.points||0))*boostOf(m.tier),0);
+      const myW = ((uf.stored||0)+(uf.points||0))*boostOf(uf.tier);
+      const myShare = totalW>0?(latest.pool*(myW/totalW)):0;
+      const cumul = db.rewards.filter(r=>r.memberId===uf.id).reduce((s,r)=>s+r.amount,0);
+      setText("latestRevDate", latest.date);
+      setText("reportDate", latest.date+" · Fun Mall · Phnom Penh");
+      setText("reportTotal", fmt(latest.amount));
+      setText("reportRevenue", fmt(latest.amount)+" · "+db.members.length+" members");
+      setText("reportPool", fmt(latest.pool)+" ("+latest.rate+"%)");
+      setText("reportShare", "+"+fmt(myShare)+" ⭐");
+      setText("reportCumulative", fmt(cumul));
+    }
+
+    // TX history
+    buildTxList(db, uf);
+
+    // Referral list
+    buildRefList(db, uf);
+  }
+
+  // Admin button
+  const adminBtn = document.getElementById("adminMenuBtn");
+  if(adminBtn) adminBtn.style.display = u.isAdmin?"flex":"none";
+
+  // Admin tab
+  if(u.isAdmin) renderAdmin();
+}
+
+function buildTxList(db, u){
+  const txs = [];
+  db.rewards.filter(r=>r.memberId===u.id).forEach(r=>txs.push({type:"reward",date:r.date,en:"Revenue Share",cn:"分紅積分",amt:"+"+fmt(r.amount),color:"var(--teal)"}));
+  db.redeems.filter(r=>r.memberId===u.id).forEach(r=>txs.push({type:"redeem",date:r.date,en:"In-Store Redeem",cn:"店內折抵",amt:"-"+fmt(r.amount),color:"var(--red)"}));
+  db.deposits.filter(d=>d.memberId===u.id&&d.status==="approved").forEach(d=>txs.push({type:"deposit",date:d.date,en:"Deposit Approved",cn:"儲值成功",amt:"+"+fmt(d.amount+bonusOf(d.amount)),color:"var(--orange)"}));
+  txs.sort((a,b)=>b.date.localeCompare(a.date));
+  const el = document.getElementById("txList");
+  if(!el) return;
+  if(txs.length===0){ el.innerHTML='<div style="text-align:center;padding:20px;color:var(--muted);font-size:12px;">No transactions yet · 暫無記錄</div>'; return; }
+  el.innerHTML = txs.slice(0,30).map(t=>`
+    <div class="tx-item">
+      <div class="tx-dot" style="background:${t.color};"></div>
+      <div style="flex:1;"><div class="tx-en">${t.en}</div><div class="tx-cn">${t.cn}</div><div class="tx-d">${t.date}</div></div>
+      <div class="tx-amt" style="color:${t.color};">${t.amt}</div>
+    </div>`).join("");
+}
+
+function buildRefList(db, u){
+  const refs = db.members.filter(m=>m.invitedBy===u.id);
+  const el = document.getElementById("refList");
+  if(!el) return;
+  const earned = refs.length*500;
+  setText("refEarned", earned.toLocaleString()+" pts earned");
+  if(refs.length===0){ el.innerHTML='<div style="text-align:center;padding:20px;color:var(--muted);font-size:12px;">No referrals yet · 暫無邀請記錄</div>'; return; }
+  el.innerHTML = refs.map(m=>`
+    <div class="ref-item">
+      <div class="ref-av">🧑</div>
+      <div style="flex:1;"><div style="font-size:12px;font-weight:500;">${m.name}</div><div style="font-size:9px;color:var(--muted);font-family:'DM Mono',monospace;">${m.id} · Joined ${m.created}</div></div>
+      <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--teal);font-weight:700;">+500 pts</div>
+    </div>`).join("");
+}
+
+function renderAdmin(){
+  const db = dbLoad();
+  const totalDep = db.members.reduce((s,m)=>s+(m.deposit||0),0);
+  const totalRev = db.revenues.reduce((s,r)=>s+r.amount,0);
+  const pending = db.deposits.filter(d=>d.status==="pending");
+  setText("aMembers", db.members.length);
+  setText("aDeposit", fmt(totalDep));
+  setText("aRevenue", fmt(totalRev));
+  setText("aPending", pending.length);
+
+  // Pending deposits
+  const pl = document.getElementById("pendingList");
+  if(pl){
+    pl.innerHTML = pending.length===0
+      ? '<div style="color:var(--muted);font-size:12px;">No pending · 沒有待審核</div>'
+      : pending.map(d=>`
+        <div class="pending-item">
+          <div class="pending-name">${d.name} <span style="color:var(--muted);font-size:10px;">${d.phone}</span></div>
+          <div class="pending-detail">${fmt(d.amount)} · ${d.method} · Ref: ${d.ref||"-"} · ${d.date}</div>
+          <div class="pending-actions">
+            <button class="approve-btn" onclick="approveDeposit('${d.id}')">✅ Approve · 批准</button>
+            <button class="reject-btn" onclick="rejectDeposit('${d.id}')">❌ Reject · 拒絕</button>
+          </div>
+        </div>`).join("");
+  }
+
+  // Members
+  const ml = document.getElementById("adminMemberList");
+  if(ml){
+    const sorted = [...db.members].sort((a,b)=>(b.deposit||0)-(a.deposit||0));
+    ml.innerHTML = sorted.map((m,i)=>`
+      <div class="member-row">
+        <div class="member-rank">${i+1}</div>
+        <div style="flex:1;">
+          <div style="font-size:12px;font-weight:600;">${m.name} <span class="tier-badge tier-${m.tier.toLowerCase()}">${m.tier}</span></div>
+          <div style="font-size:9px;color:var(--muted);font-family:'DM Mono',monospace;">${m.id} · ${m.phone}</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:var(--orange);">${fmt(m.stored)}</div>
+          <div style="font-size:9px;color:var(--teal);font-family:'DM Mono',monospace;">+${fmt(m.points)} pts</div>
+        </div>
+      </div>`).join("");
+  }
+
+  // Revenue
+  const rl = document.getElementById("adminRevenueList");
+  if(rl){
+    rl.innerHTML = db.revenues.slice().reverse().slice(0,15).map(r=>`
+      <div class="revenue-item">
+        <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);">${r.date}</div>
+        <div style="flex:1;text-align:right;">
+          <div style="font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:var(--teal);">${fmt(r.amount)}</div>
+          <div style="font-size:9px;color:var(--muted);">Pool: ${fmt(r.pool)} (${r.rate}%)</div>
+        </div>
+      </div>`).join("");
+  }
+}
+
+// ═══════════════════════════════════════
+// DEPOSIT
+// ═══════════════════════════════════════
+function setPlan(amt){ document.getElementById("depAmount").value=amt; }
+function gotoDeposit(amt){ switchTab("depositTab"); setTimeout(()=>setPlan(amt),100); }
+
+function submitDeposit(){
+  if(!currentUser||currentUser.isAdmin){ showToast("Please login first · 請先登入"); return; }
+  const db = dbLoad();
+  const amount = Number(document.getElementById("depAmount").value);
+  const method = document.getElementById("depMethod").value;
+  const ref = document.getElementById("depRef").value.trim();
+  db.deposits.push({
+    id:"D"+Date.now(), memberId:currentUser.id, name:currentUser.name,
+    phone:currentUser.phone, amount, method, ref,
+    status:"pending", date:todayStr()
+  });
+  dbSave(db);
+  showToast("✅ Deposit submitted! Awaiting approval · 儲值申請已提交，等待審核");
+}
+
+// ═══════════════════════════════════════
+// ADMIN ACTIONS
+// ═══════════════════════════════════════
+function approveDeposit(id){
+  const db = dbLoad();
+  const d = db.deposits.find(x=>x.id===id);
+  if(!d) return;
+  d.status = "approved";
+  let m = db.members.find(x=>x.id===d.memberId);
+  if(!m){ m=db.members.find(x=>x.phone===d.phone); }
+  if(m){
+    m.deposit = (m.deposit||0)+d.amount;
+    m.stored = (m.stored||0)+d.amount+bonusOf(d.amount);
+    m.tier = tierOf(m.deposit);
+  }
+  dbSave(db); renderAdmin();
+  showToast("✅ Approved "+fmt(d.amount)+" · 已批准");
+}
+
+function rejectDeposit(id){
+  const db = dbLoad();
+  const d = db.deposits.find(x=>x.id===id);
+  if(d) d.status = "rejected";
+  dbSave(db); renderAdmin();
+  showToast("❌ Rejected · 已拒絕");
+}
+
+function addRevenue(){
+  const db = dbLoad();
+  const amount = Number(document.getElementById("revAmount").value);
+  const rate = Number(document.getElementById("rewardRate").value||5);
+  const date = document.getElementById("revDate").value||todayStr();
+  if(!amount){ showToast("Enter revenue amount · 請輸入營收"); return; }
+  const pool = amount*rate/100;
+  const totalW = db.members.reduce((s,m)=>s+((m.stored||0)+(m.points||0))*boostOf(m.tier),0);
+  const rev = {id:"R"+Date.now(),date,amount,rate,pool};
+  db.revenues.push(rev);
+  if(totalW>0){
+    db.members.forEach(m=>{
+      const w = ((m.stored||0)+(m.points||0))*boostOf(m.tier);
+      const r = pool*(w/totalW);
+      m.points = (m.points||0)+r;
+      m.monthPts = (m.monthPts||0)+r;
+      db.rewards.push({id:"P"+Date.now()+m.id,memberId:m.id,name:m.name,date,amount:r,revenueId:rev.id});
+    });
+  }
+  dbSave(db); renderAdmin();
+  showToast("✅ Revenue added & points distributed · 營收已添加，點數已發放");
+}
+
+function seedDemo(){
+  if(!confirm("Generate 30 members + 30 days revenue? · 生成30位會員+30天營收？")) return;
+  const names=["Sokha Ly","Dara Chan","Jack Pham","Linda Ros","Vannak Im","Srey Pich","Kevin Seng","Mina Kok","Rith Heng","Jenny Ouk","Bora Keo","Tola Nhem","Nita Sam","Sam Touch","Mesa Lim","Panha Uy","Lina Sok","David Kim","Nary Mao","Kim Yem","Vicheka Pang","Anna Pen","Rady Tan","Mony Noun","Sopheak Kang","Lily Chhun","Heng Khiev","Rose Sorn","Tom Pov","Mey Ith"];
+  const amounts=[100,500,1000,500,100,1000,500,100,500,1000];
+  const db={members:[],deposits:[],revenues:[],rewards:[],redeems:[]};
+  names.forEach((name,i)=>{
+    const a=amounts[i%amounts.length];
+    const code="CNB-"+String(4729+i);
+    db.members.push({id:"M"+String(i+1).padStart(3,"0"),name,phone:"012"+String(100001+i),pass:"111111",deposit:a,stored:a+bonusOf(a),points:0,tier:tierOf(a),inviteCode:code,streak:Math.floor(Math.random()*7),referrals:0,monthPts:0,created:todayStr()});
+  });
+  for(let d=1;d<=30;d++){
+    const amount=820+((d*137)%510)+(d%6===0?260:0);
+    const rate=5; const pool=amount*rate/100;
+    const date="2026-04-"+String(d<10?"0"+d:d);
+    db.revenues.push({id:"R"+d,date,amount,rate,pool});
+    const totalW=db.members.reduce((s,m)=>s+((m.stored||0)+(m.points||0))*boostOf(m.tier),0);
+    db.members.forEach(m=>{
+      const w=((m.stored||0)+(m.points||0))*boostOf(m.tier);
+      const r=totalW>0?pool*(w/totalW):0;
+      m.points=(m.points||0)+r; m.monthPts=(m.monthPts||0)+r;
+      db.rewards.push({id:"P"+d+m.id,memberId:m.id,name:m.name,date,amount:r,revenueId:"R"+d});
+    });
+  }
+  dbSave(db); renderAdmin();
+  showToast("✅ Demo data generated! · 測試資料已生成！");
+}
+
+function resetAll(){
+  if(!confirm("Delete ALL data? · 確定清除全部資料？")) return;
+  dbSave({members:[],deposits:[],revenues:[],rewards:[],redeems:[]});
+  renderAdmin();
+  showToast("🗑️ All data cleared · 已清除");
+}
+
+// ═══════════════════════════════════════
+// REDEEM
+// ═══════════════════════════════════════
+function doInStoreRedeem(amt, name){
+  if(!currentUser||currentUser.isAdmin){ showToast("Please login · 請先登入"); return; }
+  const db = dbLoad();
+  const u = db.members.find(x=>x.id===currentUser.id);
+  const avail = (u.stored||0)+(u.points||0);
+  if(amt>avail){ showToast("Insufficient balance · 餘額不足"); return; }
+  pendingRedeemAmt=amt; pendingRedeemName=name;
+  setText("redeemConfText","Redeem "+fmt(amt)+" for\n「"+name+"」?\n\nRemaining · 剩餘: "+fmt(avail-amt));
+  showModal("redeemConfModal");
+}
+
+function confirmRedeem(){
+  const db = dbLoad();
+  const u = db.members.find(x=>x.id===currentUser.id);
+  let rem = pendingRedeemAmt;
+  const usePoints = Math.min(u.points||0, rem); u.points-=usePoints; rem-=usePoints;
+  if(rem>0) u.stored-=rem;
+  db.redeems.push({id:"U"+Date.now(),memberId:u.id,name:u.name,date:todayStr(),amount:pendingRedeemAmt});
+  dbSave(db); currentUser=u; loadUI();
+  closeModal("redeemConfModal");
+  showToast("🎉 Redeemed "+fmt(pendingRedeemAmt)+" · 折抵成功！");
+}
+
+function showCustomRedeem(){
+  const db = dbLoad();
+  const u = db.members.find(x=>x.id===currentUser?.id);
+  if(!u){ showToast("Please login · 請先登入"); return; }
+  setText("customRedeemAvail", fmt((u.stored||0)+(u.points||0)));
+  showModal("customRedeemModal");
+}
+
+function confirmCustomRedeem(){
+  const amt = Number(document.getElementById("customRedeemAmt").value);
+  if(amt<=0){ showToast("Enter valid amount · 請輸入有效金額"); return; }
+  closeModal("customRedeemModal");
+  doInStoreRedeem(amt,"Custom Redeem · 自訂折抵");
+}
+
+// ═══════════════════════════════════════
+// CHECK-IN
+// ═══════════════════════════════════════
+function showCheckin(){ buildCheckinGrid(); showModal("checkinModal"); }
+function buildCheckinGrid(){
+  const g = document.getElementById("checkinGrid"); if(!g) return;
+  const s = currentUser?currentUser.streak||0:0;
+  const pts = [20,30,40,50,60,70,100];
+  g.innerHTML = "";
+  for(let i=1;i<=7;i++){
+    const done=i<=s, today=i===s+1;
+    const d=document.createElement("div");
+    d.className="cday";
+    d.style.cssText="background:"+(done?"rgba(103,203,201,.2)":today?"rgba(103,203,201,.1)":"var(--card2)")+";border:1px solid "+(done?"var(--teal)":today?"rgba(103,203,201,.4)":"var(--border)")+";";
+    d.innerHTML='<div style="font-size:13px;">' +(done?"✅":today?"⭐":"⬜")+'</div><div style="font-size:8px;color:var(--muted);margin-top:2px;">D'+i+'</div><div style="font-size:9px;color:var(--teal);font-family:'DM Mono',monospace;">'+pts[i-1]+'</div>';
+    g.appendChild(d);
+  }
+}
+function doCheckin(){
+  if(!currentUser||currentUser.isAdmin){ showToast("Please login · 請先登入"); return; }
+  if(checkedInToday){ showToast("Already checked in today · 今天已簽到"); return; }
+  const db = dbLoad();
+  const u = db.members.find(x=>x.id===currentUser.id);
+  u.streak = (u.streak||0)+1;
+  if(u.streak>7) u.streak=1;
+  const earned = [20,30,40,50,60,70,100][u.streak-1];
+  u.points=(u.points||0)+earned; u.monthPts=(u.monthPts||0)+earned;
+  checkedInToday=true; dbSave(db); currentUser=u; loadUI();
+  closeModal("checkinModal");
+  showToast("✅ +"+earned+" pts! Day "+u.streak+" streak · 簽到成功！");
+}
+
+// ═══════════════════════════════════════
+// INVITE
+// ═══════════════════════════════════════
+function copyCode(){
+  if(currentUser&&navigator.clipboard) navigator.clipboard.writeText(currentUser.inviteCode);
+  showToast("Code copied! · 邀請碼已複製 📤");
+}
+
+// ═══════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════
+function switchScreen(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+function switchTab(tabId, btn){
+  document.querySelectorAll(".content").forEach(t=>t.style.display="none");
+  document.getElementById(tabId).style.display="block";
+  if(btn){ document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active")); btn.classList.add("active"); }
+  if(tabId==="inviteTab"){ const d=document.querySelector(".notif-dot"); if(d) d.remove(); }
+  if(tabId==="adminTab") renderAdmin();
+  if(currentUser) loadUI();
+}
+
+// ═══════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════
+function setText(id,v){ const el=document.getElementById(id); if(el) el.textContent=v; }
+function showModal(id){ document.getElementById(id).classList.add("show"); }
+function closeModal(id){ document.getElementById(id).classList.remove("show"); }
+function showToast(msg){
+  const t=document.getElementById("toast");
+  t.textContent=msg; t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2800);
+}
+
+// Init
+document.addEventListener("DOMContentLoaded",()=>{
+  const rd=document.getElementById("revDate"); if(rd) rd.value=todayStr();
+});
+</script>
+</body>
+</html>
