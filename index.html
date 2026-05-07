@@ -314,7 +314,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
           <div class="roll-brand-icon">🍥</div>
           <div>
             <div class="roll-brand-name">Cinna<span>bon</span></div>
-            <div style="font-size:8px;color:rgba(255,255,255,.5);font-family:'DM Mono',monospace;letter-spacing:1px;">FUN MALL · PHNOM PENH</div>
+            <div style="font-size:8px;color:rgba(255,255,255,.5);font-family:monospace;letter-spacing:1px;">FUN MALL · PHNOM PENH</div>
           </div>
         </div>
         <div class="roll-vip" id="homeLevelBadge">VIP</div>
@@ -343,7 +343,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
       <div class="pts-lbl">Loyalty Points · 積分</div>
       <div style="display:flex;align-items:baseline;gap:5px;">
         <div class="pts-val" id="homePoints">0</div>
-        <span style="font-size:12px;color:var(--teal);font-family:'DM Mono',monospace;">pts</span>
+        <span style="font-size:12px;color:var(--teal);font-family:monospace;">pts</span>
       </div>
       <div class="pts-equiv" id="homeEquiv">≈ $0.00 redemption value</div>
       <div class="pts-stats">
@@ -420,27 +420,27 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
   <!-- ══ DEPOSIT TAB ══ -->
   <div class="content" id="depositTab" style="display:none;">
     <div class="dep-hero">
-      <div style="font-size:9px;color:var(--orange);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;margin-bottom:5px;">Top Up · 儲值申請</div>
+      <div style="font-size:9px;color:var(--orange);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Top Up · 儲值申請</div>
       <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;">Deposit & Earn</div>
       <div style="font-size:11px;color:var(--muted);margin-top:4px;">儲值後享受分紅，餘額永久有效</div>
     </div>
     <div class="form-card">
       <div class="admin-card" style="margin:0 0 12px;padding:12px;background:rgba(103,203,201,.06);border-color:rgba(103,203,201,.2);">
-        <div style="font-size:10px;color:var(--teal);font-family:'DM Mono',monospace;margin-bottom:6px;">PLAN COMPARISON · 方案比較</div>
+        <div style="font-size:10px;color:var(--teal);font-family:monospace;margin-bottom:6px;">PLAN COMPARISON · 方案比較</div>
         <div style="display:flex;gap:8px;">
           <div style="flex:1;text-align:center;background:var(--card2);border-radius:10px;padding:8px;cursor:pointer;" onclick="setPlan(100)">
             <div style="font-size:10px;color:var(--muted);">Silver</div>
-            <div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:700;">$100</div>
+            <div style="font-family:monospace;font-size:16px;font-weight:700;">$100</div>
             <div style="font-size:9px;color:var(--teal);">→ $110</div>
           </div>
           <div style="flex:1;text-align:center;background:rgba(245,200,66,.1);border-radius:10px;padding:8px;cursor:pointer;border:1px solid rgba(245,200,66,.3);" onclick="setPlan(500)">
             <div style="font-size:10px;color:var(--gold);">Gold</div>
-            <div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--gold);">$500</div>
+            <div style="font-family:monospace;font-size:16px;font-weight:700;color:var(--gold);">$500</div>
             <div style="font-size:9px;color:var(--gold);">→ $575</div>
           </div>
           <div style="flex:1;text-align:center;background:rgba(248,146,60,.1);border-radius:10px;padding:8px;cursor:pointer;border:1px solid rgba(248,146,60,.3);" onclick="setPlan(1000)">
             <div style="font-size:10px;color:var(--orange);">VIP</div>
-            <div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--orange);">$1,000</div>
+            <div style="font-family:monospace;font-size:16px;font-weight:700;color:var(--orange);">$1,000</div>
             <div style="font-size:9px;color:var(--orange);">→ $1,180</div>
           </div>
         </div>
@@ -468,20 +468,20 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
   <!-- ══ REDEEM TAB ══ -->
   <div class="content" id="redeemTab" style="display:none;">
     <div class="redeem-hero">
-      <div style="font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;margin-bottom:5px;">Rewards · 兌換中心</div>
+      <div style="font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Rewards · 兌換中心</div>
       <div style="font-family:'Playfair Display',serif;font-size:34px;font-weight:900;" id="redeemAvail">$0.00</div>
-      <div style="font-size:10px;color:var(--teal);margin-top:4px;font-family:'DM Mono',monospace;">Total available · 可用總額（儲值 + 點數）</div>
+      <div style="font-size:10px;color:var(--teal);margin-top:4px;font-family:monospace;">Total available · 可用總額（儲值 + 點數）</div>
     </div>
     <div style="padding:13px 14px 8px;">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px;">
         <div style="background:var(--card2);border-radius:11px;padding:12px;text-align:center;border:1px solid var(--border);">
-          <div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--orange);" id="r_stored">$0.00</div>
-          <div style="font-size:8px;color:var(--orange);text-transform:uppercase;font-family:'DM Mono',monospace;">Stored Value</div>
+          <div style="font-family:monospace;font-size:16px;font-weight:700;color:var(--orange);" id="r_stored">$0.00</div>
+          <div style="font-size:8px;color:var(--orange);text-transform:uppercase;font-family:monospace;">Stored Value</div>
           <div style="font-size:9px;color:var(--muted);">儲值餘額</div>
         </div>
         <div style="background:var(--card2);border-radius:11px;padding:12px;text-align:center;border:1px solid var(--border);">
-          <div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:var(--teal);" id="r_points">$0.00</div>
-          <div style="font-size:8px;color:var(--teal);text-transform:uppercase;font-family:'DM Mono',monospace;">Reward Points</div>
+          <div style="font-family:monospace;font-size:16px;font-weight:700;color:var(--teal);" id="r_points">$0.00</div>
+          <div style="font-size:8px;color:var(--teal);text-transform:uppercase;font-family:monospace;">Reward Points</div>
           <div style="font-size:9px;color:var(--muted);">回饋點數</div>
         </div>
       </div>
@@ -525,11 +525,11 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
     <div class="invite-hero">
       <div class="invite-badge">Refer & Earn · 邀請賺積分</div>
       <h1>Invite Friends<br><em>Earn Together</em></h1>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">邀請好友 · 各得 500 積分</div>
-      <p style="font-size:11px;color:var(--muted);line-height:1.7;">Both you & friend earn <strong style="color:var(--teal);">500 pts each</strong><br>你和朋友各得 <strong style="color:var(--teal);">500 積分</strong></p>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">邀請好友 · 各得 5 積分</div>
+      <p style="font-size:11px;color:var(--muted);line-height:1.7;">Both you & friend earn <strong style="color:var(--teal);">5 pts each</strong><br>你和朋友各得 <strong style="color:var(--teal);">5 積分</strong></p>
     </div>
     <div class="invite-code-card">
-      <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;margin-bottom:2px;">Exclusive Code · 專屬邀請碼</div>
+      <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:2px;">Exclusive Code · 專屬邀請碼</div>
       <div class="invite-code" id="myInviteCode">CNB-0000</div>
       <button class="copy-btn" onclick="copyCode()">📋 Copy Code · 複製邀請碼</button>
     </div>
@@ -537,7 +537,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
       <div class="sec-en" style="padding:0;margin-bottom:9px;">How It Works · 邀請步驟</div>
       <div class="step-card"><div class="step-num">1</div><div><div style="font-size:12px;font-weight:700;">Share your code · 分享邀請碼</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">Send via WhatsApp / Telegram</div></div></div>
       <div class="step-card"><div class="step-num">2</div><div><div style="font-size:12px;font-weight:700;">Friend registers · 朋友註冊</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">Uses your code when signing up</div></div></div>
-      <div class="step-card"><div class="step-num">3</div><div><div style="font-size:12px;font-weight:700;">Both earn 500 pts ⭐ · 各得500積分</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">Points auto-credited · 積分自動存入</div></div></div>
+      <div class="step-card"><div class="step-num">3</div><div><div style="font-size:12px;font-weight:700;">Both earn 5 pts ⭐ · 各得5積分</div><div style="font-size:10px;color:var(--muted);margin-top:2px;">Points auto-credited · 積分自動存入</div></div></div>
     </div>
     <div class="sec-head"><div><div class="sec-en">Referral History</div><div class="sec-cn">邀請記錄</div></div><div class="sec-more" id="refEarned">0 pts earned</div></div>
     <div style="padding:0 14px;" id="refList"><div style="text-align:center;padding:20px;color:var(--muted);font-size:12px;">No referrals yet · 暫無邀請記錄</div></div>
@@ -547,9 +547,9 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
   <!-- ══ HISTORY TAB ══ -->
   <div class="content" id="historyTab" style="display:none;">
     <div style="background:linear-gradient(175deg,var(--navy),var(--navy2));padding:44px 14px 20px;">
-      <div style="font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;margin-bottom:5px;">Transaction History · 交易記錄</div>
+      <div style="font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Transaction History · 交易記錄</div>
       <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:900;" id="histTotal">$0.00</div>
-      <div style="font-size:10px;color:var(--teal);margin-top:4px;font-family:'DM Mono',monospace;">Total available · 可用總額</div>
+      <div style="font-size:10px;color:var(--teal);margin-top:4px;font-family:monospace;">Total available · 可用總額</div>
     </div>
     <div class="sec-head" style="margin-top:15px;"><div><div class="sec-en">All Transactions</div><div class="sec-cn">所有記錄</div></div></div>
     <div class="tx-list" id="txList"><div style="text-align:center;padding:20px;color:var(--muted);font-size:12px;">No transactions yet · 暫無記錄</div></div>
@@ -561,9 +561,9 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
     <div class="profile-hero">
       <div class="profile-avatar">🧑</div>
       <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;" id="profileName">Member</div>
-      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);" id="profileId">ID: M001</div>
+      <div style="font-family:monospace;font-size:10px;color:var(--muted);" id="profileId">ID: M001</div>
       <div class="vip-prog" style="width:100%;">
-        <div class="vip-row"><div style="font-size:13px;font-weight:700;color:var(--teal);" id="profileTier">Silver</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);" id="profileDepositProg">$0 / $500</div></div>
+        <div class="vip-row"><div style="font-size:13px;font-weight:700;color:var(--teal);" id="profileTier">Silver</div><div style="font-family:monospace;font-size:10px;color:var(--muted);" id="profileDepositProg">$0 / $500</div></div>
         <div class="vip-track"><div class="vip-fill" id="profileProgFill" style="width:0%;"></div></div>
         <div style="font-size:10px;color:var(--muted);margin-top:6px;text-align:center;" id="profileProgHint">Deposit $500 to reach Gold</div>
       </div>
@@ -574,12 +574,12 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
       <div class="stat-card"><div class="sv" id="pReferrals">0</div><div class="se">Referrals</div><div class="sc">邀請</div></div>
     </div>
     <div class="menu-list">
-      <div style="font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;padding:0;margin-bottom:9px;">Account · 帳戶設置</div>
+      <div style="font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;padding:0;margin-bottom:9px;">Account · 帳戶設置</div>
       <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">👤</div><div class="menu-item-text"><div class="me">Profile</div><div class="mc">個人信息</div></div><div class="ma">›</div></div>
       <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">🎂</div><div class="menu-item-text"><div class="me">Birthday (+200 pts)</div><div class="mc">設置生日 賠200積分</div></div><div class="ma">›</div></div>
       <div class="menu-item" onclick="showCheckin()"><div class="mi">📅</div><div class="menu-item-text"><div class="me">Daily Check-in</div><div class="mc">每日簽到</div></div><div class="ma">›</div></div>
       <div id="adminMenuBtn" style="display:none;" class="menu-item" onclick="switchTab('adminTab')"><div class="mi">🔧</div><div class="menu-item-text"><div class="me">Admin Dashboard</div><div class="mc">後台管理</div></div><div class="ma">›</div></div>
-      <div style="font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;padding:0;margin:12px 0 9px;">About · 關於</div>
+      <div style="font-size:9px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;padding:0;margin:12px 0 9px;">About · 關於</div>
       <div class="menu-item" onclick="showToast('Cinnabon Fun Mall VIP v3.0')"><div class="mi">ℹ️</div><div class="menu-item-text"><div class="me">About</div><div class="mc">關於我們</div></div><div class="mc">v3.0</div><div class="ma">›</div></div>
       <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">📋</div><div class="menu-item-text"><div class="me">Terms</div><div class="mc">會員條款</div></div><div class="ma">›</div></div>
       <div class="menu-item" onclick="doLogout()" style="margin-top:5px;"><div class="mi">🚪</div><div class="menu-item-text"><div class="me">Logout</div><div class="mc" style="color:var(--red);">退出登入</div></div><div class="ma">›</div></div>
@@ -590,7 +590,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
   <!-- ══ ADMIN TAB ══ -->
   <div class="content" id="adminTab" style="display:none;">
     <div class="admin-hero">
-      <div style="font-size:9px;color:var(--red);text-transform:uppercase;letter-spacing:3px;font-family:'DM Mono',monospace;margin-bottom:5px;">Admin Dashboard · 後台管理</div>
+      <div style="font-size:9px;color:var(--red);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Admin Dashboard · 後台管理</div>
       <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;">Cinnabon VIP</div>
       <div style="font-size:10px;color:var(--muted);margin-top:3px;">Management Console · 管理系統</div>
     </div>
@@ -673,7 +673,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
     <div class="modal-handle"></div>
     <div class="m-en">Custom Redeem · 自訂折抵</div>
     <h3>Enter Amount</h3>
-    <p>Available · 可用餘額: <span id="customRedeemAvail" style="color:var(--teal);font-family:'DM Mono',monospace;">$0.00</span></p>
+    <p>Available · 可用餘額: <span id="customRedeemAvail" style="color:var(--teal);font-family:monospace;">$0.00</span></p>
     <input class="form-input" type="number" id="customRedeemAmt" placeholder="Amount to deduct · 折抵金額" style="margin-bottom:12px;">
     <button class="modal-btn orange" onclick="confirmCustomRedeem()">✅ Confirm Redeem · 確認折抵</button>
     <button class="modal-btn-sec" onclick="closeModal('customRedeemModal')">Cancel · 取消</button>
@@ -697,10 +697,60 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
 // DATA LAYER
 // ═══════════════════════════════════════
 const DB_KEY = "cinnabon_vip_v3";
+function getDefaultDB(){
+  const names=[
+    {n:'Lina Sok',p:'012100001'},{n:'Dara Chan',p:'012100002'},
+    {n:'Sokha Ly',p:'012100003'},{n:'Vanna Kim',p:'012100004'},
+    {n:'Maly Pich',p:'012100005'},{n:'Ratha Noun',p:'012100006'},
+    {n:'Bopha Keo',p:'012100007'},{n:'Piseth Heng',p:'012100008'},
+    {n:'Sreymom Tan',p:'012100009'},{n:'Chanthy Sor',p:'012100010'},
+    {n:'Kakada Ros',p:'012100011'},{n:'Nimol Chhun',p:'012100012'},
+    {n:'Sophea Mao',p:'012100013'},{n:'Virak Pen',p:'012100014'},
+    {n:'Chenda Lim',p:'012100015'},{n:'Ratanak Uy',p:'012100016'},
+    {n:'Sokunthea Im',p:'012100017'},{n:'Bunthoeun Yem',p:'012100018'},
+    {n:'Mengly Pang',p:'012100019'},{n:'Kosal Nhem',p:'012100020'},
+    {n:'Sothea Kang',p:'012100021'},{n:'Phally Touch',p:'012100022'},
+    {n:'Vuthy Sam',p:'012100023'},{n:'Leakhena Ouk',p:'012100024'},
+    {n:'Bunna Khiev',p:'012100025'}
+  ];
+  const amounts=[100,500,1000,500,100,1000,500,100,500,1000];
+  const tiers=['Silver','Silver','VIP','Gold','Silver','VIP','Gold','Silver','Gold','VIP'];
+  const stored=[110,575,1180,575,110,1180,575,110,575,1180];
+  const pts=[520,380,680,210,150,90,440,260,720,120];
+  const members=names.map((m,i)=>{
+    const ti=i%10;
+    return {
+      id:'M'+String(i+1).padStart(3,'0'),
+      name:m.n, phone:m.p, pass:'111111',
+      deposit:amounts[ti], stored:stored[ti], points:pts[ti],
+      tier:tiers[ti], inviteCode:'CNB-'+String(4729+i),
+      streak:Math.min(7,i%8), referrals:i%4,
+      monthPts:pts[ti], created:'2026-04-01'
+    };
+  });
+  const revenues=[];
+  const rewards=[];
+  for(let d=1;d<=7;d++){
+    const amount=800+d*30; const rate=5; const pool=amount*rate/100;
+    const date='2026-04-'+String(d<10?'0'+d:d);
+    revenues.push({id:'R'+d,date,amount,rate,pool});
+    const totalW=members.reduce((s,m)=>s+((m.stored||0)+(m.points||0)),0);
+    members.forEach(m=>{
+      const w=(m.stored||0)+(m.points||0);
+      const r=totalW>0?pool*(w/totalW):0;
+      m.points+=r; m.monthPts+=r;
+      rewards.push({id:'P'+d+m.id,memberId:m.id,name:m.name,date,amount:r,revenueId:'R'+d});
+    });
+  }
+  return {members,deposits:[],revenues,rewards,redeems:[]};
+}
+
 function dbLoad(){
   const r = localStorage.getItem(DB_KEY);
   if(r) return JSON.parse(r);
-  return {members:[],deposits:[],revenues:[],rewards:[],redeems:[]};
+  const def = getDefaultDB();
+  dbSave(def);
+  return def;
 }
 function dbSave(db){ localStorage.setItem(DB_KEY, JSON.stringify(db)); }
 
@@ -749,10 +799,10 @@ function doRegister(){
   if(db.members.find(x=>x.phone===phone)){ showToast("Phone already registered · 手機號已註冊"); return; }
   const id = "M"+String(db.members.length+1).padStart(3,"0");
   const code = "CNB-"+String(db.members.length+4729);
-  let pts = 100;
+  let pts = 5;
   if(invite){
     const ref = db.members.find(x=>x.inviteCode===invite);
-    if(ref){ ref.points+=500; ref.referrals=(ref.referrals||0)+1; pts+=500; showToast("Invite code valid! +500 pts each · 邀請碼有效！"); }
+    if(ref){ ref.points+=5; ref.referrals=(ref.referrals||0)+1; pts+=5; showToast("Invite code valid! +5 pts each · 邀請碼有效！"); }
   }
   const newM = {id,name,phone,pass,deposit:0,stored:0,points:pts,tier:"Silver",inviteCode:code,streak:0,referrals:0,monthPts:pts,created:todayStr()};
   db.members.push(newM); dbSave(db);
@@ -887,8 +937,8 @@ function buildRefList(db, u){
   el.innerHTML = refs.map(m=>`
     <div class="ref-item">
       <div class="ref-av">🧑</div>
-      <div style="flex:1;"><div style="font-size:12px;font-weight:500;">${m.name}</div><div style="font-size:9px;color:var(--muted);font-family:'DM Mono',monospace;">${m.id} · Joined ${m.created}</div></div>
-      <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--teal);font-weight:700;">+500 pts</div>
+      <div style="flex:1;"><div style="font-size:12px;font-weight:500;">${m.name}</div><div style="font-size:9px;color:var(--muted);font-family:monospace;">${m.id} · Joined ${m.created}</div></div>
+      <div style="font-family:monospace;font-size:12px;color:var(--teal);font-weight:700;">+500 pts</div>
     </div>`).join("");
 }
 
@@ -927,11 +977,11 @@ function renderAdmin(){
         <div class="member-rank">${i+1}</div>
         <div style="flex:1;">
           <div style="font-size:12px;font-weight:600;">${m.name} <span class="tier-badge tier-${m.tier.toLowerCase()}">${m.tier}</span></div>
-          <div style="font-size:9px;color:var(--muted);font-family:'DM Mono',monospace;">${m.id} · ${m.phone}</div>
+          <div style="font-size:9px;color:var(--muted);font-family:monospace;">${m.id} · ${m.phone}</div>
         </div>
         <div style="text-align:right;">
-          <div style="font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:var(--orange);">${fmt(m.stored)}</div>
-          <div style="font-size:9px;color:var(--teal);font-family:'DM Mono',monospace;">+${fmt(m.points)} pts</div>
+          <div style="font-family:monospace;font-size:12px;font-weight:700;color:var(--orange);">${fmt(m.stored)}</div>
+          <div style="font-size:9px;color:var(--teal);font-family:monospace;">+${fmt(m.points)} pts</div>
         </div>
       </div>`).join("");
   }
@@ -941,9 +991,9 @@ function renderAdmin(){
   if(rl){
     rl.innerHTML = db.revenues.slice().reverse().slice(0,15).map(r=>`
       <div class="revenue-item">
-        <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);">${r.date}</div>
+        <div style="font-family:monospace;font-size:12px;color:var(--muted);">${r.date}</div>
         <div style="flex:1;text-align:right;">
-          <div style="font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:var(--teal);">${fmt(r.amount)}</div>
+          <div style="font-family:monospace;font-size:13px;font-weight:700;color:var(--teal);">${fmt(r.amount)}</div>
           <div style="font-size:9px;color:var(--muted);">Pool: ${fmt(r.pool)} (${r.rate}%)</div>
         </div>
       </div>`).join("");
