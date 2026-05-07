@@ -724,8 +724,13 @@ function doLogin(){
   // Admin login
   if(ph === "099999999" && ps === "admin888"){
     currentUser = {id:"ADMIN",name:"Admin",phone:ph,pass:ps,deposit:0,stored:0,points:0,tier:"Admin",inviteCode:"ADMIN",streak:0,referrals:0,isAdmin:true};
-    loadUI(); switchScreen("appScreen"); switchTab("adminTab");
-    showToast("Admin logged in · 管理員登入"); return;
+    loadUI(); switchScreen("appScreen");
+    document.querySelectorAll(".content").forEach(t=>t.style.display="none");
+    document.getElementById("adminTab").style.display="block";
+    document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+    showToast("Admin logged in · 管理員登入 🔧"); 
+    renderAdmin();
+    return;
   }
   const db = dbLoad();
   const u = db.members.find(x=>x.phone===ph && x.pass===ps);
@@ -1105,7 +1110,7 @@ function buildCheckinGrid(){
     const d=document.createElement("div");
     d.className="cday";
     d.style.cssText="background:"+(done?"rgba(103,203,201,.2)":today?"rgba(103,203,201,.1)":"var(--card2)")+";border:1px solid "+(done?"var(--teal)":today?"rgba(103,203,201,.4)":"var(--border)")+";";
-    d.innerHTML='<div style="font-size:13px;">' +(done?"✅":today?"⭐":"⬜")+'</div><div style="font-size:8px;color:var(--muted);margin-top:2px;">D'+i+'</div><div style="font-size:9px;color:var(--teal);font-family:'DM Mono',monospace;">'+pts[i-1]+'</div>';
+    d.innerHTML='<div style="font-size:13px;">'+(done?"✅":today?"⭐":"⬜")+'</div><div style="font-size:8px;color:var(--muted);margin-top:2px;">D'+i+'</div><div style="font-size:9px;color:var(--teal);">'+pts[i-1]+'</div>';
     g.appendChild(d);
   }
 }
