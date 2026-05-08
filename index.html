@@ -1142,17 +1142,11 @@ function confirmCustomRedeem(){
 // ═══════════════════════════════════════
 // CHECK-IN
 // ═══════════════════════════════════════
-  if(checkedInToday){ showToast("Already checked in today · Already checked in"); return; }
+
   const db = dbLoad();
   const u = db.members.find(x=>x.id===currentUser.id);
   u.streak = (u.streak||0)+1;
-  if(u.streak>7) u.streak=1;
-  const earned = [20,30,40,50,60,70,100][u.streak-1];
-  u.points=(u.points||0)+earned; u.monthPts=(u.monthPts||0)+earned;
-  checkedInToday=true; dbSave(db); currentUser=u; loadUI();
-  closeModal("checkinModal");
-  showToast("✅ +"+earned+" pts! Day "+u.streak+" streak · Done!");
-}
+
 
 // ═══════════════════════════════════════
 // INVITE
