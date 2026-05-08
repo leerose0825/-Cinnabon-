@@ -23,8 +23,8 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
 /* BOTTOM NAV */
 .navbar{position:fixed;bottom:0;left:0;right:0;background:var(--navy);border-top:1px solid var(--border);display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom);}
 .nav-btn{flex:1;padding:13px 0 11px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;}
-.nav-btn .icon{font-size:44px;}
-.nav-btn .lbl{font-size:44px;color:var(--muted);font-family:"DM Mono",monospace;text-align:center;line-height:1.2;}
+.nav-btn .icon{font-size:40px;}
+.nav-btn .lbl{font-size:40px;color:var(--muted);font-family:"DM Mono",monospace;text-align:center;line-height:1.2;}
 .nav-btn.active .lbl{color:var(--teal);}
 .nav-btn.active .icon{filter:drop-shadow(0 0 6px var(--teal));}
 .content{flex:1;overflow-y:auto;padding-bottom:80px;}
@@ -35,55 +35,55 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
 .roll-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,21,53,.05) 0%,rgba(13,21,53,.7) 100%);}
 .roll-top-bar{position:absolute;top:0;left:0;right:0;padding:44px 18px 0;display:flex;align-items:center;justify-content:space-between;}
 .roll-brand{display:flex;align-items:center;gap:8px;}
-.roll-brand-icon{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal2));display:flex;align-items:center;justify-content:center;font-size:44px;box-shadow:0 2px 10px rgba(103,203,201,.4);}
-.roll-brand-name{font-family:"Playfair Display",serif;font-size:24px;font-weight:900;color:#fff;}
+.roll-brand-icon{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal2));display:flex;align-items:center;justify-content:center;font-size:40px;box-shadow:0 2px 10px rgba(103,203,201,.4);}
+.roll-brand-name{font-family:"Playfair Display",serif;font-size:20px;font-weight:900;color:#fff;}
 .roll-brand-name span{color:var(--teal);}
-.roll-vip{background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);padding:4px 10px;border-radius:16px;font-size:20px;font-weight:900;}
+.roll-vip{background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);padding:4px 10px;border-radius:16px;font-size:17px;font-weight:900;}
 .roll-bottom{position:absolute;bottom:0;left:0;right:0;padding:0 18px 14px;}
-.roll-user-name{font-size:20px;font-weight:700;color:#fff;}
-.roll-user-sub{font-size:20px;color:rgba(255,255,255,.6);font-family:"DM Mono",monospace;}
-.roll-tagline{font-family:"Playfair Display",serif;font-size:20px;font-style:italic;color:var(--teal);margin-top:4px;}
+.roll-user-name{font-size:17px;font-weight:700;color:#fff;}
+.roll-user-sub{font-size:17px;color:rgba(255,255,255,.6);font-family:"DM Mono",monospace;}
+.roll-tagline{font-family:"Playfair Display",serif;font-size:17px;font-style:italic;color:var(--teal);margin-top:4px;}
 
 /* POINTS CARD */
 .points-card{margin:14px;background:linear-gradient(135deg,rgba(103,203,201,.14),rgba(18,30,72,.8));border:1px solid rgba(103,203,201,.28);border-radius:18px;padding:16px;position:relative;overflow:hidden;}
-.points-card::before{content:"🍥";position:absolute;right:10px;bottom:4px;font-size:54px;opacity:.07;}
-.pts-lbl{font-size:20px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:"DM Mono",monospace;margin-bottom:3px;}
-.pts-val{font-family:"Playfair Display",serif;font-size:44px;font-weight:900;line-height:1;}
-.pts-equiv{font-size:20px;color:var(--teal);margin-top:4px;font-family:"DM Mono",monospace;}
+.points-card::before{content:"🍥";position:absolute;right:10px;bottom:4px;font-size:48px;opacity:.07;}
+.pts-lbl{font-size:17px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:"DM Mono",monospace;margin-bottom:3px;}
+.pts-val{font-family:"Playfair Display",serif;font-size:40px;font-weight:900;line-height:1;}
+.pts-equiv{font-size:17px;color:var(--teal);margin-top:4px;font-family:"DM Mono",monospace;}
 .pts-stats{display:flex;padding-top:10px;border-top:1px solid rgba(103,203,201,.15);margin-top:10px;}
 .pstat{flex:1;text-align:center;}
 .pstat:not(:last-child){border-right:1px solid rgba(103,203,201,.12);}
-.pstat .pv{font-family:"DM Mono",monospace;font-size:20px;font-weight:700;}
-.pstat .pe{font-size:44px;color:var(--teal);text-transform:uppercase;letter-spacing:.5px;}
-.pstat .pc{font-size:44px;color:var(--muted);}
+.pstat .pv{font-family:"DM Mono",monospace;font-size:17px;font-weight:700;}
+.pstat .pe{font-size:40px;color:var(--teal);text-transform:uppercase;letter-spacing:.5px;}
+.pstat .pc{font-size:40px;color:var(--muted);}
 
 /* STORED VALUE CARD */
 .stored-card{margin:0 14px 14px;background:linear-gradient(135deg,rgba(248,146,60,.14),rgba(18,30,72,.8));border:1px solid rgba(248,146,60,.28);border-radius:18px;padding:16px;position:relative;overflow:hidden;}
-.stored-card::before{content:"💳";position:absolute;right:10px;bottom:4px;font-size:54px;opacity:.07;}
-.stored-lbl{font-size:20px;color:var(--orange);text-transform:uppercase;letter-spacing:3px;font-family:"DM Mono",monospace;margin-bottom:3px;}
-.stored-val{font-family:"Playfair Display",serif;font-size:44px;font-weight:900;line-height:1;color:var(--orange);}
-.stored-sub{font-size:20px;color:rgba(251,146,60,.7);margin-top:4px;font-family:"DM Mono",monospace;}
+.stored-card::before{content:"💳";position:absolute;right:10px;bottom:4px;font-size:48px;opacity:.07;}
+.stored-lbl{font-size:17px;color:var(--orange);text-transform:uppercase;letter-spacing:3px;font-family:"DM Mono",monospace;margin-bottom:3px;}
+.stored-val{font-family:"Playfair Display",serif;font-size:40px;font-weight:900;line-height:1;color:var(--orange);}
+.stored-sub{font-size:17px;color:rgba(251,146,60,.7);margin-top:4px;font-family:"DM Mono",monospace;}
 .stored-row{display:flex;gap:0;padding-top:10px;border-top:1px solid rgba(248,146,60,.15);margin-top:10px;}
 .sstat{flex:1;text-align:center;}
 .sstat:not(:last-child){border-right:1px solid rgba(248,146,60,.12);}
-.sstat .sv2{font-family:"DM Mono",monospace;font-size:20px;font-weight:700;color:var(--orange);}
-.sstat .se{font-size:44px;color:var(--orange);opacity:.7;text-transform:uppercase;letter-spacing:.5px;}
-.sstat .sc{font-size:44px;color:var(--muted);}
+.sstat .sv2{font-family:"DM Mono",monospace;font-size:17px;font-weight:700;color:var(--orange);}
+.sstat .se{font-size:40px;color:var(--orange);opacity:.7;text-transform:uppercase;letter-spacing:.5px;}
+.sstat .sc{font-size:40px;color:var(--muted);}
 
 /* QUICK GRID */
 .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;padding:0 14px 14px;}
 .qbtn{background:var(--card);border-radius:13px;padding:12px 5px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;border:1px solid var(--border);transition:.15s;}
 .qbtn:active{transform:scale(.94);}
-.qbtn .qi{font-size:44px;}
-.qbtn .qe{font-size:44px;color:var(--teal);font-family:"DM Mono",monospace;text-align:center;}
-.qbtn .qc{font-size:44px;color:var(--muted);text-align:center;}
+.qbtn .qi{font-size:40px;}
+.qbtn .qe{font-size:40px;color:var(--teal);font-family:"DM Mono",monospace;text-align:center;}
+.qbtn .qc{font-size:40px;color:var(--muted);text-align:center;}
 .qbtn.hl{background:linear-gradient(135deg,rgba(103,203,201,.14),rgba(18,30,72,.8));border-color:rgba(103,203,201,.3);}
 
 /* SECTION HEAD */
 .sec-head{display:flex;justify-content:space-between;align-items:baseline;padding:0 14px;margin-bottom:9px;}
-.sec-en{font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--teal);font-family:"DM Mono",monospace;}
-.sec-cn{font-size:44px;font-weight:700;}
-.sec-more{font-size:20px;color:var(--teal);cursor:pointer;font-family:"DM Mono",monospace;}
+.sec-en{font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--teal);font-family:"DM Mono",monospace;}
+.sec-cn{font-size:40px;font-weight:700;}
+.sec-more{font-size:17px;color:var(--teal);cursor:pointer;font-family:"DM Mono",monospace;}
 
 /* PLANS */
 .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 14px;margin-bottom:14px;}
@@ -91,125 +91,125 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
 .plan-card:active{transform:scale(.96);}
 .plan-card.vip{background:linear-gradient(135deg,rgba(248,146,60,.18),rgba(18,30,72,.9));border-color:rgba(248,146,60,.4);}
 .plan-card.gold{background:linear-gradient(135deg,rgba(245,200,66,.15),rgba(18,30,72,.9));border-color:rgba(245,200,66,.3);}
-.plan-name{font-size:20px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;font-family:"DM Mono",monospace;margin-bottom:4px;}
-.plan-price{font-family:"Playfair Display",serif;font-size:44px;font-weight:900;color:var(--white);}
-.plan-get{font-size:20px;color:var(--teal);margin:3px 0;}
+.plan-name{font-size:17px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;font-family:"DM Mono",monospace;margin-bottom:4px;}
+.plan-price{font-family:"Playfair Display",serif;font-size:40px;font-weight:900;color:var(--white);}
+.plan-get{font-size:17px;color:var(--teal);margin:3px 0;}
 .plan-get.gold-text{color:var(--gold);}
 .plan-get.orange-text{color:var(--orange);}
-.plan-btn{background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);border:none;padding:6px 10px;border-radius:14px;font-size:20px;font-weight:900;cursor:pointer;width:100%;margin-top:8px;font-family:"Noto Sans SC",sans-serif;}
+.plan-btn{background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);border:none;padding:6px 10px;border-radius:14px;font-size:17px;font-weight:900;cursor:pointer;width:100%;margin-top:8px;font-family:"Noto Sans SC",sans-serif;}
 
 /* PROGRESS */
 .prog-wrap{padding:0 14px;margin-bottom:13px;}
 .prog-card{background:var(--card);border-radius:16px;padding:15px;border:1px solid var(--border);}
-.prog-title{font-size:20px;font-weight:700;margin-bottom:2px;}
-.prog-sub{font-size:20px;color:var(--muted);}
+.prog-title{font-size:17px;font-weight:700;margin-bottom:2px;}
+.prog-sub{font-size:17px;color:var(--muted);}
 .prog-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin:10px 0 5px;}
 .prog-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--teal2),var(--teal));animation:grow 1.5s ease both;}
 @keyframes grow{from{width:0}}
-.prog-labels{display:flex;justify-content:space-between;font-size:20px;color:var(--muted);font-family:"DM Mono",monospace;}
+.prog-labels{display:flex;justify-content:space-between;font-size:17px;color:var(--muted);font-family:"DM Mono",monospace;}
 
 /* REPORT CARD */
 .report-card{margin:0 14px 13px;background:var(--card);border-radius:16px;padding:15px;border:1px solid var(--border);position:relative;overflow:hidden;}
 .report-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal2),var(--teal));}
-.report-date{font-family:"DM Mono",monospace;font-size:20px;color:var(--muted);margin-bottom:6px;}
-.report-total{font-family:"Playfair Display",serif;font-size:44px;font-weight:900;margin-bottom:10px;}
+.report-date{font-family:"DM Mono",monospace;font-size:17px;color:var(--muted);margin-bottom:6px;}
+.report-total{font-family:"Playfair Display",serif;font-size:40px;font-weight:900;margin-bottom:10px;}
 .rrow{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);}
 .rrow:last-child{border-bottom:none;}
-.rrow-lbl .rk-en{font-size:44px;color:var(--teal);font-family:"DM Mono",monospace;text-transform:uppercase;}
-.rrow-lbl .rk-cn{font-size:20px;color:var(--muted);}
-.rrow .rv{font-family:"DM Mono",monospace;font-size:44px;}
+.rrow-lbl .rk-en{font-size:40px;color:var(--teal);font-family:"DM Mono",monospace;text-transform:uppercase;}
+.rrow-lbl .rk-cn{font-size:17px;color:var(--muted);}
+.rrow .rv{font-family:"DM Mono",monospace;font-size:40px;}
 .rv.pts{color:var(--teal);}
 
 /* DEPOSIT PAGE */
 .dep-hero{background:linear-gradient(175deg,var(--navy),var(--navy2));padding:44px 14px 20px;position:relative;overflow:hidden;}
 .dep-hero::before{content:"";position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(248,146,60,.15),transparent 70%);}
 .form-card{margin:0 14px 12px;background:var(--card);border-radius:16px;padding:16px;border:1px solid var(--border);}
-.form-lbl{font-size:20px;color:var(--teal);text-transform:uppercase;letter-spacing:2px;font-family:"DM Mono",monospace;margin-bottom:4px;display:block;}
-.form-lbl span{color:var(--muted);font-family:"Noto Sans SC",sans-serif;text-transform:none;letter-spacing:0;font-size:20px;}
-.form-input{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--white);font-size:44px;font-family:"Noto Sans SC",sans-serif;outline:none;margin-bottom:10px;}
+.form-lbl{font-size:17px;color:var(--teal);text-transform:uppercase;letter-spacing:2px;font-family:"DM Mono",monospace;margin-bottom:4px;display:block;}
+.form-lbl span{color:var(--muted);font-family:"Noto Sans SC",sans-serif;text-transform:none;letter-spacing:0;font-size:17px;}
+.form-input{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--white);font-size:40px;font-family:"Noto Sans SC",sans-serif;outline:none;margin-bottom:10px;}
 .form-input:focus{border-color:var(--teal);}
-.form-select{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--white);font-size:20px;outline:none;margin-bottom:10px;}
-.submit-btn{width:100%;padding:13px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);font-size:44px;font-weight:900;cursor:pointer;font-family:"Noto Sans SC",sans-serif;}
+.form-select{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--white);font-size:17px;outline:none;margin-bottom:10px;}
+.submit-btn{width:100%;padding:13px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);font-size:40px;font-weight:900;cursor:pointer;font-family:"Noto Sans SC",sans-serif;}
 .submit-btn.orange{background:linear-gradient(135deg,#f97316,var(--orange));}
-.notice-box{margin:0 14px 12px;background:rgba(103,203,201,.08);border:1px solid rgba(103,203,201,.2);border-radius:13px;padding:13px;font-size:44px;color:var(--muted);line-height:1.6;}
+.notice-box{margin:0 14px 12px;background:rgba(103,203,201,.08);border:1px solid rgba(103,203,201,.2);border-radius:13px;padding:13px;font-size:40px;color:var(--muted);line-height:1.6;}
 
 /* REDEEM PAGE */
 .redeem-hero{background:linear-gradient(175deg,var(--navy),var(--navy2));padding:44px 14px 20px;}
 .redeem-list{padding:0 14px;}
 .redeem-item{background:var(--card);border-radius:13px;padding:12px;margin-bottom:9px;display:flex;align-items:center;gap:11px;border:1px solid var(--border);}
-.redeem-img{width:48px;height:48px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:44px;flex-shrink:0;}
+.redeem-img{width:48px;height:48px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0;}
 .redeem-info{flex:1;}
-.redeem-name-en{font-size:20px;color:var(--teal);font-family:"DM Mono",monospace;text-transform:uppercase;}
-.redeem-name-cn{font-size:20px;font-weight:600;margin:1px 0;}
-.redeem-desc{font-size:20px;color:var(--muted);}
+.redeem-name-en{font-size:17px;color:var(--teal);font-family:"DM Mono",monospace;text-transform:uppercase;}
+.redeem-name-cn{font-size:17px;font-weight:600;margin:1px 0;}
+.redeem-desc{font-size:17px;color:var(--muted);}
 .redeem-cost{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
-.rpts{font-family:"DM Mono",monospace;font-size:20px;font-weight:700;color:var(--teal);}
-.rpts-lbl{font-size:44px;color:var(--muted);text-transform:uppercase;}
-.rbtn{background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);border:none;padding:6px 11px;border-radius:16px;font-size:20px;font-weight:900;cursor:pointer;margin-top:2px;font-family:"Noto Sans SC",sans-serif;}
+.rpts{font-family:"DM Mono",monospace;font-size:17px;font-weight:700;color:var(--teal);}
+.rpts-lbl{font-size:40px;color:var(--muted);text-transform:uppercase;}
+.rbtn{background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);border:none;padding:6px 11px;border-radius:16px;font-size:17px;font-weight:900;cursor:pointer;margin-top:2px;font-family:"Noto Sans SC",sans-serif;}
 
 /* INVITE */
 .invite-hero{background:linear-gradient(175deg,var(--navy),var(--navy2));padding:44px 14px 20px;text-align:center;position:relative;overflow:hidden;}
 .invite-hero::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:260px;height:260px;background:radial-gradient(circle,rgba(103,203,201,.1),transparent 70%);}
-.invite-badge{display:inline-block;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);padding:4px 15px;border-radius:18px;font-size:20px;font-weight:900;letter-spacing:1px;margin-bottom:13px;}
-.invite-hero h1{font-family:"Playfair Display",serif;font-size:44px;font-weight:900;line-height:1.25;margin-bottom:4px;}
+.invite-badge{display:inline-block;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);padding:4px 15px;border-radius:18px;font-size:17px;font-weight:900;letter-spacing:1px;margin-bottom:13px;}
+.invite-hero h1{font-family:"Playfair Display",serif;font-size:40px;font-weight:900;line-height:1.25;margin-bottom:4px;}
 .invite-hero h1 em{font-style:italic;color:var(--teal);}
 .invite-code-card{margin:14px;background:var(--card);border-radius:16px;padding:18px;border:1px solid rgba(103,203,201,.25);text-align:center;}
-.invite-code{font-family:"DM Mono",monospace;font-size:44px;font-weight:700;color:var(--teal);letter-spacing:7px;margin:10px 0 13px;}
-.copy-btn{background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);border:none;padding:12px;border-radius:26px;font-size:20px;font-weight:900;cursor:pointer;width:100%;font-family:"Noto Sans SC",sans-serif;}
+.invite-code{font-family:"DM Mono",monospace;font-size:40px;font-weight:700;color:var(--teal);letter-spacing:7px;margin:10px 0 13px;}
+.copy-btn{background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);border:none;padding:12px;border-radius:26px;font-size:17px;font-weight:900;cursor:pointer;width:100%;font-family:"Noto Sans SC",sans-serif;}
 .step-card{background:var(--card);border-radius:13px;padding:12px;margin-bottom:7px;display:flex;gap:11px;border:1px solid var(--border);}
-.step-num{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;flex-shrink:0;}
+.step-num{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:17px;flex-shrink:0;}
 .ref-item{background:var(--card);border-radius:11px;padding:11px 13px;margin-bottom:7px;display:flex;align-items:center;gap:10px;border:1px solid var(--border);}
-.ref-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--teal2),var(--navy));display:flex;align-items:center;justify-content:center;font-size:44px;}
+.ref-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--teal2),var(--navy));display:flex;align-items:center;justify-content:center;font-size:40px;}
 
 /* TX / HISTORY */
 .tx-list{padding:0 14px;}
 .tx-item{background:var(--card);border-radius:11px;padding:11px 13px;margin-bottom:7px;display:flex;align-items:center;gap:10px;border:1px solid var(--border);}
 .tx-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.tx-en{font-size:20px;color:var(--teal);font-family:"DM Mono",monospace;text-transform:uppercase;}
-.tx-cn{font-size:20px;font-weight:500;margin:1px 0;}
-.tx-d{font-size:20px;color:var(--muted);font-family:"DM Mono",monospace;}
-.tx-amt{font-family:"DM Mono",monospace;font-size:20px;font-weight:700;}
+.tx-en{font-size:17px;color:var(--teal);font-family:"DM Mono",monospace;text-transform:uppercase;}
+.tx-cn{font-size:17px;font-weight:500;margin:1px 0;}
+.tx-d{font-size:17px;color:var(--muted);font-family:"DM Mono",monospace;}
+.tx-amt{font-family:"DM Mono",monospace;font-size:17px;font-weight:700;}
 
 /* ADMIN PAGE */
 .admin-hero{background:linear-gradient(175deg,var(--navy),var(--navy2));padding:44px 14px 20px;}
 .admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px;margin-bottom:12px;}
 .admin-stat{background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--border);text-align:center;}
-.admin-stat .av{font-family:"DM Mono",monospace;font-size:44px;font-weight:700;color:var(--teal);}
-.admin-stat .ae{font-size:44px;color:var(--teal);text-transform:uppercase;font-family:"DM Mono",monospace;}
-.admin-stat .ac{font-size:20px;color:var(--muted);}
+.admin-stat .av{font-family:"DM Mono",monospace;font-size:40px;font-weight:700;color:var(--teal);}
+.admin-stat .ae{font-size:40px;color:var(--teal);text-transform:uppercase;font-family:"DM Mono",monospace;}
+.admin-stat .ac{font-size:17px;color:var(--muted);}
 .admin-card{margin:0 14px 12px;background:var(--card);border-radius:16px;padding:15px;border:1px solid var(--border);}
-.admin-card h3{font-size:20px;font-weight:700;margin-bottom:12px;color:var(--teal);}
-.admin-card .sub{font-size:20px;color:var(--muted);margin-bottom:10px;font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:1px;}
+.admin-card h3{font-size:17px;font-weight:700;margin-bottom:12px;color:var(--teal);}
+.admin-card .sub{font-size:17px;color:var(--muted);margin-bottom:10px;font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:1px;}
 .pending-item{background:var(--card2);border-radius:11px;padding:12px;margin-bottom:8px;border:1px solid var(--border);}
-.pending-name{font-size:20px;font-weight:700;}
-.pending-detail{font-size:20px;color:var(--muted);margin:2px 0;font-family:"DM Mono",monospace;}
+.pending-name{font-size:17px;font-weight:700;}
+.pending-detail{font-size:17px;color:var(--muted);margin:2px 0;font-family:"DM Mono",monospace;}
 .pending-actions{display:flex;gap:8px;margin-top:8px;}
-.approve-btn{flex:1;padding:8px;border-radius:10px;border:none;background:var(--green);color:var(--navy2);font-size:44px;font-weight:900;cursor:pointer;font-family:"Noto Sans SC",sans-serif;}
-.reject-btn{flex:1;padding:8px;border-radius:10px;border:none;background:var(--red);color:#fff;font-size:44px;font-weight:900;cursor:pointer;font-family:"Noto Sans SC",sans-serif;}
+.approve-btn{flex:1;padding:8px;border-radius:10px;border:none;background:var(--green);color:var(--navy2);font-size:40px;font-weight:900;cursor:pointer;font-family:"Noto Sans SC",sans-serif;}
+.reject-btn{flex:1;padding:8px;border-radius:10px;border:none;background:var(--red);color:#fff;font-size:40px;font-weight:900;cursor:pointer;font-family:"Noto Sans SC",sans-serif;}
 .member-row{background:var(--card2);border-radius:11px;padding:11px 13px;margin-bottom:7px;display:flex;align-items:center;gap:10px;border:1px solid var(--border);}
-.member-rank{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--teal2),var(--navy));display:flex;align-items:center;justify-content:center;font-family:"DM Mono",monospace;font-size:20px;font-weight:700;color:var(--teal);flex-shrink:0;}
+.member-rank{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--teal2),var(--navy));display:flex;align-items:center;justify-content:center;font-family:"DM Mono",monospace;font-size:17px;font-weight:700;color:var(--teal);flex-shrink:0;}
 .revenue-item{background:var(--card2);border-radius:11px;padding:11px 13px;margin-bottom:7px;display:flex;align-items:center;gap:10px;border:1px solid var(--border);}
-.tier-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:20px;font-weight:900;font-family:"DM Mono",monospace;}
+.tier-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:17px;font-weight:900;font-family:"DM Mono",monospace;}
 .tier-silver{background:rgba(148,163,184,.2);color:#94A3B8;}
 .tier-gold{background:rgba(245,200,66,.2);color:var(--gold);}
 .tier-vip{background:rgba(248,146,60,.2);color:var(--orange);}
 
 /* PROFILE */
 .profile-hero{background:linear-gradient(175deg,var(--navy),var(--navy2));padding:50px 14px 20px;display:flex;flex-direction:column;align-items:center;}
-.profile-avatar{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--navy));display:flex;align-items:center;justify-content:center;font-size:44px;border:3px solid rgba(103,203,201,.4);margin-bottom:10px;}
+.profile-avatar{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--navy));display:flex;align-items:center;justify-content:center;font-size:40px;border:3px solid rgba(103,203,201,.4);margin-bottom:10px;}
 .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:0 14px;margin-top:14px;}
 .stat-card{background:var(--card);border-radius:13px;padding:13px;text-align:center;border:1px solid var(--border);}
-.stat-card .sv{font-family:"DM Mono",monospace;font-size:44px;font-weight:700;color:var(--teal);}
-.stat-card .se{font-size:44px;color:var(--teal);text-transform:uppercase;font-family:"DM Mono",monospace;margin-top:2px;}
-.stat-card .sc{font-size:20px;color:var(--muted);margin-top:1px;}
+.stat-card .sv{font-family:"DM Mono",monospace;font-size:40px;font-weight:700;color:var(--teal);}
+.stat-card .se{font-size:40px;color:var(--teal);text-transform:uppercase;font-family:"DM Mono",monospace;margin-top:2px;}
+.stat-card .sc{font-size:17px;color:var(--muted);margin-top:1px;}
 .menu-list{padding:0 14px;margin-top:12px;}
 .menu-item{background:var(--card);border-radius:11px;padding:13px;margin-bottom:6px;display:flex;align-items:center;gap:11px;cursor:pointer;border:1px solid var(--border);transition:.15s;}
 .menu-item:active{transform:scale(.98);}
-.menu-item .mi{font-size:20px;}
+.menu-item .mi{font-size:17px;}
 .menu-item-text{flex:1;}
-.menu-item-text .me{font-size:20px;color:var(--teal);text-transform:uppercase;font-family:"DM Mono",monospace;letter-spacing:.5px;}
-.menu-item-text .mc{font-size:20px;font-weight:500;margin-top:1px;}
-.menu-item .ma{color:var(--muted);font-size:20px;margin-left:auto;}
+.menu-item-text .me{font-size:17px;color:var(--teal);text-transform:uppercase;font-family:"DM Mono",monospace;letter-spacing:.5px;}
+.menu-item-text .mc{font-size:17px;font-weight:500;margin-top:1px;}
+.menu-item .ma{color:var(--muted);font-size:17px;margin-left:auto;}
 .vip-prog{width:100%;background:var(--card);border-radius:16px;padding:15px;margin-top:15px;border:1px solid rgba(103,203,201,.2);}
 .vip-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
 .vip-track{height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
@@ -220,38 +220,38 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
 .modal-overlay.show{display:flex;animation:fadeIn .2s ease;}
 .modal{background:var(--card);border-radius:22px 22px 0 0;padding:22px 18px 42px;width:100%;border-top:1px solid var(--border);max-height:88vh;overflow-y:auto;}
 .modal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 15px;}
-.modal .m-en{font-size:20px;color:var(--teal);text-transform:uppercase;letter-spacing:2px;font-family:"DM Mono",monospace;margin-bottom:2px;}
-.modal h3{font-family:"Playfair Display",serif;font-size:44px;font-weight:900;margin-bottom:4px;}
-.modal p{font-size:20px;color:var(--muted);margin-bottom:14px;line-height:1.6;white-space:pre-line;}
-.modal-btn{width:100%;padding:13px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);font-size:44px;font-weight:900;cursor:pointer;margin-bottom:7px;font-family:"Noto Sans SC",sans-serif;}
+.modal .m-en{font-size:17px;color:var(--teal);text-transform:uppercase;letter-spacing:2px;font-family:"DM Mono",monospace;margin-bottom:2px;}
+.modal h3{font-family:"Playfair Display",serif;font-size:40px;font-weight:900;margin-bottom:4px;}
+.modal p{font-size:17px;color:var(--muted);margin-bottom:14px;line-height:1.6;white-space:pre-line;}
+.modal-btn{width:100%;padding:13px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);font-size:40px;font-weight:900;cursor:pointer;margin-bottom:7px;font-family:"Noto Sans SC",sans-serif;}
 .modal-btn.orange{background:linear-gradient(135deg,#f97316,var(--orange));}
-.modal-btn-sec{width:100%;padding:12px;border-radius:13px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:20px;cursor:pointer;font-family:"Noto Sans SC",sans-serif;}
+.modal-btn-sec{width:100%;padding:12px;border-radius:13px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:17px;cursor:pointer;font-family:"Noto Sans SC",sans-serif;}
 .checkin-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:15px;}
 .cday{border-radius:8px;padding:7px 2px;text-align:center;}
 
 /* LOGIN */
 #loginScreen,#registerScreen{background:var(--navy2);justify-content:center;align-items:center;padding:40px 18px;}
 .login-logo{text-align:center;margin-bottom:24px;}
-.login-logo h1{font-family:"Playfair Display",serif;font-size:44px;font-weight:900;}
+.login-logo h1{font-family:"Playfair Display",serif;font-size:40px;font-weight:900;}
 .login-logo h1 span{color:var(--teal);}
-.login-logo .logo-en{font-size:20px;color:var(--teal);letter-spacing:3px;text-transform:uppercase;font-family:"DM Mono",monospace;margin-top:2px;}
-.login-logo .logo-cn{font-size:44px;color:var(--muted);}
+.login-logo .logo-en{font-size:17px;color:var(--teal);letter-spacing:3px;text-transform:uppercase;font-family:"DM Mono",monospace;margin-top:2px;}
+.login-logo .logo-cn{font-size:40px;color:var(--muted);}
 .login-card{background:var(--card);border-radius:20px;padding:20px;width:100%;border:1px solid var(--border);}
-.login-card .c-en{font-size:20px;color:var(--teal);text-transform:uppercase;letter-spacing:2px;font-family:"DM Mono",monospace;margin-bottom:2px;}
-.login-card h2{font-size:20px;font-weight:700;margin-bottom:2px;}
-.login-card .c-sub{font-size:44px;color:var(--muted);margin-bottom:16px;}
+.login-card .c-en{font-size:17px;color:var(--teal);text-transform:uppercase;letter-spacing:2px;font-family:"DM Mono",monospace;margin-bottom:2px;}
+.login-card h2{font-size:17px;font-weight:700;margin-bottom:2px;}
+.login-card .c-sub{font-size:40px;color:var(--muted);margin-bottom:16px;}
 .inp-grp{margin-bottom:10px;}
-.inp-grp label{font-size:20px;color:var(--teal);text-transform:uppercase;letter-spacing:2px;display:flex;gap:6px;margin-bottom:4px;font-family:"DM Mono",monospace;}
-.inp-grp label span{color:var(--muted);font-family:"Noto Sans SC",sans-serif;font-size:20px;text-transform:none;letter-spacing:0;}
-.inp-grp input{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--white);font-size:44px;font-family:"Noto Sans SC",sans-serif;outline:none;}
+.inp-grp label{font-size:17px;color:var(--teal);text-transform:uppercase;letter-spacing:2px;display:flex;gap:6px;margin-bottom:4px;font-family:"DM Mono",monospace;}
+.inp-grp label span{color:var(--muted);font-family:"Noto Sans SC",sans-serif;font-size:17px;text-transform:none;letter-spacing:0;}
+.inp-grp input{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--white);font-size:40px;font-family:"Noto Sans SC",sans-serif;outline:none;}
 .inp-grp input:focus{border-color:var(--teal);}
-.login-btn{width:100%;padding:13px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);font-size:44px;font-weight:900;cursor:pointer;margin-top:5px;font-family:"Noto Sans SC",sans-serif;}
-.login-hint{text-align:center;margin-top:10px;font-size:44px;color:var(--muted);}
+.login-btn{width:100%;padding:13px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);font-size:40px;font-weight:900;cursor:pointer;margin-top:5px;font-family:"Noto Sans SC",sans-serif;}
+.login-hint{text-align:center;margin-top:10px;font-size:40px;color:var(--muted);}
 .login-hint span{color:var(--teal);cursor:pointer;}
 .notif-dot{width:7px;height:7px;background:var(--red);border-radius:50%;position:absolute;top:4px;right:calc(50% - 13px);}
 
 /* TOAST */
-.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--navy);border:1px solid var(--teal);color:var(--teal);padding:9px 18px;border-radius:24px;font-size:20px;font-weight:700;z-index:300;display:none;white-space:nowrap;box-shadow:0 4px 18px rgba(103,203,201,.22);}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--navy);border:1px solid var(--teal);color:var(--teal);padding:9px 18px;border-radius:24px;font-size:17px;font-weight:700;z-index:300;display:none;white-space:nowrap;box-shadow:0 4px 18px rgba(103,203,201,.22);}
 .toast.show{display:block;animation:toastIn .3s ease;}
 @keyframes toastIn{from{opacity:0;top:0}to{opacity:1;top:20px}}
 </style>
@@ -262,10 +262,10 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
 <!-- ═══════════════ LOGIN ═══════════════ -->
 <div class="screen active" id="loginScreen">
   <div class="login-logo">
-    <div style="font-size:54px;margin-bottom:8px;">🍥</div>
+    <div style="font-size:48px;margin-bottom:8px;">🍥</div>
     <h1>Cinna<span>bon</span></h1>
     <div class="logo-en">VIP Membership · Fun Mall</div>
-    <div class="logo-cn">共享股東會員系統 · 金邊</div>
+    <div class="logo-cn">共享股東 · 金邊</div>
   </div>
   <div class="login-card">
     <div class="c-en">Member Login · 會員登入</div>
@@ -275,14 +275,14 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
     <div class="inp-grp"><label>Password <span>密碼</span></label><input type="password" id="loginPass" placeholder="••••••" value="111111"></div>
     <button class="login-btn" onclick="doLogin()">Login · 登 入</button>
     <div class="login-hint">No account? · 沒有帳戶？ <span onclick="showRegister()">Register · 註冊</span></div>
-    <div style="margin-top:10px;text-align:center;font-size:20px;color:var(--muted);">Admin: 099999999 / admin888</div>
+    <div style="margin-top:10px;text-align:center;font-size:17px;color:var(--muted);">Admin: 099999999 / admin888</div>
   </div>
 </div>
 
 <!-- ═══════════════ REGISTER ═══════════════ -->
 <div class="screen" id="registerScreen">
   <div class="login-logo">
-    <div style="font-size:54px;margin-bottom:8px;">⭐</div>
+    <div style="font-size:48px;margin-bottom:8px;">⭐</div>
     <h1>Join <span>Us</span></h1>
     <div class="logo-en">Become a VIP Shareholder</div>
     <div class="logo-cn">加入共享股東，儲值享分紅</div>
@@ -314,7 +314,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
           <div class="roll-brand-icon">🍥</div>
           <div>
             <div class="roll-brand-name">Cinna<span>bon</span></div>
-            <div style="font-size:44px;color:rgba(255,255,255,.5);font-family:monospace;letter-spacing:1px;">FUN MALL · PHNOM PENH</div>
+            <div style="font-size:40px;color:rgba(255,255,255,.5);font-family:monospace;letter-spacing:1px;">FUN MALL · PHNOM PENH</div>
           </div>
         </div>
         <div class="roll-vip" id="homeLevelBadge">VIP</div>
@@ -343,7 +343,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
       <div class="pts-lbl">Loyalty Points · 積分</div>
       <div style="display:flex;align-items:baseline;gap:5px;">
         <div class="pts-val" id="homePoints">0</div>
-        <span style="font-size:20px;color:var(--teal);font-family:monospace;">pts</span>
+        <span style="font-size:17px;color:var(--teal);font-family:monospace;">pts</span>
       </div>
       <div class="pts-equiv" id="homeEquiv">≈ $0.00 redemption value</div>
       <div class="pts-stats">
@@ -368,21 +368,21 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
         <div class="plan-name">Silver</div>
         <div class="plan-price">$100</div>
         <div class="plan-get">Get $110</div>
-        <div style="font-size:20px;color:var(--muted);">+$10 bonus</div>
+        <div style="font-size:17px;color:var(--muted);">+$10 bonus</div>
         <button class="plan-btn">Select</button>
       </div>
       <div class="plan-card gold" onclick="gotoDeposit(500)">
         <div class="plan-name" style="color:var(--gold);">Gold</div>
         <div class="plan-price" style="color:var(--gold);">$500</div>
         <div class="plan-get gold-text">Get $575</div>
-        <div style="font-size:20px;color:var(--muted);">+$75 bonus</div>
+        <div style="font-size:17px;color:var(--muted);">+$75 bonus</div>
         <button class="plan-btn" style="background:linear-gradient(135deg,#ca8a04,var(--gold));color:var(--navy2);">Select</button>
       </div>
       <div class="plan-card vip" onclick="gotoDeposit(1000)">
         <div class="plan-name" style="color:var(--orange);">VIP</div>
         <div class="plan-price" style="color:var(--orange);">$1,000</div>
         <div class="plan-get orange-text">Get $1,180</div>
-        <div style="font-size:20px;color:var(--muted);">+$180 bonus</div>
+        <div style="font-size:17px;color:var(--muted);">+$180 bonus</div>
         <button class="plan-btn" style="background:linear-gradient(135deg,#f97316,var(--orange));color:#fff;">Select</button>
       </div>
     </div>
@@ -395,7 +395,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
             <div class="prog-title" id="progTitle">Silver Member</div>
             <div class="prog-sub" id="progSub">Deposit $500 to upgrade to Gold</div>
           </div>
-          <div style="font-size:44px;">🏅</div>
+          <div style="font-size:40px;">🏅</div>
         </div>
         <div class="prog-track"><div class="prog-fill" id="progFill" style="width:20%;"></div></div>
         <div class="prog-labels"><span>$0</span><span id="progLabel" style="color:var(--teal);">$100 / $500</span><span>$500</span></div>
@@ -420,28 +420,28 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
   <!-- ══ DEPOSIT TAB ══ -->
   <div class="content" id="depositTab" style="display:none;">
     <div class="dep-hero">
-      <div style="font-size:20px;color:var(--orange);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Top Up · 儲值申請</div>
-      <div style="font-family:'Playfair Display',serif;font-size:44px;font-weight:900;">Deposit & Earn</div>
-      <div style="font-size:44px;color:var(--muted);margin-top:4px;">儲值後享受分紅，餘額永久有效</div>
+      <div style="font-size:17px;color:var(--orange);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Top Up · 儲值申請</div>
+      <div style="font-family:'Playfair Display',serif;font-size:40px;font-weight:900;">Deposit & Earn</div>
+      <div style="font-size:40px;color:var(--muted);margin-top:4px;">儲值後享受分紅，餘額永久有效</div>
     </div>
     <div class="form-card">
       <div class="admin-card" style="margin:0 0 12px;padding:12px;background:rgba(103,203,201,.06);border-color:rgba(103,203,201,.2);">
-        <div style="font-size:20px;color:var(--teal);font-family:monospace;margin-bottom:6px;">PLAN COMPARISON · 方案比較</div>
+        <div style="font-size:17px;color:var(--teal);font-family:monospace;margin-bottom:6px;">PLAN COMPARISON · 方案比較</div>
         <div style="display:flex;gap:8px;">
           <div style="flex:1;text-align:center;background:var(--card2);border-radius:10px;padding:8px;cursor:pointer;" onclick="setPlan(100)">
-            <div style="font-size:20px;color:var(--muted);">Silver</div>
-            <div style="font-family:monospace;font-size:44px;font-weight:700;">$100</div>
-            <div style="font-size:20px;color:var(--teal);">→ $110</div>
+            <div style="font-size:17px;color:var(--muted);">Silver</div>
+            <div style="font-family:monospace;font-size:40px;font-weight:700;">$100</div>
+            <div style="font-size:17px;color:var(--teal);">→ $110</div>
           </div>
           <div style="flex:1;text-align:center;background:rgba(245,200,66,.1);border-radius:10px;padding:8px;cursor:pointer;border:1px solid rgba(245,200,66,.3);" onclick="setPlan(500)">
-            <div style="font-size:20px;color:var(--gold);">Gold</div>
-            <div style="font-family:monospace;font-size:44px;font-weight:700;color:var(--gold);">$500</div>
-            <div style="font-size:20px;color:var(--gold);">→ $575</div>
+            <div style="font-size:17px;color:var(--gold);">Gold</div>
+            <div style="font-family:monospace;font-size:40px;font-weight:700;color:var(--gold);">$500</div>
+            <div style="font-size:17px;color:var(--gold);">→ $575</div>
           </div>
           <div style="flex:1;text-align:center;background:rgba(248,146,60,.1);border-radius:10px;padding:8px;cursor:pointer;border:1px solid rgba(248,146,60,.3);" onclick="setPlan(1000)">
-            <div style="font-size:20px;color:var(--orange);">VIP</div>
-            <div style="font-family:monospace;font-size:44px;font-weight:700;color:var(--orange);">$1,000</div>
-            <div style="font-size:20px;color:var(--orange);">→ $1,180</div>
+            <div style="font-size:17px;color:var(--orange);">VIP</div>
+            <div style="font-family:monospace;font-size:40px;font-weight:700;color:var(--orange);">$1,000</div>
+            <div style="font-size:17px;color:var(--orange);">→ $1,180</div>
           </div>
         </div>
       </div>
@@ -468,21 +468,21 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
   <!-- ══ REDEEM TAB ══ -->
   <div class="content" id="redeemTab" style="display:none;">
     <div class="redeem-hero">
-      <div style="font-size:20px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Rewards · 兌換中心</div>
-      <div style="font-family:'Playfair Display',serif;font-size:44px;font-weight:900;" id="redeemAvail">$0.00</div>
-      <div style="font-size:20px;color:var(--teal);margin-top:4px;font-family:monospace;">Total available · 可用總額（儲值 + 點數）</div>
+      <div style="font-size:17px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Rewards · 兌換中心</div>
+      <div style="font-family:'Playfair Display',serif;font-size:40px;font-weight:900;" id="redeemAvail">$0.00</div>
+      <div style="font-size:17px;color:var(--teal);margin-top:4px;font-family:monospace;">Total available · 可用總額（儲值 + 點數）</div>
     </div>
     <div style="padding:13px 14px 8px;">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px;">
         <div style="background:var(--card2);border-radius:11px;padding:12px;text-align:center;border:1px solid var(--border);">
-          <div style="font-family:monospace;font-size:44px;font-weight:700;color:var(--orange);" id="r_stored">$0.00</div>
-          <div style="font-size:44px;color:var(--orange);text-transform:uppercase;font-family:monospace;">Stored Value</div>
-          <div style="font-size:20px;color:var(--muted);">儲值餘額</div>
+          <div style="font-family:monospace;font-size:40px;font-weight:700;color:var(--orange);" id="r_stored">$0.00</div>
+          <div style="font-size:40px;color:var(--orange);text-transform:uppercase;font-family:monospace;">Stored Value</div>
+          <div style="font-size:17px;color:var(--muted);">儲值餘額</div>
         </div>
         <div style="background:var(--card2);border-radius:11px;padding:12px;text-align:center;border:1px solid var(--border);">
-          <div style="font-family:monospace;font-size:44px;font-weight:700;color:var(--teal);" id="r_points">$0.00</div>
-          <div style="font-size:44px;color:var(--teal);text-transform:uppercase;font-family:monospace;">Reward Points</div>
-          <div style="font-size:20px;color:var(--muted);">回饋點數</div>
+          <div style="font-family:monospace;font-size:40px;font-weight:700;color:var(--teal);" id="r_points">$0.00</div>
+          <div style="font-size:40px;color:var(--teal);text-transform:uppercase;font-family:monospace;">Reward Points</div>
+          <div style="font-size:17px;color:var(--muted);">回饋點數</div>
         </div>
       </div>
     </div>
@@ -525,34 +525,34 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
     <div class="invite-hero">
       <div class="invite-badge">Refer & Earn · 邀請賺積分</div>
       <h1>Invite Friends<br><em>Earn Together</em></h1>
-      <div style="font-size:20px;color:var(--muted);margin-bottom:8px;">邀請好友 · 各得 5 積分</div>
-      <p style="font-size:44px;color:var(--muted);line-height:1.7;">Both you & friend earn <strong style="color:var(--teal);">5 pts each</strong><br>你和朋友各得 <strong style="color:var(--teal);">5 積分</strong></p>
+      <div style="font-size:17px;color:var(--muted);margin-bottom:8px;">邀請好友 · 各得 5 積分</div>
+      <p style="font-size:40px;color:var(--muted);line-height:1.7;">Both you & friend earn <strong style="color:var(--teal);">5 pts each</strong><br>你和朋友各得 <strong style="color:var(--teal);">5 積分</strong></p>
     </div>
     <div class="invite-code-card">
-      <div style="font-size:20px;color:var(--muted);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:2px;">Exclusive Code · 專屬邀請碼</div>
+      <div style="font-size:17px;color:var(--muted);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:2px;">Exclusive Code · 專屬邀請碼</div>
       <div class="invite-code" id="myInviteCode">CNB-0000</div>
       <button class="copy-btn" onclick="copyCode()">📋 Copy Code · 複製邀請碼</button>
     </div>
     <div style="padding:0 14px;margin-bottom:13px;">
       <div class="sec-en" style="padding:0;margin-bottom:9px;">How It Works · 邀請步驟</div>
-      <div class="step-card"><div class="step-num">1</div><div><div style="font-size:20px;font-weight:700;">Share your code · 分享邀請碼</div><div style="font-size:20px;color:var(--muted);margin-top:2px;">Send via WhatsApp / Telegram</div></div></div>
-      <div class="step-card"><div class="step-num">2</div><div><div style="font-size:20px;font-weight:700;">Friend registers · 朋友註冊</div><div style="font-size:20px;color:var(--muted);margin-top:2px;">Uses your code when signing up</div></div></div>
-      <div class="step-card"><div class="step-num">3</div><div><div style="font-size:20px;font-weight:700;">Both earn 5 pts ⭐ · 各得5積分</div><div style="font-size:20px;color:var(--muted);margin-top:2px;">Points auto-credited · 積分自動存入</div></div></div>
+      <div class="step-card"><div class="step-num">1</div><div><div style="font-size:17px;font-weight:700;">Share your code · 分享邀請碼</div><div style="font-size:17px;color:var(--muted);margin-top:2px;">Send via WhatsApp / Telegram</div></div></div>
+      <div class="step-card"><div class="step-num">2</div><div><div style="font-size:17px;font-weight:700;">Friend registers · 朋友註冊</div><div style="font-size:17px;color:var(--muted);margin-top:2px;">Uses your code when signing up</div></div></div>
+      <div class="step-card"><div class="step-num">3</div><div><div style="font-size:17px;font-weight:700;">Both earn 5 pts ⭐ · 各得5積分</div><div style="font-size:17px;color:var(--muted);margin-top:2px;">Points auto-credited · 積分自動存入</div></div></div>
     </div>
     <div class="sec-head"><div><div class="sec-en">Referral History</div><div class="sec-cn">邀請記錄</div></div><div class="sec-more" id="refEarned">0 pts earned</div></div>
-    <div style="padding:0 14px;" id="refList"><div style="text-align:center;padding:20px;color:var(--muted);font-size:20px;">No referrals yet · 暫無邀請記錄</div></div>
+    <div style="padding:0 14px;" id="refList"><div style="text-align:center;padding:20px;color:var(--muted);font-size:17px;">No referrals yet · 暫無邀請記錄</div></div>
     <div style="height:8px;"></div>
   </div>
 
   <!-- ══ HISTORY TAB ══ -->
   <div class="content" id="historyTab" style="display:none;">
     <div style="background:linear-gradient(175deg,var(--navy),var(--navy2));padding:44px 14px 20px;">
-      <div style="font-size:20px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Transaction History · 交易記錄</div>
-      <div style="font-family:'Playfair Display',serif;font-size:44px;font-weight:900;" id="histTotal">$0.00</div>
-      <div style="font-size:20px;color:var(--teal);margin-top:4px;font-family:monospace;">Total available · 可用總額</div>
+      <div style="font-size:17px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Transaction History · 交易記錄</div>
+      <div style="font-family:'Playfair Display',serif;font-size:40px;font-weight:900;" id="histTotal">$0.00</div>
+      <div style="font-size:17px;color:var(--teal);margin-top:4px;font-family:monospace;">Total available · 可用總額</div>
     </div>
     <div class="sec-head" style="margin-top:15px;"><div><div class="sec-en">All Transactions</div><div class="sec-cn">所有記錄</div></div></div>
-    <div class="tx-list" id="txList"><div style="text-align:center;padding:20px;color:var(--muted);font-size:20px;">No transactions yet · 暫無記錄</div></div>
+    <div class="tx-list" id="txList"><div style="text-align:center;padding:20px;color:var(--muted);font-size:17px;">No transactions yet · 暫無記錄</div></div>
     <div style="height:8px;"></div>
   </div>
 
@@ -560,12 +560,12 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
   <div class="content" id="profileTab" style="display:none;">
     <div class="profile-hero">
       <div class="profile-avatar">🧑</div>
-      <div style="font-family:'Playfair Display',serif;font-size:44px;font-weight:900;" id="profileName">Member</div>
-      <div style="font-family:monospace;font-size:20px;color:var(--muted);" id="profileId">ID: M001</div>
+      <div style="font-family:'Playfair Display',serif;font-size:40px;font-weight:900;" id="profileName">Member</div>
+      <div style="font-family:monospace;font-size:17px;color:var(--muted);" id="profileId">ID: M001</div>
       <div class="vip-prog" style="width:100%;">
-        <div class="vip-row"><div style="font-size:20px;font-weight:700;color:var(--teal);" id="profileTier">Silver</div><div style="font-family:monospace;font-size:20px;color:var(--muted);" id="profileDepositProg">$0 / $500</div></div>
+        <div class="vip-row"><div style="font-size:17px;font-weight:700;color:var(--teal);" id="profileTier">Silver</div><div style="font-family:monospace;font-size:17px;color:var(--muted);" id="profileDepositProg">$0 / $500</div></div>
         <div class="vip-track"><div class="vip-fill" id="profileProgFill" style="width:0%;"></div></div>
-        <div style="font-size:20px;color:var(--muted);margin-top:6px;text-align:center;" id="profileProgHint">Deposit $500 to reach Gold</div>
+        <div style="font-size:17px;color:var(--muted);margin-top:6px;text-align:center;" id="profileProgHint">Deposit $500 to reach Gold</div>
       </div>
     </div>
     <div class="stats-grid">
@@ -574,12 +574,12 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
       <div class="stat-card"><div class="sv" id="pReferrals">0</div><div class="se">Referrals</div><div class="sc">邀請</div></div>
     </div>
     <div class="menu-list">
-      <div style="font-size:20px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;padding:0;margin-bottom:9px;">Account · 帳戶設置</div>
+      <div style="font-size:17px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;padding:0;margin-bottom:9px;">Account · 帳戶設置</div>
       <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">👤</div><div class="menu-item-text"><div class="me">Profile</div><div class="mc">個人信息</div></div><div class="ma">›</div></div>
       <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">🎂</div><div class="menu-item-text"><div class="me">Birthday (+200 pts)</div><div class="mc">設置生日 賠200積分</div></div><div class="ma">›</div></div>
       <div class="menu-item" onclick="showCheckin()"><div class="mi">📅</div><div class="menu-item-text"><div class="me">Daily Check-in</div><div class="mc">每日簽到</div></div><div class="ma">›</div></div>
       <div id="adminMenuBtn" style="display:none;" class="menu-item" onclick="switchTab('adminTab')"><div class="mi">🔧</div><div class="menu-item-text"><div class="me">Admin Dashboard</div><div class="mc">後台管理</div></div><div class="ma">›</div></div>
-      <div style="font-size:20px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;padding:0;margin:12px 0 9px;">About · 關於</div>
+      <div style="font-size:17px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;padding:0;margin:12px 0 9px;">About · 關於</div>
       <div class="menu-item" onclick="showToast('Cinnabon Fun Mall VIP v3.0')"><div class="mi">ℹ️</div><div class="menu-item-text"><div class="me">About</div><div class="mc">關於我們</div></div><div class="mc">v3.0</div><div class="ma">›</div></div>
       <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">📋</div><div class="menu-item-text"><div class="me">Terms</div><div class="mc">會員條款</div></div><div class="ma">›</div></div>
       <div class="menu-item" onclick="doLogout()" style="margin-top:5px;"><div class="mi">🚪</div><div class="menu-item-text"><div class="me">Logout</div><div class="mc" style="color:var(--red);">退出登入</div></div><div class="ma">›</div></div>
@@ -590,9 +590,9 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
   <!-- ══ ADMIN TAB ══ -->
   <div class="content" id="adminTab" style="display:none;">
     <div class="admin-hero">
-      <div style="font-size:20px;color:var(--red);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Admin Dashboard · 後台管理</div>
-      <div style="font-family:'Playfair Display',serif;font-size:44px;font-weight:900;">Cinnabon VIP</div>
-      <div style="font-size:20px;color:var(--muted);margin-top:3px;">Management Console · 管理系統</div>
+      <div style="font-size:17px;color:var(--red);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Admin Dashboard · 後台管理</div>
+      <div style="font-family:'Playfair Display',serif;font-size:40px;font-weight:900;">Cinnabon VIP</div>
+      <div style="font-size:17px;color:var(--muted);margin-top:3px;">Management Console · 管理系統</div>
     </div>
     <div class="admin-grid">
       <div class="admin-stat"><div class="av" id="aMembers">0</div><div class="ae">Members</div><div class="ac">總會員數</div></div>
@@ -616,13 +616,13 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
     <!-- PENDING DEPOSITS -->
     <div class="admin-card">
       <h3>⏳ Pending Deposits · 待審核儲值</h3>
-      <div id="pendingList"><div style="color:var(--muted);font-size:20px;">No pending deposits · 沒有待審核</div></div>
+      <div id="pendingList"><div style="color:var(--muted);font-size:17px;">No pending deposits · 沒有待審核</div></div>
     </div>
 
     <!-- SEED / RESET -->
     <div class="admin-card">
       <h3>🧪 Test Data · 測試資料</h3>
-      <div style="font-size:44px;color:var(--muted);margin-bottom:12px;">Generate 30 members + 30 days revenue for testing · 生成30位會員+30天營收</div>
+      <div style="font-size:40px;color:var(--muted);margin-bottom:12px;">Generate 30 members + 30 days revenue for testing · 生成30位會員+30天營收</div>
       <div style="display:flex;gap:10px;">
         <button class="submit-btn" onclick="seedDemo()" style="flex:1;">🌱 Generate Demo Data</button>
         <button class="submit-btn" onclick="resetAll()" style="flex:1;background:var(--red);">🗑️ Reset All</button>
@@ -918,7 +918,7 @@ function buildTxList(db, u){
   txs.sort((a,b)=>b.date.localeCompare(a.date));
   const el = document.getElementById("txList");
   if(!el) return;
-  if(txs.length===0){ el.innerHTML='<div style="text-align:center;padding:20px;color:var(--muted);font-size:20px;">No transactions yet · 暫無記錄</div>'; return; }
+  if(txs.length===0){ el.innerHTML='<div style="text-align:center;padding:20px;color:var(--muted);font-size:17px;">No transactions yet · 暫無記錄</div>'; return; }
   el.innerHTML = txs.slice(0,30).map(t=>`
     <div class="tx-item">
       <div class="tx-dot" style="background:${t.color};"></div>
@@ -933,12 +933,12 @@ function buildRefList(db, u){
   if(!el) return;
   const earned = refs.length*500;
   setText("refEarned", earned.toLocaleString()+" pts earned");
-  if(refs.length===0){ el.innerHTML='<div style="text-align:center;padding:20px;color:var(--muted);font-size:20px;">No referrals yet · 暫無邀請記錄</div>'; return; }
+  if(refs.length===0){ el.innerHTML='<div style="text-align:center;padding:20px;color:var(--muted);font-size:17px;">No referrals yet · 暫無邀請記錄</div>'; return; }
   el.innerHTML = refs.map(m=>`
     <div class="ref-item">
       <div class="ref-av">🧑</div>
-      <div style="flex:1;"><div style="font-size:20px;font-weight:500;">${m.name}</div><div style="font-size:20px;color:var(--muted);font-family:monospace;">${m.id} · Joined ${m.created}</div></div>
-      <div style="font-family:monospace;font-size:20px;color:var(--teal);font-weight:700;">+500 pts</div>
+      <div style="flex:1;"><div style="font-size:17px;font-weight:500;">${m.name}</div><div style="font-size:17px;color:var(--muted);font-family:monospace;">${m.id} · Joined ${m.created}</div></div>
+      <div style="font-family:monospace;font-size:17px;color:var(--teal);font-weight:700;">+500 pts</div>
     </div>`).join("");
 }
 
@@ -956,10 +956,10 @@ function renderAdmin(){
   const pl = document.getElementById("pendingList");
   if(pl){
     pl.innerHTML = pending.length===0
-      ? '<div style="color:var(--muted);font-size:20px;">No pending · 沒有待審核</div>'
+      ? '<div style="color:var(--muted);font-size:17px;">No pending · 沒有待審核</div>'
       : pending.map(d=>`
         <div class="pending-item">
-          <div class="pending-name">${d.name} <span style="color:var(--muted);font-size:20px;">${d.phone}</span></div>
+          <div class="pending-name">${d.name} <span style="color:var(--muted);font-size:17px;">${d.phone}</span></div>
           <div class="pending-detail">${fmt(d.amount)} · ${d.method} · Ref: ${d.ref||"-"} · ${d.date}</div>
           <div class="pending-actions">
             <button class="approve-btn" onclick="approveDeposit('${d.id}')">✅ Approve · 批准</button>
@@ -976,12 +976,12 @@ function renderAdmin(){
       <div class="member-row">
         <div class="member-rank">${i+1}</div>
         <div style="flex:1;">
-          <div style="font-size:20px;font-weight:600;">${m.name} <span class="tier-badge tier-${m.tier.toLowerCase()}">${m.tier}</span></div>
-          <div style="font-size:20px;color:var(--muted);font-family:monospace;">${m.id} · ${m.phone}</div>
+          <div style="font-size:17px;font-weight:600;">${m.name} <span class="tier-badge tier-${m.tier.toLowerCase()}">${m.tier}</span></div>
+          <div style="font-size:17px;color:var(--muted);font-family:monospace;">${m.id} · ${m.phone}</div>
         </div>
         <div style="text-align:right;">
-          <div style="font-family:monospace;font-size:20px;font-weight:700;color:var(--orange);">${fmt(m.stored)}</div>
-          <div style="font-size:20px;color:var(--teal);font-family:monospace;">+${fmt(m.points)} pts</div>
+          <div style="font-family:monospace;font-size:17px;font-weight:700;color:var(--orange);">${fmt(m.stored)}</div>
+          <div style="font-size:17px;color:var(--teal);font-family:monospace;">+${fmt(m.points)} pts</div>
         </div>
       </div>`).join("");
   }
@@ -991,10 +991,10 @@ function renderAdmin(){
   if(rl){
     rl.innerHTML = db.revenues.slice().reverse().slice(0,15).map(r=>`
       <div class="revenue-item">
-        <div style="font-family:monospace;font-size:20px;color:var(--muted);">${r.date}</div>
+        <div style="font-family:monospace;font-size:17px;color:var(--muted);">${r.date}</div>
         <div style="flex:1;text-align:right;">
-          <div style="font-family:monospace;font-size:20px;font-weight:700;color:var(--teal);">${fmt(r.amount)}</div>
-          <div style="font-size:20px;color:var(--muted);">Pool: ${fmt(r.pool)} (${r.rate}%)</div>
+          <div style="font-family:monospace;font-size:17px;font-weight:700;color:var(--teal);">${fmt(r.amount)}</div>
+          <div style="font-size:17px;color:var(--muted);">Pool: ${fmt(r.pool)} (${r.rate}%)</div>
         </div>
       </div>`).join("");
   }
@@ -1160,7 +1160,7 @@ function buildCheckinGrid(){
     const d=document.createElement("div");
     d.className="cday";
     d.style.cssText="background:"+(done?"rgba(103,203,201,.2)":today?"rgba(103,203,201,.1)":"var(--card2)")+";border:1px solid "+(done?"var(--teal)":today?"rgba(103,203,201,.4)":"var(--border)")+";";
-    d.innerHTML='<div style="font-size:20px;">'+(done?"✅":today?"⭐":"⬜")+'</div><div style="font-size:44px;color:var(--muted);margin-top:2px;">D'+i+'</div><div style="font-size:20px;color:var(--teal);">'+pts[i-1]+'</div>';
+    d.innerHTML='<div style="font-size:17px;">'+(done?"✅":today?"⭐":"⬜")+'</div><div style="font-size:40px;color:var(--muted);margin-top:2px;">D'+i+'</div><div style="font-size:17px;color:var(--teal);">'+pts[i-1]+'</div>';
     g.appendChild(d);
   }
 }
