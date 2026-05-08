@@ -264,18 +264,18 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
   <div class="login-logo">
     <div style="font-size:22px;margin-bottom:8px;">🍥</div>
     <h1>Cinna<span>bon</span></h1>
-    <div class="logo-en">VIP Membership · Fun Mall</div>
+    <div class="logo-en">VIP Membership · Fun Mall · សមាជិក VIP</div>
     <div class="logo-cn">共享股東 · 金邊</div>
   </div>
   <div class="login-card">
-    <div class="c-en">Member Login · 會員登入</div>
-    <h2>Welcome Back</h2>
-    <div class="c-sub">歡迎回來，請登入你的帳戶</div>
+    <div class="c-en">Member Login · 會員登入 · ចូលគណនី</div>
+    <h2>Welcome Back · 歡迎回來 · សូមស្វាគមន៍</h2>
+    <div class="c-sub">Welcome back · 歡迎回來 · សូមចូលគណនី</div>
     <div class="inp-grp"><label>Phone <span>手機號碼</span></label><input type="tel" id="loginPhone" placeholder="012 345 6789" value="012100001"></div>
     <div class="inp-grp"><label>Password <span>密碼</span></label><input type="password" id="loginPass" placeholder="••••••" value="111111"></div>
-    <button class="login-btn" onclick="doLogin()">Login · 登 入</button>
-    <div class="login-hint">No account? · 沒有帳戶？ <span onclick="showRegister()">Register · 註冊</span></div>
-    <div style="margin-top:10px;text-align:center;font-size:12px;color:var(--muted);">Admin: 099999999 / admin888</div>
+    <button class="login-btn" onclick="doLogin()">Login · 登入 · ចូល</button>
+    <div class="login-hint">No account? · 沒有帳戶？ · គ្មានគណនី？ <span onclick="showRegister()">Register · 註冊 · ចុះឈ្មោះ</span></div>
+    <div style="margin-top:10px;text-align:center;font-size:12px;color:var(--muted);">Admin · 管理員 · អ្នកគ្រប់គ្រង: 099999999 / admin888</div>
   </div>
 </div>
 
@@ -284,19 +284,20 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
   <div class="login-logo">
     <div style="font-size:22px;margin-bottom:8px;">⭐</div>
     <h1>Join <span>Us</span></h1>
-    <div class="logo-en">Become a VIP Shareholder</div>
-    <div class="logo-cn">加入共享股東，儲值享分紅</div>
+    <div class="logo-en">Become VIP · 成為VIP · ក្លាយជា VIP</div>
+    <div class="logo-cn">加入共享股東 · Join & Earn · ចូលរួម</div>
   </div>
   <div class="login-card">
-    <div class="c-en">New Registration · 新用戶註冊</div>
-    <h2>Create Account</h2>
+    <div class="c-en">New Registration · 新用戶註冊 · ចុះឈ្មោះថ្មី</div>
+    <h2>Create Account · 創建帳戶 · បង្កើតគណនី</h2>
     <div class="c-sub">註冊即送 100 積分！</div>
     <div class="inp-grp"><label>Full Name <span>姓名</span></label><input type="text" id="regName" placeholder="Your name · 你的姓名"></div>
     <div class="inp-grp"><label>Phone <span>手機號碼</span></label><input type="tel" id="regPhone" placeholder="012 345 6789"></div>
-    <div class="inp-grp"><label>Password <span>密碼</span></label><input type="password" id="regPass" placeholder="Set password · 設置密碼"></div>
-    <div class="inp-grp"><label>Invite Code <span>邀請碼（選填）</span></label><input type="text" id="regInvite" placeholder="Friend invite code · 朋友的邀請碼"></div>
-    <button class="login-btn" onclick="doRegister()">Register · 立即註冊</button>
-    <div class="login-hint">Have account? · 已有帳戶？ <span onclick="showLogin()">Login · 登入</span></div>
+    <div class="inp-grp"><label>Password <span>密碼</span></label><input type="password" id="regPass" placeholder="Set password · 設置密碼 · លេខសម្ងាត់"></div>
+    <div class="inp-grp"><label>Invite Code <span>邀請碼（選填）</span></label><input type="text" id="regInvite" placeholder="Invite code · 邀請碼 · លេខកូដអញ្ជើញ"></div>
+    <div class="inp-grp"><label>Birthday <span>生日 · ថ្ងៃកំណើត（選填）</span></label><input type="date" id="regBday" placeholder="生日"></div>
+<button class="login-btn" onclick="doRegister()">Register · 立即註冊 · ចុះឈ្មោះ</button>
+    <div class="login-hint">Have account? · 已有帳戶？ · មានគណនី？ <span onclick="showLogin()">Login · 登入 · ចូល</span></div>
   </div>
 </div>
 
@@ -328,9 +329,9 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
 
     <!-- STORED VALUE CARD -->
     <div class="stored-card">
-      <div class="stored-lbl">Stored Value · 儲值餘額</div>
+      <div class="stored-lbl">Stored Value · 儲值餘額 · ទឹកប្រាក់</div>
       <div class="stored-val" id="homeStored">$0.00</div>
-      <div class="stored-sub" id="homeStoredSub">Available for in-store use · 可用於店內消費</div>
+      <div class="stored-sub" id="homeStoredSub">ប្រើប្រាស់បាននៅក្នុងហាង · 可用於店內消費</div>
       <div class="stored-row">
         <div class="sstat"><div class="sv2" id="homeRewardPts">$0.00</div><div class="se">Reward Pts</div><div class="sc">回饋點數</div></div>
         <div class="sstat"><div class="sv2" id="homeAvailable">$0.00</div><div class="se">Total Available</div><div class="sc">可用總額</div></div>
@@ -356,27 +357,28 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
       <div class="qbtn hl" onclick="switchTab('depositTab')"><div class="qi">💰</div><div class="qe">Top Up</div><div class="qc">儲值</div></div>
       <div class="qbtn" onclick="switchTab('redeemTab')"><div class="qi">🎁</div><div class="qe">Redeem</div><div class="qc">兌換</div></div>
       <div class="qbtn" onclick="switchTab('inviteTab')"><div class="qi">👥</div><div class="qe">Invite</div><div class="qc">邀請</div></div>
+      <div class="qbtn hl" onclick="showShareModal()"><div class="qi">📘</div><div class="qe">Share</div><div class="qc">分享</div></div>
       
     </div>
 
     <!-- VIP PLANS -->
     <div class="sec-head"><div><div class="sec-en">Membership Plans</div><div class="sec-cn">會員儲值方案</div></div></div>
     <div class="plans-grid">
-      <div class="plan-card" onclick="gotoDeposit(100)">
+      <div class="plan-card" onclick="gotoDeposit(20)">
         <div class="plan-name">Silver</div>
-        <div class="plan-price">$100</div>
+        <div class="plan-price">$20</div>
         <div class="plan-get">Get $110</div>
         <div style="font-size:12px;color:var(--muted);">+$10 bonus</div>
         <button class="plan-btn">Select</button>
       </div>
-      <div class="plan-card gold" onclick="gotoDeposit(500)">
+      <div class="plan-card gold" onclick="gotoDeposit(50)">
         <div class="plan-name" style="color:var(--gold);">Gold</div>
-        <div class="plan-price" style="color:var(--gold);">$500</div>
+        <div class="plan-price" style="color:var(--gold);">$50</div>
         <div class="plan-get gold-text">Get $575</div>
         <div style="font-size:12px;color:var(--muted);">+$75 bonus</div>
         <button class="plan-btn" style="background:linear-gradient(135deg,#ca8a04,var(--gold));color:var(--navy2);">Select</button>
       </div>
-      <div class="plan-card vip" onclick="gotoDeposit(1000)">
+      <div class="plan-card vip" onclick="gotoDeposit(100)">
         <div class="plan-name" style="color:var(--orange);">VIP</div>
         <div class="plan-price" style="color:var(--orange);">$1,000</div>
         <div class="plan-get orange-text">Get $1,180</div>
@@ -391,12 +393,12 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
         <div style="display:flex;justify-content:space-between;align-items:flex-start;">
           <div>
             <div class="prog-title" id="progTitle">Silver Member</div>
-            <div class="prog-sub" id="progSub">Deposit $500 to upgrade to Gold</div>
+            <div class="prog-sub" id="progSub">Deposit $50 to upgrade to Gold</div>
           </div>
           <div style="font-size:14px;">🏅</div>
         </div>
         <div class="prog-track"><div class="prog-fill" id="progFill" style="width:20%;"></div></div>
-        <div class="prog-labels"><span>$0</span><span id="progLabel" style="color:var(--teal);">$100 / $500</span><span>$500</span></div>
+        <div class="prog-labels"><span>$0</span><span id="progLabel" style="color:var(--teal);">$100 / $500</span><span>$50</span></div>
       </div>
     </div>
 
@@ -406,12 +408,12 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
       <div class="report-date" id="reportDate">No revenue data yet</div>
       <div class="report-total" id="reportTotal">$0.00</div>
       <div class="rrow"><div class="rrow-lbl"><div class="rk-en">Daily Revenue</div><div class="rk-cn">當日營業額</div></div><div class="rv" id="reportRevenue">-</div></div>
-      <div class="rrow"><div class="rrow-lbl"><div class="rk-en">Reward Pool (5%)</div><div class="rk-cn">分紅池</div></div><div class="rv" id="reportPool">-</div></div>
-      <div class="rrow"><div class="rrow-lbl"><div class="rk-en">Your Share</div><div class="rk-cn">你的分紅</div></div><div class="rv pts" id="reportShare">-</div></div>
-      <div class="rrow"><div class="rrow-lbl"><div class="rk-en">Cumulative Reward</div><div class="rk-cn">累計獲得</div></div><div class="rv pts" id="reportCumulative">-</div></div>
+      <div class="rrow"><div class="rrow-lbl"><div class="rk-en">Reward Pool (5%) · 分紅池 · អាងផ្តល់រង្វាន់</div><div class="rk-cn">分紅池</div></div><div class="rv" id="reportPool">-</div></div>
+      <div class="rrow"><div class="rrow-lbl"><div class="rk-en">Your Share · 你的分紅 · ចំណែករបស់អ្នក</div><div class="rk-cn">你的分紅</div></div><div class="rv pts" id="reportShare">-</div></div>
+      <div class="rrow"><div class="rrow-lbl"><div class="rk-en">Cumulative · 累計獲得 · សរុប</div><div class="rk-cn">累計獲得</div></div><div class="rv pts" id="reportCumulative">-</div></div>
     </div>
 
-    <div class="notice-box">⚠️ This is a prepaid membership program. Rewards are for in-store use only. Not an investment product.<br>本計劃為預付儲值會員制。所有回饋僅限店內消費使用，非投資產品。</div>
+    <div class="notice-box">⚠️ This is a prepaid membership program. Rewards are for in-store use only. Not investment · 非投資產品 · Not investment · មិនមែនជាផលិតផលវិនិយោគ · មិនមែនវិនិយោគ.<br>本計劃為預付儲值會員制。所有回饋僅限店內消費使用，非投資產品 · Not investment · មិនមែនជាផលិតផលវិនិយោគ。</div>
     
   </div>
 
@@ -419,35 +421,35 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
   <div class="content" id="depositTab" style="display:none;">
     <div class="dep-hero">
       <div style="font-size:12px;color:var(--orange);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Top Up · 儲值申請</div>
-      <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:900;">Deposit & Earn</div>
-      <div style="font-size:14px;color:var(--muted);margin-top:4px;">儲值後享受分紅，餘額永久有效</div>
+      <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:900;">Deposit & Earn · បញ្ចូលប្រាក់</div>
+      <div style="font-size:14px;color:var(--muted);margin-top:4px;"> រីករាយជាមួយផលចំណេញ · 儲值後享受分紅</div>
     </div>
     <div class="form-card">
       <div class="admin-card" style="margin:0 0 12px;padding:12px;background:rgba(103,203,201,.06);border-color:rgba(103,203,201,.2);">
         <div style="font-size:12px;color:var(--teal);font-family:monospace;margin-bottom:6px;">PLAN COMPARISON · 方案比較</div>
         <div style="display:flex;gap:8px;">
-          <div style="flex:1;text-align:center;background:var(--card2);border-radius:10px;padding:8px;cursor:pointer;" onclick="setPlan(100)">
+          <div style="flex:1;text-align:center;background:var(--card2);border-radius:10px;padding:8px;cursor:pointer;" onclick="setPlan(20)">
             <div style="font-size:12px;color:var(--muted);">Silver</div>
-            <div style="font-family:monospace;font-size:14px;font-weight:700;">$100</div>
-            <div style="font-size:12px;color:var(--teal);">→ $110</div>
+            <div style="font-family:monospace;font-size:14px;font-weight:700;">$20</div>
+            <div style="font-size:12px;color:var(--teal);">→ $22</div>
           </div>
-          <div style="flex:1;text-align:center;background:rgba(245,200,66,.1);border-radius:10px;padding:8px;cursor:pointer;border:1px solid rgba(245,200,66,.3);" onclick="setPlan(500)">
+          <div style="flex:1;text-align:center;background:rgba(245,200,66,.1);border-radius:10px;padding:8px;cursor:pointer;border:1px solid rgba(245,200,66,.3);" onclick="setPlan(50)">
             <div style="font-size:12px;color:var(--gold);">Gold</div>
-            <div style="font-family:monospace;font-size:14px;font-weight:700;color:var(--gold);">$500</div>
-            <div style="font-size:12px;color:var(--gold);">→ $575</div>
+            <div style="font-family:monospace;font-size:14px;font-weight:700;color:var(--gold);">$50</div>
+            <div style="font-size:12px;color:var(--gold);">→ $57</div>
           </div>
-          <div style="flex:1;text-align:center;background:rgba(248,146,60,.1);border-radius:10px;padding:8px;cursor:pointer;border:1px solid rgba(248,146,60,.3);" onclick="setPlan(1000)">
+          <div style="flex:1;text-align:center;background:rgba(248,146,60,.1);border-radius:10px;padding:8px;cursor:pointer;border:1px solid rgba(248,146,60,.3);" onclick="setPlan(100)">
             <div style="font-size:12px;color:var(--orange);">VIP</div>
             <div style="font-family:monospace;font-size:14px;font-weight:700;color:var(--orange);">$1,000</div>
-            <div style="font-size:12px;color:var(--orange);">→ $1,180</div>
+            <div style="font-size:12px;color:var(--orange);">→ $115</div>
           </div>
         </div>
       </div>
       <label class="form-lbl">Amount <span>儲值金額 (USD)</span></label>
       <select class="form-select" id="depAmount">
-        <option value="100">$100 → Get $110 value (Silver)</option>
-        <option value="500">$500 → Get $575 value (Gold)</option>
-        <option value="1000">$1,000 → Get $1,180 value (VIP)</option>
+        <option value="100">$20 → Get $22 value (Silver)</option>
+        <option value="500">$50 → Get $57 value (Gold)</option>
+        <option value="1000">$100 → Get $115 value (VIP)</option>
       </select>
       <label class="form-lbl">Payment Method <span>付款方式</span></label>
       <select class="form-select" id="depMethod">
@@ -484,7 +486,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
         </div>
       </div>
     </div>
-    <div class="sec-head"><div><div class="sec-en">Redeem in Store</div><div class="sec-cn">店內折抵消費</div></div></div>
+    <div class="sec-head"><div><div class="sec-en">Redeem in Store</div><div class="sec-cn">In-store use · 店內折抵 · ប្រើក្នុងហាង消費</div></div></div>
     <div class="redeem-list">
       <div class="redeem-item">
         <div class="redeem-img" style="background:rgba(103,203,201,.12);">🍥</div>
@@ -523,8 +525,8 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
     <div class="invite-hero">
       <div class="invite-badge">Refer & Earn · 邀請賺積分</div>
       <h1>Invite Friends<br><em>Earn Together</em></h1>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">邀請好友 · 各得 5 積分</div>
-      <p style="font-size:14px;color:var(--muted);line-height:1.7;">Both you & friend earn <strong style="color:var(--teal);">5 pts each</strong><br>你和朋友各得 <strong style="color:var(--teal);">5 積分</strong></p>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">邀請好友 · 各得 2 積分</div>
+      <p style="font-size:14px;color:var(--muted);line-height:1.7;">Both you & friend earn <strong style="color:var(--teal);">2 pts each</strong><br>你和朋友各得 <strong style="color:var(--teal);">5 積分</strong></p>
     </div>
     <div class="invite-code-card">
       <div style="font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:2px;">Exclusive Code · 專屬邀請碼</div>
@@ -532,13 +534,13 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
       <button class="copy-btn" onclick="copyCode()">📋 Copy Code · 複製邀請碼</button>
     </div>
     <div style="padding:0 14px;margin-bottom:8px;">
-      <div class="sec-en" style="padding:0;margin-bottom:9px;">How It Works · 邀請步驟</div>
+      <div class="sec-en" style="padding:0;margin-bottom:9px;">How It Works · Steps · 邀請步驟 · ជំហាន</div>
       <div class="step-card"><div class="step-num">1</div><div><div style="font-size:12px;font-weight:700;">Share your code · 分享邀請碼</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Send via WhatsApp / Telegram</div></div></div>
       <div class="step-card"><div class="step-num">2</div><div><div style="font-size:12px;font-weight:700;">Friend registers · 朋友註冊</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Uses your code when signing up</div></div></div>
       <div class="step-card"><div class="step-num">3</div><div><div style="font-size:12px;font-weight:700;">Both earn 5 pts ⭐ · 各得5積分</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Points auto-credited · 積分自動存入</div></div></div>
     </div>
-    <div class="sec-head"><div><div class="sec-en">Referral History</div><div class="sec-cn">邀請記錄</div></div><div class="sec-more" id="refEarned">0 pts earned</div></div>
-    <div style="padding:0 14px;" id="refList"><div style="text-align:center;padding:14px;color:var(--muted);font-size:12px;">No referrals yet · 暫無邀請記錄</div></div>
+    <div class="sec-head"><div><div class="sec-en">Referral History</div><div class="sec-cn">Referral history · 邀請記錄 · ប្រវត្តិអញ្ជើញ</div></div><div class="sec-more" id="refEarned">0 pts earned</div></div>
+    <div style="padding:0 14px;" id="refList"><div style="text-align:center;padding:14px;color:var(--muted);font-size:12px;">No referrals yet · 暫無Referral history · 邀請記錄 · ប្រវត្តិអញ្ជើញ</div></div>
     
   </div>
 
@@ -549,7 +551,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
       <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:900;" id="histTotal">$0.00</div>
       <div style="font-size:12px;color:var(--teal);margin-top:4px;font-family:monospace;">Total available · 可用總額</div>
     </div>
-    <div class="sec-head" style="margin-top:10px;"><div><div class="sec-en">All Transactions</div><div class="sec-cn">所有記錄</div></div></div>
+    <div class="sec-head" style="margin-top:10px;"><div><div class="sec-en">All Transactions</div><div class="sec-cn">All transactions · 所有記錄 · ប្រវត្តិទាំងអស់</div></div></div>
     <div class="tx-list" id="txList"><div style="text-align:center;padding:14px;color:var(--muted);font-size:12px;">No transactions yet · 暫無記錄</div></div>
     
   </div>
@@ -563,7 +565,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
       <div class="vip-prog" style="width:100%;">
         <div class="vip-row"><div style="font-size:12px;font-weight:700;color:var(--teal);" id="profileTier">Silver</div><div style="font-family:monospace;font-size:12px;color:var(--muted);" id="profileDepositProg">$0 / $500</div></div>
         <div class="vip-track"><div class="vip-fill" id="profileProgFill" style="width:0%;"></div></div>
-        <div style="font-size:12px;color:var(--muted);margin-top:6px;text-align:center;" id="profileProgHint">Deposit $500 to reach Gold</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;text-align:center;" id="profileProgHint">Deposit $50 to reach Gold</div>
       </div>
     </div>
     <div class="stats-grid">
@@ -572,15 +574,15 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
       <div class="stat-card"><div class="sv" id="pReferrals">0</div><div class="se">Referrals</div><div class="sc">邀請</div></div>
     </div>
     <div class="menu-list">
-      <div style="font-size:12px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;padding:0;margin-bottom:9px;">Account · 帳戶設置</div>
-      <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">👤</div><div class="menu-item-text"><div class="me">Profile</div><div class="mc">個人信息</div></div><div class="ma">›</div></div>
-      <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">🎂</div><div class="menu-item-text"><div class="me">Birthday (+200 pts)</div><div class="mc">設置生日</div></div><div class="ma">›</div></div>
+      <div style="font-size:12px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;padding:0;margin-bottom:9px;">Account · 帳戶設置 · គណនី</div>
+      <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">👤</div><div class="menu-item-text"><div class="me">Profile</div><div class="mc">Profile · 個人信息 · ព័ត៌មានផ្ទាល់ខ្លួន</div></div><div class="ma">›</div></div>
+      <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">🎂</div><div class="menu-item-text"><div class="me">Birthday (+2 pts)</div><div class="mc">設置生日</div></div><div class="ma">›</div></div>
       <div class="ma">›</div></div>
       <div id="adminMenuBtn" style="display:none;" class="menu-item" onclick="switchTab('adminTab')"><div class="mi">🔧</div><div class="menu-item-text"><div class="me">Admin Dashboard</div><div class="mc">後台管理</div></div><div class="ma">›</div></div>
-      <div style="font-size:12px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;padding:0;margin:12px 0 9px;">About · 關於</div>
+      <div style="font-size:12px;color:var(--teal);text-transform:uppercase;letter-spacing:3px;font-family:monospace;padding:0;margin:12px 0 9px;">About · 關於 · អំពី</div>
       <div class="menu-item" onclick="showToast('Cinnabon Fun Mall VIP v3.0')"><div class="mi">ℹ️</div><div class="menu-item-text"><div class="me">About</div><div class="mc">關於我們</div></div><div class="mc">v3.0</div><div class="ma">›</div></div>
-      <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">📋</div><div class="menu-item-text"><div class="me">Terms</div><div class="mc">會員條款</div></div><div class="ma">›</div></div>
-      <div class="menu-item" onclick="doLogout()" style="margin-top:5px;"><div class="mi">🚪</div><div class="menu-item-text"><div class="me">Logout</div><div class="mc" style="color:var(--red);">退出登入</div></div><div class="ma">›</div></div>
+      <div class="menu-item" onclick="showToast('Coming soon · 功能開發中')"><div class="mi">📋</div><div class="menu-item-text"><div class="me">Terms</div><div class="mc">Terms · 會員條款 · លក្ខខណ្ឌ</div></div><div class="ma">›</div></div>
+      <div class="menu-item" onclick="doLogout()" style="margin-top:5px;"><div class="mi">🚪</div><div class="menu-item-text"><div class="me">Logout</div><div class="mc" style="color:var(--red);">Logout · 退出登入 · ចេញ</div></div><div class="ma">›</div></div>
     </div>
     
   </div>
@@ -590,11 +592,11 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
     <div class="admin-hero">
       <div style="font-size:12px;color:var(--red);text-transform:uppercase;letter-spacing:3px;font-family:monospace;margin-bottom:5px;">Admin Dashboard · 後台管理</div>
       <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:900;">Cinnabon VIP</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Management Console · 管理系統</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Management Console · 管理系統 · ប្រព័ន្ធគ្រប់គ្រង · 管理系統</div>
     </div>
     <div class="admin-grid" style="gap:8px;margin-bottom:10px;">
       <div class="admin-stat"><div class="av" id="aMembers">0</div><div class="ae">Members</div><div class="ac">總會員數</div></div>
-      <div class="admin-stat"><div class="av" id="aDeposit">$0</div><div class="ae">Total Deposit</div><div class="ac">總儲值額</div></div>
+      <div class="admin-stat"><div class="av" id="aDeposit">$0</div><div class="ae">Deposit · 總儲值 · ប្រាក់បញ្ចូល</div><div class="ac">總儲值額</div></div>
       <div class="admin-stat"><div class="av" id="aRevenue">$0</div><div class="ae">Total Revenue</div><div class="ac">總營收</div></div>
       <div class="admin-stat"><div class="av" id="aPending">0</div><div class="ae">Pending</div><div class="ac">待審核</div></div>
     </div>
@@ -629,13 +631,13 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
 
     <!-- MEMBERS LIST -->
     <div class="admin-card">
-      <h3>👥 Members · 會員列表</h3>
+      <h3>👥 Members · 會員列表 · បញ្ជីសមាជិក</h3>
       <div id="adminMemberList"></div>
     </div>
 
     <!-- REVENUE LIST -->
     <div class="admin-card">
-      <h3>📈 Revenue History · 營收記錄</h3>
+      <h3>📈 Revenue History · 營收記錄 · ប្រវត្តិ</h3>
       <div id="adminRevenueList"></div>
     </div>
     
@@ -643,12 +645,12 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
 
   <!-- BOTTOM NAV -->
   <nav class="navbar">
-    <div class="nav-btn active" onclick="switchTab('homeTab',this)"><span class="icon">🏠</span><span class="lbl">Home<br>首頁</span></div>
-    <div class="nav-btn" onclick="switchTab('depositTab',this)"><span class="icon">💰</span><span class="lbl">Top Up<br>儲值</span></div>
-    <div class="nav-btn" onclick="switchTab('redeemTab',this)"><span class="icon">🎁</span><span class="lbl">Redeem<br>兌換</span></div>
-    <div class="nav-btn" onclick="switchTab('inviteTab',this)" style="position:relative;"><span class="icon">👥</span><span class="lbl">Invite<br>邀請</span><div class="notif-dot"></div></div>
-    <div class="nav-btn" onclick="switchTab('historyTab',this)"><span class="icon">📋</span><span class="lbl">History<br>記錄</span></div>
-    <div class="nav-btn" onclick="switchTab('profileTab',this)"><span class="icon">👤</span><span class="lbl">Me<br>我的</span></div>
+    <div class="nav-btn active" onclick="switchTab('homeTab',this)"><span class="icon">🏠</span><span class="lbl">Home · ផ្ទះ<br>首頁</span></div>
+    <div class="nav-btn" onclick="switchTab('depositTab',this)"><span class="icon">💰</span><span class="lbl">Top Up · បញ្ចូល<br>儲值</span></div>
+    <div class="nav-btn" onclick="switchTab('redeemTab',this)"><span class="icon">🎁</span><span class="lbl">Redeem · ដោះ<br>兌換</span></div>
+    <div class="nav-btn" onclick="switchTab('inviteTab',this)" style="position:relative;"><span class="icon">👥</span><span class="lbl">Invite · អញ្ជើញ<br>邀請</span><div class="notif-dot"></div></div>
+    <div class="nav-btn" onclick="switchTab('historyTab',this)"><span class="icon">📋</span><span class="lbl">History · កំណត់<br>記錄</span></div>
+    <div class="nav-btn" onclick="switchTab('profileTab',this)"><span class="icon">👤</span><span class="lbl">Me · ខ្ញុំ<br>我的</span></div>
   </nav>
 </div>
 
@@ -670,7 +672,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
     <p>Available · 可用餘額: <span id="customRedeemAvail" style="color:var(--teal);font-family:monospace;">$0.00</span></p>
     <input class="form-input" type="number" id="customRedeemAmt" placeholder="Amount to deduct · 折抵金額" style="margin-bottom:8px;">
     <button class="modal-btn orange" onclick="confirmCustomRedeem()">✅ Confirm Redeem · 確認折抵</button>
-    <button class="modal-btn-sec" onclick="closeModal('customRedeemModal')">Cancel · 取消</button>
+    <button class="modal-btn-sec" onclick="closeModal('customRedeemModal')">Cancel · 取消 · បោះបង់</button>
   </div>
 </div>
 
@@ -682,7 +684,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
     <h3>Confirm Redeem</h3>
     <p id="redeemConfText">Confirm?</p>
     <button class="modal-btn" onclick="confirmRedeem()">✅ Confirm · 確認</button>
-    <button class="modal-btn-sec" onclick="closeModal('redeemConfModal')">Cancel · 取消</button>
+    <button class="modal-btn-sec" onclick="closeModal('redeemConfModal')">Cancel · 取消 · បោះបង់</button>
   </div>
 </div>
 
@@ -707,7 +709,7 @@ function getDefaultDB(){
     {n:'Vuthy Sam',p:'012100023'},{n:'Leakhena Ouk',p:'012100024'},
     {n:'Bunna Khiev',p:'012100025'}
   ];
-  const amounts=[100,500,1000,500,100,1000,500,100,500,1000];
+  const amounts=[20,50,100,50,20,100,50,20,50,100];
   const tiers=['Silver','Silver','VIP','Gold','Silver','VIP','Gold','Silver','Gold','VIP'];
   const stored=[110,575,1180,575,110,1180,575,110,575,1180];
   const pts=[520,380,680,210,150,90,440,260,720,120];
@@ -750,8 +752,8 @@ function dbSave(db){ localStorage.setItem(DB_KEY, JSON.stringify(db)); }
 
 // helpers
 function fmt(n){ return "$"+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
-function tierOf(deposit){ if(deposit>=1000)return"VIP"; if(deposit>=500)return"Gold"; return"Silver"; }
-function bonusOf(amount){ if(amount>=1000)return 180; if(amount>=500)return 75; return 10; }
+function tierOf(deposit){ if(deposit>=100)return"VIP"; if(deposit>=50)return"Gold"; return"Silver"; }
+function bonusOf(amount){ if(amount>=100)return 15; if(amount>=50)return 7; return 10; }
 function boostOf(t){ return t==="VIP"?1.35:t==="Gold"?1.15:1; }
 function todayStr(){ return new Date().toISOString().slice(0,10); }
 
@@ -779,7 +781,16 @@ function doLogin(){
   const u = db.members.find(x=>x.phone===ph && x.pass===ps);
   if(!u){ showToast("Wrong phone/password · 手機號或密碼錯誤"); return; }
   currentUser = u; loadUI(); switchScreen("appScreen");
+  // Check birthday
+const todayMD = new Date().toISOString().slice(5,10);
+if(u.birthday && u.birthday.slice(5,10) === todayMD && !u.birthdayClaimedYear){
+  const db2 = dbLoad();
+  const ub = db2.members.find(x=>x.id===u.id);
+  if(ub){ ub.points=(ub.points||0)+2; ub.monthPts=(ub.monthPts||0)+2; ub.birthdayClaimedYear=new Date().getFullYear(); dbSave(db2); currentUser=ub; }
+  showToast("🎂 Happy Birthday! +2 pts! · ថ្ងៃកំណើតរីករាយ!");
+} else {
   showToast("Welcome back " + u.name + " · 歡迎回來！");
+}
 }
 
 function doRegister(){
@@ -792,10 +803,10 @@ function doRegister(){
   if(db.members.find(x=>x.phone===phone)){ showToast("Phone already registered · 手機號已註冊"); return; }
   const id = "M"+String(db.members.length+1).padStart(3,"0");
   const code = "CNB-"+String(db.members.length+4729);
-  let pts = 5;
+  let pts = 2;
   if(invite){
     const ref = db.members.find(x=>x.inviteCode===invite);
-    if(ref){ ref.points+=5; ref.referrals=(ref.referrals||0)+1; pts+=5; showToast("Invite code valid! +5 pts each · 邀請碼有效！"); }
+    if(ref){ ref.points+=2; ref.referrals=(ref.referrals||0)+1; pts+=2; showToast("Invite code valid! +2 pts each · 邀請碼有效！"); }
   }
   const newM = {id,name,phone,pass,deposit:0,stored:0,points:pts,tier:"Silver",inviteCode:code,streak:0,referrals:0,monthPts:pts,created:todayStr()};
   db.members.push(newM); dbSave(db);
@@ -858,8 +869,8 @@ function loadUI(){
     // Progress
     const dep = uf.deposit||0;
     const nextTier = dep>=500?"VIP":"Gold";
-    const nextAmt = dep>=500?1000:500;
-    const pct = Math.min(100, dep>=500?((dep-500)/500*100):(dep/500*100));
+    const nextAmt = dep>=50?100:50;
+    const pct = Math.min(100, dep>=50?((dep-50)/50*100):(dep/50*100));
     setText("progTitle", uf.tier+" Member · "+uf.name);
     setText("progSub", dep>=1000?"Max Tier Reached! · 已達最高等級":"Deposit "+fmt(nextAmt-dep)+" more to reach "+nextTier);
     setText("progLabel", fmt(dep)+" / "+fmt(nextAmt));
@@ -906,8 +917,8 @@ function loadUI(){
 function buildTxList(db, u){
   const txs = [];
   db.rewards.filter(r=>r.memberId===u.id).forEach(r=>txs.push({type:"reward",date:r.date,en:"Revenue Share",cn:"分紅積分",amt:"+"+fmt(r.amount),color:"var(--teal)"}));
-  db.redeems.filter(r=>r.memberId===u.id).forEach(r=>txs.push({type:"redeem",date:r.date,en:"In-Store Redeem",cn:"店內折抵",amt:"-"+fmt(r.amount),color:"var(--red)"}));
-  db.deposits.filter(d=>d.memberId===u.id&&d.status==="approved").forEach(d=>txs.push({type:"deposit",date:d.date,en:"Deposit Approved",cn:"儲值成功",amt:"+"+fmt(d.amount+bonusOf(d.amount)),color:"var(--orange)"}));
+  db.redeems.filter(r=>r.memberId===u.id).forEach(r=>txs.push({type:"redeem",date:r.date,en:"In-Store Redeem",cn:"In-store use · 店內折抵 · ប្រើក្នុងហាង",amt:"-"+fmt(r.amount),color:"var(--red)"}));
+  db.deposits.filter(d=>d.memberId===u.id&&d.status==="approved").forEach(d=>txs.push({type:"deposit",date:d.date,en:"Deposit Approved",cn:"Deposit approved · 儲值成功 · បញ្ចូលប្រាក់បានជោគជ័យ",amt:"+"+fmt(d.amount+bonusOf(d.amount)),color:"var(--orange)"}));
   txs.sort((a,b)=>b.date.localeCompare(a.date));
   const el = document.getElementById("txList");
   if(!el) return;
@@ -926,7 +937,7 @@ function buildRefList(db, u){
   if(!el) return;
   const earned = refs.length*500;
   setText("refEarned", earned.toLocaleString()+" pts earned");
-  if(refs.length===0){ el.innerHTML='<div style="text-align:center;padding:14px;color:var(--muted);font-size:12px;">No referrals yet · 暫無邀請記錄</div>'; return; }
+  if(refs.length===0){ el.innerHTML='<div style="text-align:center;padding:14px;color:var(--muted);font-size:12px;">No referrals yet · 暫無Referral history · 邀請記錄 · ប្រវត្តិអញ្ជើញ</div>'; return; }
   el.innerHTML = refs.map(m=>`
     <div class="ref-item">
       <div class="ref-av">🧑</div>
@@ -1067,7 +1078,7 @@ function addRevenue(){
 function seedDemo(){
   if(!confirm("Generate 30 members + 30 days revenue? · 生成30位會員+30天營收？")) return;
   const names=["Sokha Ly","Dara Chan","Jack Pham","Linda Ros","Vannak Im","Srey Pich","Kevin Seng","Mina Kok","Rith Heng","Jenny Ouk","Bora Keo","Tola Nhem","Nita Sam","Sam Touch","Mesa Lim","Panha Uy","Lina Sok","David Kim","Nary Mao","Kim Yem","Vicheka Pang","Anna Pen","Rady Tan","Mony Noun","Sopheak Kang","Lily Chhun","Heng Khiev","Rose Sorn","Tom Pov","Mey Ith"];
-  const amounts=[100,500,1000,500,100,1000,500,100,500,1000];
+  const amounts=[20,50,100,50,20,100,50,20,50,100];
   const db={members:[],deposits:[],revenues:[],rewards:[],redeems:[]};
   names.forEach((name,i)=>{
     const a=amounts[i%amounts.length];
@@ -1151,6 +1162,57 @@ function confirmCustomRedeem(){
 // ═══════════════════════════════════════
 // INVITE
 // ═══════════════════════════════════════
+function showBirthdayModal(){
+  const u = currentUser;
+  if(!u||u.isAdmin){showToast("Please login first");return;}
+  if(u.birthday) document.getElementById("bdayInput").value = u.birthday;
+  showModal("birthdayModal");
+}
+function saveBirthday(){
+  const db = dbLoad();
+  const u = db.members.find(x=>x.id===currentUser.id);
+  if(!u) return;
+  const bday = document.getElementById("bdayInput").value;
+  if(!bday){showToast("Please select birthday · 請選擇生日");return;}
+  const today = new Date().toISOString().slice(5,10);
+  const bdayMMDD = bday.slice(5,10);
+  let pts = 0;
+  if(!u.birthday){
+    // First time setting birthday - give 200 pts if today is birthday
+    u.birthday = bday;
+    if(bdayMMDD === today){
+      u.points = (u.points||0) + 2;
+      u.monthPts = (u.monthPts||0) + 2;
+      pts = 200;
+    }
+  }
+  dbSave(db); currentUser = u; loadUI();
+  closeModal("birthdayModal");
+  if(pts > 0) showToast("🎂 Happy Birthday! +2 pts! · ថ្ងៃកំណើតរីករាយ!");
+  else showToast("🎂 Birthday saved! · ថ្ងៃកំណើតបានរក្សាទុក!");
+}
+function showShareModal(){
+  if(!currentUser||currentUser.isAdmin){showToast("Please login first");return;}
+  const db = dbLoad();
+  const u = db.members.find(x=>x.id===currentUser.id)||currentUser;
+  const av = (u.stored||0)+(u.points||0);
+  setText("shareTierText", u.tier+" Member · "+u.name);
+  setText("shareAmtText", "$"+Number(av).toFixed(2));
+  showModal("shareModal");
+}
+function shareToFacebook(){
+  const url = "https://leerose0825.github.io/-Cinnabon-";
+  const text = "我是Cinnabon Fun Mall的"+currentUser.tier+"會員！加入我們，享受儲值優惠和分紅！";
+  window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(url)+"&quote="+encodeURIComponent(text), "_blank");
+  showToast("📘 Opening Facebook · 正在開啟臉書...");
+}
+function shareToWhatsApp(){
+  const url = "https://leerose0825.github.io/-Cinnabon-";
+  const text = "🍥 我是Cinnabon Fun Mall "+currentUser.tier+"會員！邀請你加入，各得5積分！
+"+url;
+  window.open("https://wa.me/?text="+encodeURIComponent(text), "_blank");
+  showToast("💬 Opening WhatsApp...");
+}
 function copyCode(){
   if(currentUser&&navigator.clipboard) navigator.clipboard.writeText(currentUser.inviteCode);
   showToast("Code copied! · 邀請碼已複製 📤");
@@ -1189,5 +1251,50 @@ document.addEventListener("DOMContentLoaded",()=>{
   const rd=document.getElementById("revDate"); if(rd) rd.value=todayStr();
 });
 </script>
+
+<!-- BIRTHDAY MODAL -->
+<div class="modal-overlay" id="birthdayModal" onclick="closeModal('birthdayModal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div class="m-en">Birthday Reward · 生日禮物 · ថ្ងៃកំណើត</div>
+    <h3>🎂 生日特權</h3>
+    <p>生日當天自動 +5 pts！
+Birthday = +5 pts auto!
+ថ្ងៃកំណើត = ទទួល 2 ពិន្ទុ!
+កំណត់ថ្ងៃកំណើត ទទួល 2 ពិន្ទុ!</p>
+    <input class="form-input" type="date" id="bdayInput" style="margin-bottom:12px;">
+    <button class="modal-btn" onclick="saveBirthday()">✅ Save · 儲存 · រក្សាទុក</button>
+    <button class="modal-btn-sec" onclick="closeModal('birthdayModal')">Cancel · 取消 · បោះបង់</button>
+  </div>
+</div>
+
+<!-- FACEBOOK SHARE MODAL -->
+<div class="modal-overlay" id="shareModal" onclick="closeModal('shareModal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div class="m-en">Share · 分享 · ចែករំលែក</div>
+    <h3>📸 Share with friends · 分享給朋友 · ចែករំលែកជាមួយមិត្ត</h3>
+    <p>把你的VIP等級和優惠分享到Facebook！
+ចែករំលែក VIP របស់អ្នកទៅ Facebook!</p>
+    <div id="shareCard" style="background:linear-gradient(135deg,#121E48,#1C2A58);border-radius:14px;padding:20px;text-align:center;margin-bottom:14px;border:1px solid rgba(103,203,201,.3);">
+      <div style="font-size:30px;margin-bottom:8px;">🍥</div>
+      <div style="font-family:serif;font-size:20px;font-weight:700;color:#fff;">Cinnabon VIP</div>
+      <div style="font-size:12px;color:#67CBC9;margin:6px 0;" id="shareTierText">Gold Member</div>
+      <div style="font-size:13px;color:#7A95B8;margin-bottom:10px;">Fun Mall · Phnom Penh</div>
+      <div style="background:rgba(103,203,201,.15);border-radius:10px;padding:10px;">
+        <div style="font-size:11px;color:#7A95B8;">Stored Value · 儲值餘額</div>
+        <div style="font-size:24px;font-weight:700;color:#FB923C;" id="shareAmtText">$575.00</div>
+      </div>
+      <div style="font-size:11px;color:#7A95B8;margin-top:10px;">Join me! · leerose0825.github.io/-Cinnabon-</div>
+    </div>
+    <button class="modal-btn" onclick="shareToFacebook()" style="background:linear-gradient(135deg,#1877F2,#0D5EBA);">
+      📘 Facebook · 分享到臉書 · ចែករំលែក
+    </button>
+    <button class="modal-btn" onclick="shareToWhatsApp()" style="background:linear-gradient(135deg,#25D366,#128C7E);margin-top:6px;">
+      💬 Share to WhatsApp · 分享到WhatsApp
+    </button>
+    <button class="modal-btn-sec" onclick="closeModal('shareModal')">Cancel · 取消 · បោះបង់</button>
+  </div>
+</div>
 </body>
 </html>
