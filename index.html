@@ -367,22 +367,22 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
       <div class="plan-card" onclick="gotoDeposit(20)">
         <div class="plan-name">Silver</div>
         <div class="plan-price">$20</div>
-        <div class="plan-get">Get $110</div>
-        <div style="font-size:12px;color:var(--muted);">+$10 bonus</div>
+        <div class="plan-get">Get $22</div>
+        <div style="font-size:12px;color:var(--muted);">+$2 bonus</div>
         <button class="plan-btn">Select</button>
       </div>
       <div class="plan-card gold" onclick="gotoDeposit(50)">
         <div class="plan-name" style="color:var(--gold);">Gold</div>
         <div class="plan-price" style="color:var(--gold);">$50</div>
-        <div class="plan-get gold-text">Get $575</div>
-        <div style="font-size:12px;color:var(--muted);">+$75 bonus</div>
+        <div class="plan-get gold-text">Get $57</div>
+        <div style="font-size:12px;color:var(--muted);">+$7 bonus</div>
         <button class="plan-btn" style="background:linear-gradient(135deg,#ca8a04,var(--gold));color:var(--navy2);">Select</button>
       </div>
       <div class="plan-card vip" onclick="gotoDeposit(100)">
         <div class="plan-name" style="color:var(--orange);">VIP</div>
-        <div class="plan-price" style="color:var(--orange);">$1,000</div>
-        <div class="plan-get orange-text">Get $1,180</div>
-        <div style="font-size:12px;color:var(--muted);">+$180 bonus</div>
+        <div class="plan-price" style="color:var(--orange);">$100</div>
+        <div class="plan-get orange-text">Get $115</div>
+        <div style="font-size:12px;color:var(--muted);">+$15 bonus</div>
         <button class="plan-btn" style="background:linear-gradient(135deg,#f97316,var(--orange));color:#fff;">Select</button>
       </div>
     </div>
@@ -440,7 +440,7 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
           </div>
           <div style="flex:1;text-align:center;background:rgba(248,146,60,.1);border-radius:10px;padding:8px;cursor:pointer;border:1px solid rgba(248,146,60,.3);" onclick="setPlan(100)">
             <div style="font-size:12px;color:var(--orange);">VIP</div>
-            <div style="font-family:monospace;font-size:14px;font-weight:700;color:var(--orange);">$1,000</div>
+            <div style="font-family:monospace;font-size:14px;font-weight:700;color:var(--orange);">$100</div>
             <div style="font-size:12px;color:var(--orange);">→ $115</div>
           </div>
         </div>
@@ -744,7 +744,7 @@ function dbSave(db){ localStorage.setItem(DB_KEY, JSON.stringify(db)); }
 // helpers
 function fmt(n){ return "$"+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
 function tierOf(deposit){ if(deposit>=100)return"VIP"; if(deposit>=50)return"Gold"; return"Silver"; }
-function bonusOf(amount){ if(amount>=100)return 15; if(amount>=50)return 7; return 10; }
+function bonusOf(amount){ if(amount>=100)return 15; if(amount>=50)return 7; return 2; }
 function boostOf(t){ return t==="VIP"?1.35:t==="Gold"?1.15:1; }
 function todayStr(){ return new Date().toISOString().slice(0,10); }
 
