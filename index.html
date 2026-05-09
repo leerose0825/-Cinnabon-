@@ -1201,8 +1201,8 @@ function shareToFacebook(){
 }
 function shareToWhatsApp(){
   const url = "https://leerose0825.github.io/-Cinnabon-";
-  const text = "🍥 我是Cinnabon Fun Mall "+currentUser.tier+"會員！邀請你加入，各得5積分！
-"+url;
+  const text = "Join Cinnabon VIP Fun Mall! "+currentUser.tier+" Member. Get 2 pts when you join! "
+  +url;
   window.open("https://wa.me/?text="+encodeURIComponent(text), "_blank");
   showToast("Opening WhatsApp...");
 }
