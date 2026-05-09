@@ -764,13 +764,13 @@ function doLogin(){
     document.querySelectorAll(".content").forEach(t=>t.style.display="none");
     document.getElementById("adminTab").style.display="block";
     document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
-    showToast("Admin logged in · 管理員登入 🔧"); 
+    showToast("Admin logged in!");
     renderAdmin();
     return;
   }
   const db = dbLoad();
   const u = db.members.find(x=>x.phone===ph && x.pass===ps);
-  if(!u){ showToast("Wrong phone/password · 手機號或密碼錯誤"); return; }
+  if(!u){ showToast("Wrong phone or password"); return; }
   currentUser = u; loadUI(); switchScreen("appScreen");
   // Check birthday
 const todayMD = new Date().toISOString().slice(5,10);
@@ -778,9 +778,9 @@ if(u.birthday && u.birthday.slice(5,10) === todayMD && !u.birthdayClaimedYear){
   const db2 = dbLoad();
   const ub = db2.members.find(x=>x.id===u.id);
   if(ub){ ub.points=(ub.points||0)+2; ub.monthPts=(ub.monthPts||0)+2; ub.birthdayClaimedYear=new Date().getFullYear(); dbSave(db2); currentUser=ub; }
-  showToast("🎂 Happy Birthday! +2 pts! · ថ្ងៃកំណើតរីករាយ!");
+  showToast("Happy Birthday! +2 pts!");
 } else {
-  showToast("Welcome back " + u.name + " · 歡迎回來！");
+  showToast("Welcome back " + u.name + "!");
 }
 }
 
@@ -789,23 +789,25 @@ function doRegister(){
   const phone = document.getElementById("regPhone").value.trim();
   const pass = document.getElementById("regPass").value;
   const invite = document.getElementById("regInvite").value.trim().toUpperCase();
-  if(!name||!phone||!pass){ showToast("Fill all fields · 請填寫所有欄位"); return; }
+  if(!name||!phone||!pass){ showToast("Please fill all fields"); return; }
   const db = dbLoad();
-  if(db.members.find(x=>x.phone===phone)){ showToast("Phone already registered · 手機號已註冊"); return; }
+  if(db.members.find(x=>x.phone===phone)){ showToast("Phone already registered"); return; }
   const id = "M"+String(db.members.length+1).padStart(3,"0");
   const code = "CNB-"+String(db.members.length+4729);
   let pts = 2;
   if(invite){
     const ref = db.members.find(x=>x.inviteCode===invite);
-    if(ref){ ref.points+=2; ref.referrals=(ref.referrals||0)+1; pts+=2; showToast("Invite code valid! +2 pts each · 邀請碼有效！"); }
+  const code="CNB-"+String(db.members.length+4729);
+  let pts=2;
+  if(invite){const ref=db.members.find(x=>x.inviteCode===invite.toUpperCase());if(ref){ref.points+=2;ref.referrals=(ref.referrals||0)+1;save();pts+=2;}}
   }
   const newM = {id,name,phone,pass,deposit:0,stored:0,points:pts,tier:"Silver",inviteCode:code,streak:0,referrals:0,monthPts:pts,created:todayStr()};
   db.members.push(newM); dbSave(db);
   currentUser = newM; loadUI(); switchScreen("appScreen");
-  showToast("Welcome "+name+"! "+pts+" pts gifted · 歡迎！");
+  showToast("Welcome "+name+"! "+pts+" pts gifted!");
 }
 
-function doLogout(){ currentUser=null; switchScreen("loginScreen"); showToast("Logged out · 已退出"); }
+function doLogout(){ currentUser=null; switchScreen("loginScreen"); showToast("Logged out"); }
 function showRegister(){ switchScreen("registerScreen"); }
 function showLogin(){ switchScreen("loginScreen"); }
 
@@ -827,7 +829,7 @@ function loadUI(){
 
     // Hero
     setText("welcomeName", uf.name);
-    setText("welcomeId", "ID: "+uf.id+" · "+uf.tier);
+    setText("welcomeId", "ID: "+uf.id+" - "+uf.tier);
     setText("homeLevelBadge", uf.tier);
 
     // Stored card
@@ -838,7 +840,7 @@ function loadUI(){
 
     // Points card
     setText("homePoints", (uf.points||0).toLocaleString());
-    setText("homeEquiv", "≈ "+fmt(uf.points)+" redemption value · 兌換價值");
+    setText("homeEquiv", "Value: $"+(uf.points/1).toFixed(2));
     setText("homeMonthPts", "+"+(uf.monthPts||0));
     setText("homeReferrals", uf.referrals||0);
     setText("homeStreak", (uf.streak||0)+"d");
@@ -851,7 +853,7 @@ function loadUI(){
 
     // Profile
     setText("profileName", uf.name);
-    setText("profileId", "ID: "+uf.id+" · Since "+uf.created);
+    setText("profileId", "ID: "+uf.id+" since "+uf.created);
     setText("profileTier", uf.tier+" Member");
     setText("pStored", fmt(uf.stored));
     setText("pPoints", (uf.points||0).toLocaleString());
@@ -862,12 +864,12 @@ function loadUI(){
     const nextTier = dep>=500?"VIP":"Gold";
     const nextAmt = dep>=50?100:50;
     const pct = Math.min(100, dep>=50?((dep-50)/50*100):(dep/50*100));
-    setText("progTitle", uf.tier+" Member · "+uf.name);
-    setText("progSub", dep>=1000?"Max Tier Reached! · 已達最高等級":"Deposit "+fmt(nextAmt-dep)+" more to reach "+nextTier);
+    setText("progTitle", uf.tier+" Member");
+    setText("progSub", dep>=100?"Max Tier Reached!":"Deposit "+fmt(nextAmt-dep)+" more to reach "+nextTier);
     setText("progLabel", fmt(dep)+" / "+fmt(nextAmt));
     const pf = document.getElementById("progFill"); if(pf) pf.style.width=pct+"%";
     setText("profileDepositProg", fmt(dep)+" / "+fmt(nextAmt));
-    setText("profileProgHint", dep>=1000?"VIP! Max tier achieved 🏆":"Deposit "+fmt(nextAmt-dep)+" to reach "+nextTier);
+    setText("profileProgHint", dep>=100?"VIP! Max tier!":"Deposit "+fmt(nextAmt-dep)+" to reach "+nextTier);
     const ppf = document.getElementById("profileProgFill"); if(ppf) ppf.style.width=pct+"%";
 
     // Invite
@@ -882,11 +884,11 @@ function loadUI(){
       const myShare = totalW>0?(latest.pool*(myW/totalW)):0;
       const cumul = db.rewards.filter(r=>r.memberId===uf.id).reduce((s,r)=>s+r.amount,0);
       setText("latestRevDate", latest.date);
-      setText("reportDate", latest.date+" · Fun Mall · Phnom Penh");
+      setText("reportDate", latest.date+" - Fun Mall");
       setText("reportTotal", fmt(latest.amount));
-      setText("reportRevenue", fmt(latest.amount)+" · "+db.members.length+" members");
+      setText("reportRevenue", fmt(latest.amount)+" - "+db.members.length+" members");
       setText("reportPool", fmt(latest.pool)+" ("+latest.rate+"%)");
-      setText("reportShare", "+"+fmt(myShare)+" ⭐");
+      setText("reportShare", "+"+fmt(myShare)+"  pts");
       setText("reportCumulative", fmt(cumul));
     }
 
@@ -907,9 +909,9 @@ function loadUI(){
 
 function buildTxList(db, u){
   const txs = [];
-  db.rewards.filter(r=>r.memberId===u.id).forEach(r=>txs.push({type:"reward",date:r.date,en:"Revenue Share",cn:"分紅積分",amt:"+"+fmt(r.amount),color:"var(--teal)"}));
-  db.redeems.filter(r=>r.memberId===u.id).forEach(r=>txs.push({type:"redeem",date:r.date,en:"In-Store Redeem",cn:"In-store use · 店內折抵 · ប្រើក្នុងហាង",amt:"-"+fmt(r.amount),color:"var(--red)"}));
-  db.deposits.filter(d=>d.memberId===u.id&&d.status==="approved").forEach(d=>txs.push({type:"deposit",date:d.date,en:"Deposit Approved",cn:"Deposit approved · 儲值成功 · បញ្ចូលប្រាក់បានជោគជ័យ",amt:"+"+fmt(d.amount+bonusOf(d.amount)),color:"var(--orange)"}));
+  db.rewards.filter(r=>r.memberId===u.id).forEach(r=>txs.push({type:"reward",date:r.date,en:"Revenue Share",cn:"Dividend",amt:"+"+fmt(r.amount),color:"var(--teal)"}));
+  db.redeems.filter(r=>r.memberId===u.id).forEach(r=>txs.push({type:"redeem",date:r.date,en:"In-Store Redeem",cn:"",amt:"-"+fmt(r.amount),color:"var(--red)"}));
+  db.deposits.filter(d=>d.memberId===u.id&&d.status==="approved").forEach(d=>txs.push({type:"deposit",date:d.date,en:"Deposit Approved",cn:"",amt:"+"+fmt(d.amount+bonusOf(d.amount)),color:"var(--orange)"}));
   txs.sort((a,b)=>b.date.localeCompare(a.date));
   const el = document.getElementById("txList");
   if(!el) return;
@@ -931,7 +933,7 @@ function buildRefList(db, u){
   if(refs.length===0){ el.innerHTML='<div style="text-align:center;padding:14px;color:var(--muted);font-size:12px;">No referrals yet</div>'; return; }
   el.innerHTML = refs.map(m=>`
     <div class="ref-item">
-      <div class="ref-av">🧑</div>
+      <div class="ref-av">👤</div>
       <div style="flex:1;"><div style="font-size:12px;font-weight:500;">${m.name}</div><div style="font-size:12px;color:var(--muted);font-family:monospace;">${m.id} · Joined ${m.created}</div></div>
       <div style="font-family:monospace;font-size:12px;color:var(--teal);font-weight:700;">+500 pts</div>
     </div>`).join("");
@@ -951,14 +953,14 @@ function renderAdmin(){
   const pl = document.getElementById("pendingList");
   if(pl){
     pl.innerHTML = pending.length===0
-      ? '<div style="color:var(--muted);font-size:12px;">No pending · 沒有待審核</div>'
+      ? '<div style="color:var(--muted);font-size:12px;">No pending</div>'
       : pending.map(d=>`
         <div class="pending-item">
           <div class="pending-name">${d.name} <span style="color:var(--muted);font-size:12px;">${d.phone}</span></div>
           <div class="pending-detail">${fmt(d.amount)} · ${d.method} · Ref: ${d.ref||"-"} · ${d.date}</div>
           <div class="pending-actions">
-            <button class="approve-btn" onclick="approveDeposit('${d.id}')">✅ Approve · 批准</button>
-            <button class="reject-btn" onclick="rejectDeposit('${d.id}')">❌ Reject · 拒絕</button>
+            <button class="approve-btn" onclick="approveDeposit('${d.id}')">Approve</button>
+            <button class="reject-btn" onclick="rejectDeposit('${d.id}')">Reject</button>
           </div>
         </div>`).join("");
   }
@@ -1002,7 +1004,7 @@ function setPlan(amt){ document.getElementById("depAmount").value=amt; }
 function gotoDeposit(amt){ switchTab("depositTab"); setTimeout(()=>setPlan(amt),100); }
 
 function submitDeposit(){
-  if(!currentUser||currentUser.isAdmin){ showToast("Please login first · 請先登入"); return; }
+  if(!currentUser||currentUser.isAdmin){ showToast("Please login first"); return; }
   const db = dbLoad();
   const amount = Number(document.getElementById("depAmount").value);
   const method = document.getElementById("depMethod").value;
@@ -1013,7 +1015,7 @@ function submitDeposit(){
     status:"pending", date:todayStr()
   });
   dbSave(db);
-  showToast("✅ Deposit submitted! Awaiting approval · 儲值申請已提交，等待審核");
+  showToast("Deposit submitted!");
 }
 
 // ═══════════════════════════════════════
@@ -1032,7 +1034,7 @@ function approveDeposit(id){
     m.tier = tierOf(m.deposit);
   }
   dbSave(db); renderAdmin();
-  showToast("✅ Approved "+fmt(d.amount)+" · 已批准");
+  showToast("Deposit approved: "+fmt(d.amount));
 }
 
 function rejectDeposit(id){
@@ -1040,7 +1042,7 @@ function rejectDeposit(id){
   const d = db.deposits.find(x=>x.id===id);
   if(d) d.status = "rejected";
   dbSave(db); renderAdmin();
-  showToast("❌ Rejected · 已拒絕");
+  showToast("Deposit rejected");
 }
 
 function addRevenue(){
@@ -1048,7 +1050,7 @@ function addRevenue(){
   const amount = Number(document.getElementById("revAmount").value);
   const rate = Number(document.getElementById("rewardRate").value||5);
   const date = document.getElementById("revDate").value||todayStr();
-  if(!amount){ showToast("Enter revenue amount · 請輸入營收"); return; }
+  if(!amount){ showToast("Enter revenue amount"); return; }
   const pool = amount*rate/100;
   const totalW = db.members.reduce((s,m)=>s+((m.stored||0)+(m.points||0))*boostOf(m.tier),0);
   const rev = {id:"R"+Date.now(),date,amount,rate,pool};
@@ -1063,7 +1065,7 @@ function addRevenue(){
     });
   }
   dbSave(db); renderAdmin();
-  showToast("✅ Revenue added & points distributed · 營收已添加，點數已發放");
+  showToast("Revenue added and points distributed!");
 }
 
 function seedDemo(){
@@ -1090,25 +1092,25 @@ function seedDemo(){
     });
   }
   dbSave(db); renderAdmin();
-  showToast("✅ Demo data generated! · 測試資料已生成！");
+  showToast("Demo data generated!");
 }
 
 function resetAll(){
   if(!confirm("Delete ALL data? · 確定清除全部資料？")) return;
   dbSave({members:[],deposits:[],revenues:[],rewards:[],redeems:[]});
   renderAdmin();
-  showToast("🗑️ All data cleared · 已清除");
+  showToast("All data cleared");
 }
 
 // ═══════════════════════════════════════
 // REDEEM
 // ═══════════════════════════════════════
 function doInStoreRedeem(amt, name){
-  if(!currentUser||currentUser.isAdmin){ showToast("Please login · 請先登入"); return; }
+  if(!currentUser||currentUser.isAdmin){ showToast("Please login"); return; }
   const db = dbLoad();
   const u = db.members.find(x=>x.id===currentUser.id);
   const avail = (u.stored||0)+(u.points||0);
-  if(amt>avail){ showToast("Insufficient balance · 餘額不足"); return; }
+  if(amt>avail){ showToast("Insufficient balance"); return; }
   pendingRedeemAmt=amt; pendingRedeemName=name;
   setText("redeemConfText","Redeem "+fmt(amt)+" for\n「"+name+"」?\n\nRemaining · 剩餘: "+fmt(avail-amt));
   showModal("redeemConfModal");
@@ -1123,20 +1125,20 @@ function confirmRedeem(){
   db.redeems.push({id:"U"+Date.now(),memberId:u.id,name:u.name,date:todayStr(),amount:pendingRedeemAmt});
   dbSave(db); currentUser=u; loadUI();
   closeModal("redeemConfModal");
-  showToast("🎉 Redeemed "+fmt(pendingRedeemAmt)+" · 折抵成功！");
+  showToast("Redeemed "+fmt(pendingRedeemAmt)+"!");
 }
 
 function showCustomRedeem(){
   const db = dbLoad();
   const u = db.members.find(x=>x.id===currentUser?.id);
-  if(!u){ showToast("Please login · 請先登入"); return; }
+  if(!u){ showToast("Please login"); return; }
   setText("customRedeemAvail", fmt((u.stored||0)+(u.points||0)));
   showModal("customRedeemModal");
 }
 
 function confirmCustomRedeem(){
   const amt = Number(document.getElementById("customRedeemAmt").value);
-  if(amt<=0){ showToast("Enter valid amount · 請輸入有效金額"); return; }
+  if(amt<=0){ showToast("Enter valid amount"); return; }
   closeModal("customRedeemModal");
   doInStoreRedeem(amt,"Custom Redeem · 自訂折抵");
 }
@@ -1164,7 +1166,7 @@ function saveBirthday(){
   const u = db.members.find(x=>x.id===currentUser.id);
   if(!u) return;
   const bday = document.getElementById("bdayInput").value;
-  if(!bday){showToast("Please select birthday · 請選擇生日");return;}
+  if(!bday){showToast("Please select birthday");return;}
   const today = new Date().toISOString().slice(5,10);
   const bdayMMDD = bday.slice(5,10);
   let pts = 0;
@@ -1179,8 +1181,8 @@ function saveBirthday(){
   }
   dbSave(db); currentUser = u; loadUI();
   closeModal("birthdayModal");
-  if(pts > 0) showToast("🎂 Happy Birthday! +2 pts! · ថ្ងៃកំណើតរីករាយ!");
-  else showToast("🎂 Birthday saved! · ថ្ងៃកំណើតបានរក្សាទុក!");
+  if(pts > 0) showToast("Happy Birthday! +2 pts!");
+  else showToast("Happy Birthday! +2 pts!");
 }
 function showShareModal(){
   if(!currentUser||currentUser.isAdmin){showToast("Please login first");return;}
@@ -1195,18 +1197,18 @@ function shareToFacebook(){
   const url = "https://leerose0825.github.io/-Cinnabon-";
   const text = "我是Cinnabon Fun Mall的"+currentUser.tier+"會員！加入我們，享受儲值優惠和分紅！";
   window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(url)+"&quote="+encodeURIComponent(text), "_blank");
-  showToast("📘 Opening Facebook · 正在開啟臉書...");
+  showToast("Opening Facebook...");
 }
 function shareToWhatsApp(){
   const url = "https://leerose0825.github.io/-Cinnabon-";
   const text = "🍥 我是Cinnabon Fun Mall "+currentUser.tier+"會員！邀請你加入，各得5積分！
 "+url;
   window.open("https://wa.me/?text="+encodeURIComponent(text), "_blank");
-  showToast("💬 Opening WhatsApp...");
+  showToast("Opening WhatsApp...");
 }
 function copyCode(){
   if(currentUser&&navigator.clipboard) navigator.clipboard.writeText(currentUser.inviteCode);
-  showToast("Code copied! · 邀請碼已複製 📤");
+  showToast("Code copied!");
 }
 
 // ═══════════════════════════════════════
