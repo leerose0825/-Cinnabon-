@@ -913,7 +913,7 @@ function buildTxList(db, u){
   txs.sort((a,b)=>b.date.localeCompare(a.date));
   const el = document.getElementById("txList");
   if(!el) return;
-  if(txs.length===0){ el.innerHTML='<div style="text-align:center;padding:14px;color:var(--muted);font-size:12px;">No transactions yet · 暫無記錄</div>'; return; }
+  if(txs.length===0){ el.innerHTML='<div style="text-align:center;padding:14px;color:var(--muted);font-size:12px;">No transactions yet</div>'; return; }
   el.innerHTML = txs.slice(0,30).map(t=>`
     <div class="tx-item">
       <div class="tx-dot" style="background:${t.color};"></div>
@@ -928,7 +928,7 @@ function buildRefList(db, u){
   if(!el) return;
   const earned = refs.length*500;
   setText("refEarned", earned.toLocaleString()+" pts earned");
-  if(refs.length===0){ el.innerHTML='<div style="text-align:center;padding:14px;color:var(--muted);font-size:12px;">No referrals yet · 暫無Referral history · 邀請記錄 · ប្រវត្តិអញ្ជើញ</div>'; return; }
+  if(refs.length===0){ el.innerHTML='<div style="text-align:center;padding:14px;color:var(--muted);font-size:12px;">No referrals yet</div>'; return; }
   el.innerHTML = refs.map(m=>`
     <div class="ref-item">
       <div class="ref-av">🧑</div>
