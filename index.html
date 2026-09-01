@@ -797,9 +797,12 @@ function doRegister(){
   let pts = 2;
   if(invite){
     const ref = db.members.find(x=>x.inviteCode===invite);
-  const code="CNB-"+String(db.members.length+4729);
-  let pts=2;
-  if(invite){const ref=db.members.find(x=>x.inviteCode===invite.toUpperCase());if(ref){ref.points+=2;ref.referrals=(ref.referrals||0)+1;save();pts+=2;}}
+    if(ref){
+      ref.points = (ref.points||0)+2;
+      ref.monthPts = (ref.monthPts||0)+2;
+      ref.referrals = (ref.referrals||0)+1;
+      pts += 2;
+    }
   }
   const newM = {id,name,phone,pass,deposit:0,stored:0,points:pts,tier:"Silver",inviteCode:code,streak:0,referrals:0,monthPts:pts,created:todayStr()};
   db.members.push(newM); dbSave(db);
@@ -1007,6 +1010,7 @@ function submitDeposit(){
   if(!currentUser||currentUser.isAdmin){ showToast("Please login first"); return; }
   const db = dbLoad();
   const amount = Number(document.getElementById("depAmount").value);
+  if(!amount||amount<=0){ showToast("Enter a valid amount · 請輸入有效金額"); return; }
   const method = document.getElementById("depMethod").value;
   const ref = document.getElementById("depRef").value.trim();
   db.deposits.push({
