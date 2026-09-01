@@ -1144,15 +1144,6 @@ function confirmCustomRedeem(){
 }
 
 // ═══════════════════════════════════════
-// CHECK-IN
-// ═══════════════════════════════════════
-
-  const db = dbLoad();
-  const u = db.members.find(x=>x.id===currentUser.id);
-  u.streak = (u.streak||0)+1;
-
-
-// ═══════════════════════════════════════
 // INVITE
 // ═══════════════════════════════════════
 function showBirthdayModal(){
@@ -1169,20 +1160,21 @@ function saveBirthday(){
   if(!bday){showToast("Please select birthday");return;}
   const today = new Date().toISOString().slice(5,10);
   const bdayMMDD = bday.slice(5,10);
-  let pts = 0;
+  let awarded = false;
   if(!u.birthday){
-    // First time setting birthday - give 200 pts if today is birthday
+    // First time setting birthday - give 2 pts if today is the birthday
     u.birthday = bday;
-    if(bdayMMDD === today){
+    if(bdayMMDD === today && !u.birthdayClaimedYear){
       u.points = (u.points||0) + 2;
       u.monthPts = (u.monthPts||0) + 2;
-      pts = 200;
+      u.birthdayClaimedYear = new Date().getFullYear();
+      awarded = true;
     }
   }
   dbSave(db); currentUser = u; loadUI();
   closeModal("birthdayModal");
-  if(pts > 0) showToast("Happy Birthday! +2 pts!");
-  else showToast("Happy Birthday! +2 pts!");
+  if(awarded) showToast("Happy Birthday! +2 pts! · 生日快樂！");
+  else showToast("Birthday saved · 生日已儲存 · បានរក្សាទុក");
 }
 function showShareModal(){
   if(!currentUser||currentUser.isAdmin){showToast("Please login first");return;}
