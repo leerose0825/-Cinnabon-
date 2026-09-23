@@ -1,0 +1,11 @@
+name = "cinnabon-ai-proxy"
+main = "src/worker.js"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Comma-separated list of pages allowed to call the proxy.
+ALLOWED_ORIGINS = "https://leerose0825.github.io"
+
+# The API key is a secret, never put it here:
+#   npx wrangler secret put ANTHROPIC_API_KEY
