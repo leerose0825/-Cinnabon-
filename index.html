@@ -797,9 +797,12 @@ function doRegister(){
   let pts = 2;
   if(invite){
     const ref = db.members.find(x=>x.inviteCode===invite);
-  const code="CNB-"+String(db.members.length+4729);
-  let pts=2;
-  if(invite){const ref=db.members.find(x=>x.inviteCode===invite.toUpperCase());if(ref){ref.points+=2;ref.referrals=(ref.referrals||0)+1;save();pts+=2;}}
+    if(ref){
+      ref.points = (ref.points||0)+2;
+      ref.monthPts = (ref.monthPts||0)+2;
+      ref.referrals = (ref.referrals||0)+1;
+      pts += 2;
+    }
   }
   const newM = {id,name,phone,pass,deposit:0,stored:0,points:pts,tier:"Silver",inviteCode:code,streak:0,referrals:0,monthPts:pts,created:todayStr()};
   db.members.push(newM); dbSave(db);
@@ -1007,6 +1010,7 @@ function submitDeposit(){
   if(!currentUser||currentUser.isAdmin){ showToast("Please login first"); return; }
   const db = dbLoad();
   const amount = Number(document.getElementById("depAmount").value);
+  if(!amount||amount<=0){ showToast("Enter a valid amount · 請輸入有效金額"); return; }
   const method = document.getElementById("depMethod").value;
   const ref = document.getElementById("depRef").value.trim();
   db.deposits.push({
@@ -1144,15 +1148,6 @@ function confirmCustomRedeem(){
 }
 
 // ═══════════════════════════════════════
-// CHECK-IN
-// ═══════════════════════════════════════
-
-  const db = dbLoad();
-  const u = db.members.find(x=>x.id===currentUser.id);
-  u.streak = (u.streak||0)+1;
-
-
-// ═══════════════════════════════════════
 // INVITE
 // ═══════════════════════════════════════
 function showBirthdayModal(){
@@ -1169,20 +1164,21 @@ function saveBirthday(){
   if(!bday){showToast("Please select birthday");return;}
   const today = new Date().toISOString().slice(5,10);
   const bdayMMDD = bday.slice(5,10);
-  let pts = 0;
+  let awarded = false;
   if(!u.birthday){
-    // First time setting birthday - give 200 pts if today is birthday
+    // First time setting birthday - give 2 pts if today is the birthday
     u.birthday = bday;
-    if(bdayMMDD === today){
+    if(bdayMMDD === today && !u.birthdayClaimedYear){
       u.points = (u.points||0) + 2;
       u.monthPts = (u.monthPts||0) + 2;
-      pts = 200;
+      u.birthdayClaimedYear = new Date().getFullYear();
+      awarded = true;
     }
   }
   dbSave(db); currentUser = u; loadUI();
   closeModal("birthdayModal");
-  if(pts > 0) showToast("Happy Birthday! +2 pts!");
-  else showToast("Happy Birthday! +2 pts!");
+  if(awarded) showToast("Happy Birthday! +2 pts! · 生日快樂！");
+  else showToast("Birthday saved · 生日已儲存 · បានរក្សាទុក");
 }
 function showShareModal(){
   if(!currentUser||currentUser.isAdmin){showToast("Please login first");return;}
