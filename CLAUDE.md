@@ -15,14 +15,15 @@ The UI is trilingual — English · 中文 (Traditional Chinese) · ភាសា
 
 ## Repository layout
 
-The entire application is **one file**:
+The app itself is **one file**; the only other code is the AI assistant proxy:
 
 ```
-index.html      # HTML + CSS + JavaScript, ~1300 lines, all inline
+index.html      # HTML + CSS + JavaScript, ~1450 lines, all inline
+ai-proxy/       # Cloudflare Worker that holds the Anthropic API key (see its README)
 ```
 
-There is no build system, no package manager, no dependencies to install, no
-tests, and no CI. The only external resource is Google Fonts (loaded via
+The app has no build system, no package manager, no dependencies to install,
+no tests, and no CI. The only external resource is Google Fonts (loaded via
 `<link>`). The file is served as a static page (deployed to GitHub Pages at
 `https://leerose0825.github.io/-Cinnabon-`).
 
@@ -31,10 +32,10 @@ tests, and no CI. The only external resource is Google Fonts (loaded via
 | Lines (approx) | Section |
 | --- | --- |
 | `1–8` | `<head>`, fonts |
-| `9–257` | `<style>` — all CSS, using CSS custom properties (`:root` vars) |
-| `259–681` | `<body>` markup: screens + tabs + bottom nav |
-| `682–1246` | `<script>` — all application logic |
-| `1248–end` | Modal overlays (birthday, share, redeem confirmation, custom redeem) |
+| `9–274` | `<style>` — all CSS, using CSS custom properties (`:root` vars) |
+| `276–701` | `<body>` markup: screens + tabs + bottom nav + AI chat button |
+| `702–1393` | `<script>` — all application logic |
+| `1395–end` | Modal overlays (birthday, share, AI assistant) |
 
 ## Running / developing
 
@@ -121,6 +122,24 @@ the DB.
 - `fmt(n)` formats currency (`$1,234.00`).
 - Toasts via `showToast(msg)`; modals via `showModal(id)` / `closeModal(id)`.
 
+### AI assistant (AI 客服)
+
+A chat bubble (`#aiFab`, hidden for admin) opens `#aiModal`. The browser runs
+the agent loop in `aiSubmit()`: it posts the whole conversation to
+`AI_PROXY_URL + "/chat"`, appends the returned assistant `content` to
+`aiMessages` **unchanged** (thinking blocks must be passed back as-is), runs
+any `tool_use` blocks with `aiRunTool()`, and repeats (max `AI_MAX_STEPS`).
+
+- Tools are defined in `ai-proxy/src/worker.js` (`TOOLS`) and implemented in
+  `aiRunTool()` in `index.html`; keep the two in sync. They are read-only
+  over the logged-in member's own data, except `open_app_page`, which only
+  switches tabs. Do not add tools that move money or touch other members.
+- The system prompt, model and tool list live only in the Worker, so the
+  browser cannot change them. Business rules in the system prompt must be
+  updated when `tierOf` / `bonusOf` / `boostOf` or redemption logic changes.
+- `AI_PROXY_URL = ""` disables the assistant. The chat resets on logout and
+  when a different member opens it.
+
 ## Conventions & gotchas
 
 - **Everything is global and imperative.** No framework, no modules, no
@@ -150,4 +169,5 @@ the DB.
 - Default branch: `main`. Deployed via GitHub Pages.
 - Commit messages in history are short and imperative
   (e.g. "Update index.html", "Update toast messages for clarity").
-- Keep changes scoped to `index.html` unless intentionally adding new files.
+- Keep changes scoped to `index.html` (and `ai-proxy/` for assistant work)
+  unless intentionally adding new files.

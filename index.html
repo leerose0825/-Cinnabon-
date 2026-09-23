@@ -250,6 +250,23 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
 .login-hint span{color:var(--teal);cursor:pointer;}
 .notif-dot{width:7px;height:7px;background:var(--red);border-radius:50%;position:absolute;top:4px;right:calc(50% - 13px);}
 
+/* AI ASSISTANT */
+.ai-fab{position:fixed;right:14px;bottom:calc(78px + env(safe-area-inset-bottom));width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:150;box-shadow:0 4px 18px rgba(103,203,201,.35);}
+.ai-fab:active{transform:scale(.94);}
+.ai-sheet{display:flex;flex-direction:column;height:80vh;padding-bottom:calc(14px + env(safe-area-inset-bottom));}
+.ai-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px;}
+.ai-new{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:16px;padding:5px 11px;font-size:12px;cursor:pointer;font-family:"Noto Sans SC",sans-serif;white-space:nowrap;}
+.ai-log{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding:4px 0 10px;}
+.ai-msg{max-width:85%;padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.55;white-space:pre-wrap;word-break:break-word;}
+.ai-msg.user{align-self:flex-end;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);border-bottom-right-radius:4px;}
+.ai-msg.bot{align-self:flex-start;background:var(--card2);border:1px solid var(--border);border-bottom-left-radius:4px;}
+.ai-msg.note{align-self:center;background:transparent;color:var(--muted);font-size:12px;text-align:center;}
+.ai-input{display:flex;gap:8px;}
+.ai-input input{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:11px 13px;color:var(--white);font-size:14px;font-family:"Noto Sans SC",sans-serif;outline:none;min-width:0;}
+.ai-input input:focus{border-color:var(--teal);}
+.ai-input button{border:none;border-radius:11px;padding:0 16px;background:linear-gradient(135deg,var(--teal2),var(--teal));color:var(--navy2);font-weight:900;font-size:14px;cursor:pointer;font-family:"Noto Sans SC",sans-serif;}
+.ai-input button:disabled{opacity:.5;cursor:default;}
+
 /* TOAST */
 .toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--navy);border:1px solid var(--teal);color:var(--teal);padding:9px 18px;border-radius:24px;font-size:12px;font-weight:700;z-index:300;display:none;white-space:nowrap;box-shadow:0 4px 18px rgba(103,203,201,.22);}
 .toast.show{display:block;animation:toastIn .3s ease;}
@@ -652,6 +669,9 @@ body{background:var(--navy2);color:var(--white);font-family:"Noto Sans SC",sans-
     <div class="nav-btn" onclick="switchTab('historyTab',this)"><span class="icon">📋</span><span class="lbl">History · កំណត់<br>記錄</span></div>
     <div class="nav-btn" onclick="switchTab('profileTab',this)"><span class="icon">👤</span><span class="lbl">Me · ខ្ញុំ<br>我的</span></div>
   </nav>
+
+  <!-- AI ASSISTANT BUTTON -->
+  <div class="ai-fab" id="aiFab" onclick="aiOpen()" title="AI Assistant · AI 客服">💬</div>
 </div></div>
 
 <!-- CUSTOM REDEEM MODAL -->
@@ -810,7 +830,7 @@ function doRegister(){
   showToast("Welcome "+name+"! "+pts+" pts gifted!");
 }
 
-function doLogout(){ currentUser=null; switchScreen("loginScreen"); showToast("Logged out"); }
+function doLogout(){ currentUser=null; aiReset(); closeModal("aiModal"); switchScreen("loginScreen"); showToast("Logged out"); }
 function showRegister(){ switchScreen("registerScreen"); }
 function showLogin(){ switchScreen("loginScreen"); }
 
@@ -820,6 +840,8 @@ function showLogin(){ switchScreen("loginScreen"); }
 function loadUI(){
   if(!currentUser) return;
   const u = currentUser;
+  const fab = document.getElementById("aiFab");
+  if(fab) fab.style.display = u.isAdmin ? "none" : "flex";
   const avail = (u.stored||0)+(u.points||0);
 
   // Sync from DB
@@ -1208,6 +1230,135 @@ function copyCode(){
 }
 
 // ═══════════════════════════════════════
+// AI ASSISTANT
+// ═══════════════════════════════════════
+// URL of the deployed ai-proxy Worker (see ai-proxy/README.md). Empty = assistant disabled.
+const AI_PROXY_URL = "";
+const AI_MAX_MESSAGES = 36; // the proxy rejects conversations over 40 messages
+const AI_MAX_STEPS = 6;     // tool round trips per question
+const AI_PAGES = {home:"homeTab",deposit:"depositTab",redeem:"redeemTab",invite:"inviteTab",history:"historyTab",profile:"profileTab"};
+let aiMessages = [], aiUserId = null, aiBusy = false;
+
+function aiOpen(){
+  if(!currentUser||currentUser.isAdmin){ showToast("Please login first"); return; }
+  if(aiUserId!==currentUser.id) aiReset();
+  showModal("aiModal");
+  document.getElementById("aiText").focus();
+}
+
+function aiReset(){
+  aiMessages = []; aiUserId = currentUser && !currentUser.isAdmin ? currentUser.id : null;
+  const log = document.getElementById("aiLog");
+  if(!log) return;
+  log.innerHTML = "";
+  aiAppend("bot", AI_PROXY_URL
+    ? "Hi! Ask me about your balance, deposits, points or how the program works.\n你好！可以問我餘額、儲值、積分或會員制度。\nសួស្តី! សួរខ្ញុំអំពីសមតុល្យ ការបញ្ចូលប្រាក់ ឬពិន្ទុ។"
+    : "AI assistant is not set up yet · AI 客服尚未開通");
+}
+
+function aiAppend(kind, text){
+  const log = document.getElementById("aiLog");
+  const el = document.createElement("div");
+  el.className = "ai-msg "+kind;
+  el.textContent = text;
+  log.appendChild(el);
+  log.scrollTop = log.scrollHeight;
+  return el;
+}
+
+// Tools the model can call. They only read the logged-in member's own data
+// (plus switching pages); money never moves from here.
+function aiRunTool(name, input){
+  const db = dbLoad();
+  const u = db.members.find(x=>x.id===currentUser.id);
+  if(!u) return {error:"Member not found"};
+  if(name==="get_my_account"){
+    return {
+      name:u.name, memberId:u.id, tier:u.tier, totalApprovedDeposits:u.deposit||0,
+      storedValue:u.stored||0, rewardPoints:Number((u.points||0).toFixed(2)),
+      availableBalance:Number(((u.stored||0)+(u.points||0)).toFixed(2)),
+      inviteCode:u.inviteCode, referrals:u.referrals||0, birthday:u.birthday||null, memberSince:u.created
+    };
+  }
+  if(name==="get_my_records"){
+    const lists = {deposits:db.deposits, rewards:db.rewards, redeems:db.redeems};
+    const list = lists[input.kind];
+    if(!list) return {error:"Unknown kind: "+input.kind};
+    const limit = Math.max(1, Math.min(20, Number(input.limit)||10));
+    return list.filter(r=>r.memberId===u.id).slice(-limit).reverse().map(r=>
+      input.kind==="deposits" ? {date:r.date||null, amount:r.amount, method:r.method||null, status:r.status}
+      : {date:r.date, amount:Number((r.amount||0).toFixed(2))});
+  }
+  if(name==="open_app_page"){
+    const tab = AI_PAGES[input.page];
+    if(!tab) return {error:"Unknown page: "+input.page};
+    const idx = Object.keys(AI_PAGES).indexOf(input.page);
+    switchTab(tab, document.querySelectorAll(".navbar .nav-btn")[idx]);
+    return {opened:input.page};
+  }
+  return {error:"Unknown tool: "+name};
+}
+
+async function aiCall(){
+  const res = await fetch(AI_PROXY_URL.replace(/\/$/,"")+"/chat", {
+    method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({messages:aiMessages})
+  });
+  const data = await res.json().catch(()=>({}));
+  if(!res.ok) throw new Error(data.error||("HTTP "+res.status));
+  return data;
+}
+
+async function aiSubmit(e){
+  e.preventDefault();
+  const input = document.getElementById("aiText");
+  const text = input.value.trim();
+  if(!text||aiBusy) return;
+  if(!AI_PROXY_URL){ aiAppend("note","AI assistant is not set up yet · AI 客服尚未開通"); return; }
+  if(aiMessages.length>=AI_MAX_MESSAGES){ aiAppend("note","This chat is full, tap New chat · 對話已滿，請按「新對話」"); return; }
+  input.value = "";
+  aiAppend("user", text);
+  const startLen = aiMessages.length;
+  aiMessages.push({role:"user", content:text});
+  aiBusy = true; document.getElementById("aiSendBtn").disabled = true;
+  const typing = aiAppend("note","…");
+  try{
+    for(let step=0; step<AI_MAX_STEPS; step++){
+      const data = await aiCall();
+      if(data.stop_reason==="refusal"){
+        // Nothing usable came back; drop this question so the history stays clean.
+        aiMessages.length = startLen;
+        aiAppend("bot","Sorry, I can't help with that. Please ask the staff at the counter · 抱歉，這個問題請洽櫃檯人員。");
+        break;
+      }
+      // Keep the assistant turn exactly as returned; the API needs it unchanged next time.
+      aiMessages.push({role:"assistant", content:data.content});
+      const reply = data.content.filter(b=>b.type==="text").map(b=>b.text).join("\n").trim();
+      if(reply) aiAppend("bot", reply);
+      if(data.stop_reason==="max_tokens"){ aiAppend("note","(reply cut off · 回覆被截斷)"); break; }
+      if(data.stop_reason==="pause_turn") continue;
+      if(data.stop_reason!=="tool_use") break;
+      const results = data.content.filter(b=>b.type==="tool_use").map(b=>{
+        let out, isError = false;
+        try{ out = aiRunTool(b.name, b.input||{}); isError = !!(out&&out.error); }
+        catch(err){ out = {error:String(err.message||err)}; isError = true; }
+        return {type:"tool_result", tool_use_id:b.id, content:JSON.stringify(out), is_error:isError};
+      });
+      aiMessages.push({role:"user", content:results});
+      if(step===AI_MAX_STEPS-1) aiAppend("note","(stopped early, please ask again · 已中止，請再問一次)");
+    }
+  }catch(err){
+    // Roll back to before this question so a retry starts from a valid history.
+    aiMessages.length = startLen;
+    aiAppend("note", (err.message==="conversation_too_long"
+      ? "This chat is full, tap New chat · 對話已滿，請按「新對話」"
+      : "Connection problem, please try again · 連線失敗，請再試一次"));
+  }finally{
+    typing.remove();
+    aiBusy = false; document.getElementById("aiSendBtn").disabled = false;
+  }
+}
+
+// ═══════════════════════════════════════
 // NAVIGATION
 // ═══════════════════════════════════════
 function switchScreen(id){
@@ -1283,6 +1434,25 @@ Birthday = +5 pts auto!
       💬 Share to WhatsApp · 分享到WhatsApp
     </button>
     <button class="modal-btn-sec" onclick="closeModal('shareModal')">Cancel · 取消 · បោះបង់</button>
+  </div>
+</div>
+
+<!-- AI ASSISTANT MODAL -->
+<div class="modal-overlay" id="aiModal" onclick="closeModal('aiModal')">
+  <div class="modal ai-sheet" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div class="ai-head">
+      <div>
+        <div class="m-en">AI Assistant</div>
+        <h3>AI 客服 · ជំនួយការ AI</h3>
+      </div>
+      <button class="ai-new" onclick="aiReset()">New chat · 新對話</button>
+    </div>
+    <div class="ai-log" id="aiLog"></div>
+    <form class="ai-input" onsubmit="aiSubmit(event)">
+      <input id="aiText" maxlength="500" autocomplete="off" placeholder="Ask anything · 請輸入問題 · សួរ">
+      <button id="aiSendBtn" type="submit">Send · 送出</button>
+    </form>
   </div>
 </div>
 </body>
